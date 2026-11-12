@@ -43,6 +43,7 @@ This is the product name. The repo is still called `ygo-lab` until it is renamed
 - **Teaching the app**: mechanics come from the card scripts and text (no explaining needed). The user only teaches *roles and judgement*: right-click a card to tag its role, type notes into the duel chat (attached to the current state), "that's wrong" button, and a post-duel review that asks "why?" only where the user left the library line.
 - **Duel**: plays exactly like EDOPro. Save states (quick save/load, branch tree). The chat panel carries the important info: hand-trap and Nibiru windows, line-library matches, dead-end warnings, odds of the current line.
 - **Deck sync**: import/export between EDOPro installs; Google Drive sync by pointing the deck folder at a Drive-synced folder first (no API needed), real Drive API only if that is not enough.
+- **First-release extras (user, round 3)**: personal results log (real brick and full-board rates vs. exact odds), deck version history (each edit saved with its odds change), opponent board library (import end boards from replays; "can I break this, and with what?"). Test-hand mode is not a separate feature: drawing and playing a hand is the base duel and drill flow. Line map, hide-the-hint mode and stream overlay are not committed; revisit later.
 
 ## Guardrails
 - ocgcore and ProjectIgnis scripts are AGPL-3.0: a distributed RKAPro must be open under the same licence.
