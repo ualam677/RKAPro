@@ -1,0 +1,13 @@
+{
+  "enabledPlugins": {
+    "ponytail@ponytail": true,
+    "frontend-design@anthropic-plugin-directory": true,
+    "design@anthropic-plugin-directory": true,
+    "vercel@anthropic-plugin-directory": true,
+    "skill-creator@anthropic-plugin-directory": true,
+    "code-review-anthropics@anthropic-plugin-directory": true,
+    "claude-memory@anthropic-plugin-directory": true,
+    "obsidian-notes@anthropic-plugin-directory": true,
+    "typescript-lsp@anthropic-plugin-directory": true
+  }
+}
