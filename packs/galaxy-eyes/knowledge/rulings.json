@@ -1,0 +1,9 @@
+[
+ {
+  "card": "Galaxy-Eyes Antimatter Dragon",
+  "edopro": "The detach effect needs a possible Battle Phase, so it cannot be used on turn 1.",
+  "omega": "Allowed on turn 1.",
+  "authority": "EDOPro",
+  "note": "The Soldier replay only reproduces with YGO_OMEGA_RULINGS=1."
+ }
+]

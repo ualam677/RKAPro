@@ -1,0 +1,121 @@
+{
+ "id": "orbital-7",
+ "class": "Orbital 7",
+ "source": "replay 2-orb7-r1.txt",
+ "legal": true,
+ "board": 4.25,
+ "nib": true,
+ "steps": [
+  {
+   "k": "activate",
+   "name": "Galaxy Defense Robot Orbital 7"
+  },
+  {
+   "k": "activate",
+   "name": "Photon Emperor"
+  },
+  {
+   "k": "summon",
+   "name": "Photon Emperor"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy Wizard"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy Wizard"
+  },
+  {
+   "k": "summon",
+   "name": "Divine Golden Shadow Dragon Dragluxion"
+  },
+  {
+   "k": "activate",
+   "name": "Divine Golden Shadow Dragon Dragluxion"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy-Eyes Tachyon Primal"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy-Eyes Tachyon Primal"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy-Eyes Tachyon Primal"
+  },
+  {
+   "k": "activate",
+   "name": "Divine Golden Shadow Dragon Dragluxion"
+  },
+  {
+   "k": "summon",
+   "name": "Number 107: Galaxy-Eyes Tachyon Dragon"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy Defense Robot Orbital 7"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy Defense Robot Orbital 7"
+  },
+  {
+   "k": "summon",
+   "name": "Number 90: Galaxy-Eyes Photon Lord"
+  },
+  {
+   "k": "summon",
+   "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+  },
+  {
+   "k": "activate",
+   "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+  },
+  {
+   "k": "summon",
+   "name": "Photon Orbital"
+  },
+  {
+   "k": "activate",
+   "name": "Photon Orbital"
+  },
+  {
+   "k": "activate",
+   "name": "Photon Orbital"
+  },
+  {
+   "k": "summon",
+   "name": "Photon Delta Wing"
+  },
+  {
+   "k": "activate",
+   "name": "Photon Delta Wing"
+  },
+  {
+   "k": "summon",
+   "name": "Photon Delta Wing"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy Photon Dragon"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy Photon Dragon"
+  }
+ ],
+ "endBoard": {
+  "monsters": [
+   "Number 90: Galaxy-Eyes Photon Lord [2]",
+   "Galaxy Photon Dragon [1]",
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling [3]"
+  ],
+  "backrow": [
+   "Eternal Galaxy",
+   "Tachyon Transmigration"
+  ]
+ }
+}

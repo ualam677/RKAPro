@@ -1,0 +1,179 @@
+{
+ "id": "soldier-light-hand-trap",
+ "class": "Soldier + LIGHT hand trap",
+ "source": "replay 4-soldier.txt",
+ "legal": false,
+ "board": 4.25,
+ "nib": true,
+ "note": "Recorded in YGO Omega; it uses Galaxy-Eyes Antimatter Dragon's detach effect on turn 1, which EDOPro does not allow. Shown for reference, never expected.",
+ "steps": [
+  {
+   "k": "activate",
+   "name": "Galaxy Soldier"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy Soldier"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy Soldier"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy Defense Robot Orbital 7"
+  },
+  {
+   "k": "activate",
+   "name": "Photon Emperor"
+  },
+  {
+   "k": "summon",
+   "name": "Photon Emperor"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy Summoner"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy Summoner"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy Defense Robot Orbital 7"
+  },
+  {
+   "k": "summon",
+   "name": "Number 90: Galaxy-Eyes Photon Lord"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy Summoner"
+  },
+  {
+   "k": "summon",
+   "name": "Starliege Photon Blast Dragon"
+  },
+  {
+   "k": "summon",
+   "name": "Dark Ceruvim Irisfil"
+  },
+  {
+   "k": "activate",
+   "name": "Dark Ceruvim Irisfil"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy-Eyes Antimatter Dragon"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy-Eyes Antimatter Dragon"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy-Eyes Full Armor Photon Dragon"
+  },
+  {
+   "k": "summon",
+   "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+  },
+  {
+   "k": "activate",
+   "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+  },
+  {
+   "k": "summon",
+   "name": "Photon Orbital"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy War Drake"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy War Drake"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy War Drake"
+  },
+  {
+   "k": "activate",
+   "name": "Photon Orbital"
+  },
+  {
+   "k": "activate",
+   "name": "Photon Orbital"
+  },
+  {
+   "k": "summon",
+   "name": "Photon Delta Wing"
+  },
+  {
+   "k": "activate",
+   "name": "Photon Delta Wing"
+  },
+  {
+   "k": "summon",
+   "name": "Photon Delta Wing"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy Photon Dragon"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy Photon Dragon"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy-Eyes Tachyon Primal"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy-Eyes Tachyon Primal"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy-Eyes Tachyon Primal"
+  },
+  {
+   "k": "summon",
+   "name": "Divine Golden Shadow Dragon Dragluxion"
+  },
+  {
+   "k": "activate",
+   "name": "Divine Golden Shadow Dragon Dragluxion"
+  },
+  {
+   "k": "activate",
+   "name": "Divine Golden Shadow Dragon Dragluxion"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy-Eyes Cipher Dragon"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy-Eyes Cipher X Dragon"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy-Eyes Cipher X Dragon"
+  }
+ ],
+ "endBoard": {
+  "monsters": [
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling [5]",
+   "Galaxy Photon Dragon [1]",
+   "Galaxy-Eyes Cipher X Dragon",
+   "Number 90: Galaxy-Eyes Photon Lord [2]"
+  ],
+  "backrow": [
+   "Eternal Galaxy",
+   "Tachyon Transmigration"
+  ]
+ }
+}

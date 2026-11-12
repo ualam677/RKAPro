@@ -1,0 +1,159 @@
+{
+ "id": "seventh-tachyon",
+ "class": "Seventh Tachyon",
+ "source": "replay 5-schwarz.txt",
+ "legal": true,
+ "board": 4,
+ "nib": true,
+ "note": "Seventh Tachyon reveals Number 107 and adds Infinity Dragon, then the Infinity Dragon line. The prefix is not from a replay.",
+ "steps": [
+  {
+   "k": "activate",
+   "name": "Seventh Tachyon"
+  },
+  {
+   "k": "activate",
+   "name": "Schwarzschild Infinity Dragon"
+  },
+  {
+   "k": "summon",
+   "name": "Schwarzschild Infinity Dragon"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy-Eyes Afterglow Dragon"
+  },
+  {
+   "k": "summon",
+   "name": "Divine Golden Shadow Dragon Dragluxion"
+  },
+  {
+   "k": "activate",
+   "name": "Divine Golden Shadow Dragon Dragluxion"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy-Eyes Tachyon Primal"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy-Eyes Tachyon Primal"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy-Eyes Tachyon Primal"
+  },
+  {
+   "k": "activate",
+   "name": "Divine Golden Shadow Dragon Dragluxion"
+  },
+  {
+   "k": "summon",
+   "name": "Number 107: Galaxy-Eyes Tachyon Dragon"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy-Eyes Afterglow Dragon"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy-Eyes Photon Dragon"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy-Eyes Cipher Dragon"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy-Eyes Cipher X Dragon"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy-Eyes Cipher X Dragon"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy-Eyes Full Armor Photon Dragon"
+  },
+  {
+   "k": "summon",
+   "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+  },
+  {
+   "k": "activate",
+   "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+  },
+  {
+   "k": "summon",
+   "name": "Photon Orbital"
+  },
+  {
+   "k": "activate",
+   "name": "Photon Orbital"
+  },
+  {
+   "k": "activate",
+   "name": "Photon Orbital"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy Defense Robot Orbital 7"
+  },
+  {
+   "k": "activate",
+   "name": "Photon Emperor"
+  },
+  {
+   "k": "summon",
+   "name": "Photon Emperor"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy Summoner"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy Summoner"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy-Eyes Photon Dragon"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy Defense Robot Orbital 7"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy Defense Robot Orbital 7"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy Summoner"
+  },
+  {
+   "k": "summon",
+   "name": "Galaxy Photon Dragon"
+  },
+  {
+   "k": "activate",
+   "name": "Galaxy Photon Dragon"
+  },
+  {
+   "k": "summon",
+   "name": "Number 38: Hope Harbinger Dragon Titanic Galaxy"
+  }
+ ],
+ "endBoard": {
+  "monsters": [
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling [3]",
+   "Number 38: Hope Harbinger Dragon Titanic Galaxy [2]",
+   "Galaxy Photon Dragon [1]",
+   "Number 107: Galaxy-Eyes Tachyon Dragon [2]"
+  ],
+  "backrow": [
+   "Eternal Galaxy",
+   "Tachyon Transmigration"
+  ]
+ }
+}
