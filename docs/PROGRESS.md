@@ -1,10 +1,13 @@
 # Progress log (read this first in every session)
 
-**Current wave:** 0 (Foundation). **Next slice:** 0.2 workspace layout.
+**Current wave:** 0 (Foundation). **Next slice:** 0.3 engine API.
 
 Repo state at last entry: sim/ headless engine and tools work (`scripts/verify.sh` passes all 5 replays); app/ ratio optimiser has 48 passing tests; no Electron, no duel UI yet.
 
 ## Log (newest first; 3 to 5 lines per slice)
+- 12 Nov 2026, slice 0.2 done: `packages/engine` (core, choices, state, board reading; core has zero imports, the host injects ocgcore + data),
+  `packs/galaxy-eyes` (deck.json, board scoring). `sim/engine.mjs` is the Node host; `sim/{choices,state,board,deck}.mjs` are re-export shims, tools unchanged.
+  Decisions: the desktop app stays in `app/` (no move to `apps/desktop`, so the gate command stays `cd app && npx vitest run`); `packages/analysis` is created in 1.1 when it has content. Search (beam, follower) stays in `sim/` until Wave 5.
 - 12 Nov 2026, slice 0.5 done: `sim/deck.mjs` is the current list; replays keep their recorded list (`REPLAY_MAIN`), `NEWLIST=1` tries them on the current one.
   Current vs old: full 93.3 / 93.5, Nibiru-proof 85.4 / 83.8, full+2HT 41.3 / 41.4, brick 6.7 / 5.9, going-2nd ≥2HT 74.0 / 74.0. Table in NOTES.md.
   Surprise: S38 was Dragluxion's attach target in the Schwarzschild line; Number 62 does that job now (79/79, board 4). Side card 97045738 = Dominus Purge alt art.
