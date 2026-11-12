@@ -1,0 +1,27 @@
+{
+  "note": "Hand classes for the exact odds model. Every line is an engine-verified LOWER bound (replay or tools/scripted.mjs). board = interruptions (see board.mjs); nib = Nibiru-proof by the user's definition. A need is met when the hand holds at least `min` (default 1) cards from `any` (card names) or from a named group.",
+  "fullBoard": 3.25,
+  "handTrapsFirst": ["Nibiru, the Primal Being", "Ash Blossom & Joyous Spring", "Infinite Impermanence", "Effect Veiler", "Ghost Ogre & Snow Rabbit", "Droll & Lock Bird"],
+  "handTrapsSecond": ["Nibiru, the Primal Being", "Ash Blossom & Joyous Spring", "Infinite Impermanence", "Effect Veiler", "Ghost Ogre & Snow Rabbit", "Droll & Lock Bird", "Mulcharmy Fuwalos"],
+  "groups": {
+    "lightFodder": ["Photon Delta Wing", "Galaxy Defense Robot Orbital 7", "Galaxy Wizard", "Photon Thrasher", "Galaxy War Drake", "Galaxy-Eyes Photon Dragon", "Galaxy-Eyes Tachyon Primal", "Galaxy-Eyes Afterglow Dragon", "Photon Emperor", "Photon Orbital", "Galaxy Summoner"],
+    "lightHandTrap": ["Effect Veiler", "Ghost Ogre & Snow Rabbit"],
+    "orbitalBody": ["Galaxy Summoner", "Galaxy War Drake", "Photon Thrasher"],
+    "thrasherLevel4": ["Galaxy Summoner", "Mulcharmy Fuwalos", "Galaxy War Drake"]
+  },
+  "lines": [
+    { "name": "Orbital 7", "needs": [{ "any": ["Galaxy Defense Robot Orbital 7"] }], "board": 4.25, "nib": true },
+    { "name": "Infinity Dragon", "needs": [{ "any": ["Schwarzschild Infinity Dragon"] }], "board": 4, "nib": true },
+    { "name": "Seventh Tachyon", "needs": [{ "any": ["Seventh Tachyon"] }], "board": 4, "nib": true },
+    { "name": "Delta Wing", "needs": [{ "any": ["Photon Delta Wing"] }], "board": 4, "nib": false },
+    { "name": "Galaxy Wizard", "needs": [{ "any": ["Galaxy Wizard"] }], "board": 3.25, "nib": true },
+    { "name": "2 Galaxy Soldier", "needs": [{ "any": ["Galaxy Soldier"], "min": 2 }], "board": 4.25, "nib": true },
+    { "name": "Soldier + LIGHT", "needs": [{ "any": ["Galaxy Soldier"] }, { "group": "lightFodder" }], "board": 4.25, "nib": true },
+    { "name": "Soldier + LIGHT hand trap", "needs": [{ "any": ["Galaxy Soldier"] }, { "group": "lightHandTrap" }], "board": 4.25, "nib": true, "spendsHandTrap": 1 },
+    { "name": "Photon Orbital + Level 4 body", "needs": [{ "any": ["Photon Orbital"] }, { "group": "orbitalBody" }], "board": 4, "nib": false },
+    { "name": "Thrasher + War Drake", "needs": [{ "any": ["Photon Thrasher"] }, { "any": ["Galaxy War Drake"] }], "board": 3.25, "nib": false },
+    { "name": "Thrasher + Level 4 + Eternal Galaxy", "needs": [{ "any": ["Photon Thrasher"] }, { "group": "thrasherLevel4" }, { "any": ["Eternal Galaxy"] }], "board": 4.25, "nib": false },
+    { "name": "Thrasher + Level 4", "needs": [{ "any": ["Photon Thrasher"] }, { "group": "thrasherLevel4" }], "board": 2.25, "nib": false }
+  ],
+  "digs": [{ "card": "Pot of Prosperity", "excavate": 3, "board": 4, "nib": false }]
+}

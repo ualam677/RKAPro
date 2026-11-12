@@ -30,7 +30,7 @@ Done when: library API passes all 5 replays and the 48 app tests, and the number
 
 ## Wave 1: Deck lab (medium)
 Mostly a port of what already works headlessly, so high value for low cost.
-- [ ] 1.1 Port `odds.mjs` into `packages/analysis` (TypeScript). Hand classes read from the pack's line table, not hard-coded.
+- [x] 1.1 Port `odds.mjs` into `packages/analysis` (TypeScript). Hand classes read from the pack's line table, not hard-coded.
 - [ ] 1.2 Stats: full board, Nibiru-proof, full + k hand traps, brick, going-2nd hand-trap counts, per-card marginal value. Always several numbers, never one score.
 - [ ] 1.3 Quick calculator: community-style (pick cards, min/max copies, 2-card pairs, "needs Normal Summon" flag), plus tag a card's role once and it is remembered.
 - [ ] 1.4 Deck import and export: `.ydk` (EDOPro folders, several installs), `ydke://`, Omega codes; Drive sync by pointing the deck folder at a Drive-synced folder.

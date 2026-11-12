@@ -1,10 +1,13 @@
 # Progress log (read this first in every session)
 
-**Current wave:** 1 (Deck lab). **Next slice:** 1.1 port odds into packages/analysis.
+**Current wave:** 1 (Deck lab). **Next slice:** 1.2 stats panel.
 
 Repo state at last entry: sim/ headless engine and tools work (`scripts/verify.sh` passes all 5 replays); golden tests pass through the library API; app/ ratio optimiser has 48 passing tests; no Electron, no duel UI yet.
 
 ## Log (newest first; 3 to 5 lines per slice)
+- 12 Nov 2026, slice 1.1 done: `packages/analysis/odds.ts` (pure TypeScript, run directly by Node and bundled by Vite). Hand classes are data: `packs/galaxy-eyes/lines.json` (lines, groups, hand traps, digs).
+  `sim/tools/odds.mjs` is now a thin CLI over it; same numbers to the decimal, about 1 s instead of 5 (cards the model cannot tell apart are merged before enumerating).
+  New: `node tools/odds.mjs marginals` (per-card -1/+1 table, 2 s). 5 new app tests: parity, sums to 1, merge is lossless, Monte Carlo within 1%.
 - 12 Nov 2026, slices 0.3 + 0.4 done (Wave 0 complete): `packages/engine/api.mjs` = `createDuel` -> `options()`, `respond()`, `snapshot()/restore()`, `actionLog()`, plus `replay(log)` and a seeded `shuffled()`.
   A save state is the action log (ordered decks + seed + every response, both players), JSON-safe. One live duel per process (one wasm heap).
   Golden tests: `cd sim && npm test` replays the 5 lines from `packs/galaxy-eyes/golden/*.json` in about 1 s and checks end board, the replay's summon order, determinism and snapshot/restore. Soldier runs in its own process with the Omega ruling.
