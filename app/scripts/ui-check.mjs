@@ -79,6 +79,23 @@ await section("files", async () => {
   await f.screenshot({ path: path.join(out, "3-lab-files.png") });
 });
 
+await section("history", async () => {
+  const hist = page.getByTestId("history");
+  await step("an edit becomes a version with its change in odds; restore brings the old list back", async () => {
+    if (!(await page.getByTestId("exact-stats").count())) await page.getByRole("button", { name: "Load my current list" }).click();
+    await hist.waitFor({ timeout: 5000 });
+    await page.locator(".card", { has: page.locator(".card-name", { hasText: "Galaxy War Drake" }) }).first().getByRole("button", { name: "more" }).click();
+    await hist.locator("tr", { hasText: "+1 Galaxy War Drake" }).waitFor({ timeout: 5000 });
+    const row = await hist.locator("tr", { hasText: "+1 Galaxy War Drake" }).innerText();
+    if (!/[+-]\d\.\d/.test(row)) throw new Error("no change in odds shown: " + row);
+    await hist.getByRole("button", { name: "Restore" }).first().click();
+    await page.waitForTimeout(1600);
+    const t = await page.getByTestId("exact-stats").innerText();
+    if (!t.includes("43 cards") || !t.includes("93.3%")) throw new Error("restore did not bring the list back");
+  });
+  await hist.screenshot({ path: path.join(out, "4-lab-history.png") });
+});
+
 if (errors.length) { console.log("PAGE ERRORS:\n" + errors.join("\n")); await browser.close(); process.exit(1); }
 await browser.close();
 console.log("done, screenshots in", out);

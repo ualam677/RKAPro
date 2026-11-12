@@ -1,10 +1,13 @@
 # Progress log (read this first in every session)
 
-**Current wave:** 1 (Deck lab). **Next slice:** 1.5 deck version history.
+**Current wave:** 1 (Deck lab). **Next slice:** 1.6 data update command.
 
 Repo state at last entry: sim/ headless engine and tools work (`scripts/verify.sh` passes all 5 replays); golden tests pass through the library API; app/ ratio optimiser has 48 passing tests; no Electron, no duel UI yet.
 
 ## Log (newest first; 3 to 5 lines per slice)
+- 12 Nov 2026, slice 1.5 done: deck version history (`app/src/lib/history.ts`, `History.tsx`). Every Main Deck edit becomes a version (1.2 s debounce) with 5 numbers and the change against the version before; Restore brings a version back; capped at 200.
+  Stored in localStorage (`rkapro-history-v1`), so it is per browser profile for now; a file on disk comes with the Electron shell if needed.
+  3 unit tests; UI check covers edit, change in odds and restore.
 - 12 Nov 2026, slice 1.4 done: panel "Deck files" (`DeckFiles.tsx`): download .ydk, copy ydke:// and Omega code; deck folders through the File System Access API (pick EDOPro deck folders or a Drive-synced folder; lists .ydk, click to import, save current deck there). Folder handles persist in IndexedDB.
   No server needed. Works in Edge, Chrome and Electron, not Firefox or Safari. The native folder dialog cannot be driven headless, so the UI check uses the browser's private file system as the folder (save, list, re-import verified).
   Not checked: a real EDOPro folder and a real Drive-synced folder on this machine.
