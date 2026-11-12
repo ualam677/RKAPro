@@ -46,7 +46,7 @@ Done when: you can paste a list, see every number, edit it, and see the differen
 - [x] 2.4 Save states: quick save/load, undo, branch tree (seed + response log).
 - [x] 2.5 Chat panel: events and key info (chain, hand-trap windows, Nibiru windows, notes).
 - [x] 2.6 Loads EDOPro's deck folder and card database.
-- [ ] 2.7 Look and feel (user, 12 Nov 2026: the first duel screen is "awfully designed", not EDOPro, no snappiness, no animations). Rework the duel screen against real EDOPro screenshots: its field textures and proportions, card sizes, window style, fonts; fast animations for draw, summon, move, chain, attack; instant response to clicks. Function from 2.1 to 2.6 stays. **design**
+- [ ] 2.7 Look and feel (user, 12 Nov 2026: the first duel screen is "awfully designed", not EDOPro, no snappiness, no animations). Rework the duel screen against real EDOPro screenshots: its field textures and proportions, card sizes, window style, fonts; fast animations for draw, summon, move, chain, attack; instant response to clicks. Function from 2.1 to 2.6 stays. Port from EDOPro's source (`sim/data/edopro-src/gframe`: `client_field.cpp`, `drawing.cpp`, `event_handler.cpp`, `duelclient.cpp`) instead of inventing: zone coordinates, card sizes, animation timings, window behaviour, hotkeys. **design**
 Done when: you can play a full turn-1 Galaxy-Eyes line by hand, quick-save at any point and branch from it.
 
 ## Wave 3: Drill mode, knowledge base, feedback (medium)

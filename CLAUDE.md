@@ -23,6 +23,7 @@ Priorities, in order: master the current deck (Galaxy-Eyes / Photon / Galaxy, TC
 - Report several numbers, not a single score; the user decides the risk/reward trade-off.
 - YGO Omega can be wrong on rulings. EDOPro's scripts are the reference. When a replay step fails in the engine, check the card script, then tell the user (example: Galaxy-Eyes Antimatter Dragon's detach effect cannot be used on turn 1; Omega allowed it, so the Soldier replay is not legal as recorded).
 - **The duel UI is judged against real EDOPro** (user, 12 Nov 2026: the first version was "awfully designed", no animations, not snappy; basic deck-maker features were missing). Function alone is not done: compare with EDOPro, list what is missing, and say so.
+- **EDOPro's source is the reference for the client** (`sim/data/edopro-src`, cloned by setup.sh, AGPL-3.0). Before building or fixing duel-client or deck-editor behaviour, read how `gframe/` does it and port that, do not invent.
 - Keep replies short. The user is a competitive player who knows the deck far better than the search does; treat their corrections as ground truth and record them in `docs/KNOWLEDGE.md`.
 - **Fuwalos stays at 3** (user decision, not a flex slot). **Sideboarding and tech cards are parked** until the main deck's weaknesses are understood and the user brings them up.
 

@@ -13,6 +13,7 @@ if [ -f sim/data.lock.json ]; then
     [ "$(git -C "sim/data/$d" rev-parse HEAD)" = "$sha" ] || { git -C "sim/data/$d" fetch --depth 1 origin "$sha" && git -C "sim/data/$d" reset --hard FETCH_HEAD; }
   done
 fi
+[ -d sim/data/edopro-src ] || git clone --depth 1 https://github.com/edo9300/edopro sim/data/edopro-src  # reference source for the duel client (read, port; never built here)
 (cd sim && npm install)
 (cd app && npm install && { [ -f node_modules/electron/dist/electron.exe ] || [ -d node_modules/electron/dist ] || node node_modules/electron/install.js; })  # npm may block install scripts: fetch Electron's binary explicitly
 echo "Ready. Try: node sim/tools/check2.mjs 1 plain"

@@ -108,3 +108,18 @@ for (const ri of process.env.YGO_OMEGA_RULINGS ? [3] : [0, 1, 2, 4]) {
     s.destroy();
   });
 }
+
+// EDOPro's strings carry printf placeholders; the prompt texts must have them filled (user report: 'of "%ls" from [%ls]?').
+import { setStrings, sprintf, formatLocation } from "../../packages/engine/client.mjs";
+test("prompt wording follows EDOPro: placeholders are filled with the card name and its location", () => {
+  const sys = { 200: 'Use the effect of "%ls" from [%ls]?', 221: 'Activate the Trigger Effect of "%ls" from [%ls]?', 223: " ", 1002: "Monster Zone", 1004: "Graveyard", 1008: "Field Spell Zone", 95: 'Use the effect of "%ls"?' };
+  setStrings({ system: (n) => sys[n] ?? null, card: () => null });
+  const code = id("Photon Emperor"), ask = (description, location = 4, sequence = 0) => uiPrompt({ type: 12, player: 0, code, controller: 0, location, sequence, position: 1, description });
+  assert.equal(ask(221n).title, 'Activate the Trigger Effect of "Photon Emperor" from [Monster Zone]?');
+  assert.equal(ask(0n, 16).title, 'Use the effect of "Photon Emperor" from [Graveyard]?');
+  assert.equal(ask(95n).title, 'Use the effect of "Photon Emperor"?');
+  assert.equal(formatLocation(8, 5), "Field Spell Zone");
+  assert.equal(sprintf('Remove %d "%ls"', 2, "Spell Counter"), 'Remove 2 "Spell Counter"');
+  setStrings({ system: () => null, card: () => null });
+  assert.ok(!ask(221n).title.includes("%"), "also without EDOPro's strings file");
+});

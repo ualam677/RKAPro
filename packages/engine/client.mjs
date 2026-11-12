@@ -21,6 +21,23 @@ export function describe(desc) {
   return (code ? strings.card(code, i) : strings.system(i)) ?? "";
 }
 
+// EDOPro's strings carry printf placeholders ('Use the effect of "%ls" from [%ls]?'). Fill them in order, as EDOPro does.
+export const sprintf = (s, ...args) => { let i = 0; return String(s ?? "").replace(/%(ls|s|d|u)/g, () => String(args[i++] ?? "")); };
+/** Location wording, ported from EDOPro (gframe/data_manager.cpp FormatLocation): system strings 1000 to 1009. */
+export function formatLocation(location, sequence) {
+  const sys = (n, fallback) => strings.system(n) ?? fallback;
+  if (location === 8) return sequence < 5 ? sys(1003, "Spell/Trap Zone") : sequence === 5 ? sys(1008, "Field Spell Zone") : sys(1009, "Pendulum Zone");
+  const i = [1, 2, 4, 8, 16, 32, 64, 128].indexOf(location);
+  return i < 0 ? "???" : sys(1000 + i, ["Deck", "Hand", "Monster Zone", "Spell/Trap Zone", "Graveyard", "Banished", "Extra Deck", "Xyz Material"][i]);
+}
+/** The yes/no question for an effect, ported from EDOPro (gframe/duelclient.cpp, MSG_SELECT_EFFECTYN). */
+function effectQuestion(p) {
+  const d = Number(BigInt(p.description ?? 0)), name = nameOf(p.code), where = formatLocation(p.location, p.sequence);
+  if (d === 0) return sprintf(strings.system(200) ?? 'Use the effect of "%ls" from [%ls]?', name, where);
+  if (d === 221) return [sprintf(strings.system(221) ?? 'Activate the Trigger Effect of "%ls" from [%ls]?', name, where), (strings.system(223) ?? "").trim()].filter(Boolean).join(" ");
+  return sprintf(describe(p.description) || 'Activate the effect of "%ls"?', name);
+}
+
 // ---------- state ----------
 function zone(h, p, loc, flags, size) {
   const raw = lib.duelQueryLocation(h, { flags, controller: p, location: loc }) ?? [];
@@ -127,7 +144,7 @@ export function uiPrompt(p) {
       p.attacks.forEach((c, i) => a.push(ref(c, `1:${i}`, { verb: c.can_direct ? "Attack directly" : "Attack" })));
       return { ...base, kind: "idle", title: "Battle Phase", actions: a, phases: [...(p.to_m2 ? [{ id: "2:", label: "Main Phase 2" }] : []), ...(p.to_ep ? [{ id: "3:", label: "End Turn" }] : [])] };
     }
-    case T.EFFYN: return { ...base, kind: "yesno", title: `Activate the effect of "${nameOf(p.code)}"?`, text: describe(p.description), card: ref(p, "") };
+    case T.EFFYN: return { ...base, kind: "yesno", title: effectQuestion(p), card: ref(p, "") };
     case T.YESNO: return { ...base, kind: "yesno", title: describe(p.description) || "Yes or no?" };
     case T.OPTION: return { ...base, kind: "options", title: "Choose one", options: p.options.map((o, i) => ({ id: String(i), label: describe(o) || `Option ${i + 1}` })) };
     case T.CARD: case T.TRIBUTE:
@@ -188,9 +205,24 @@ export const passAnswer = (p) => { const c = choices(p); return (c.find((x) => x
 export function view(duel) {
   const s = summarise(duel.messages);
   const prompt = uiPrompt(duel.prompt);
-  // the engine announces what a selection is for ("Select the card(s) to add to your hand") in a hint just before the prompt
-  if (prompt && ["cards", "place", "options"].includes(prompt.kind)) for (let i = duel.messages.length - 2; i >= Math.max(0, duel.messages.length - 8); i--) {
-    const m = duel.messages[i]; if (m.type === 2 && m.hint_type === 3 && m.player === prompt.player) { prompt.title = describe(m.hint) || prompt.title; break; }
+  // what just happened ("X was Special Summoned"), which EDOPro shows above an effect question
+  if (prompt && prompt.type === T.EFFYN) for (let i = duel.messages.length - 2; i >= Math.max(0, duel.messages.length - 30); i--) {
+    const m = duel.messages[i]; if (m.type === 2 && m.hint_type === 1) { prompt.text = sprintf(describe(m.hint)); break; }
+  }
+  // What a selection is for. Ported from EDOPro (gframe/duelclient.cpp): the engine sends a hint just before the prompt
+  // (select_hint); without one EDOPro falls back to a default system string per prompt type.
+  if (prompt && ["cards", "place", "options"].includes(prompt.kind)) {
+    let hint = 0n;
+    for (let i = duel.messages.length - 2; i >= Math.max(0, duel.messages.length - 8); i--) {
+      const m = duel.messages[i]; if (m.type === 2 && m.hint_type === 3 && m.player === prompt.player) { hint = BigInt(m.hint); break; }
+    }
+    const sys = (n) => strings.system(n);
+    if (prompt.kind === "place") // for a zone the hint is the card's passcode: 'Select the zone to place "%ls"'
+      prompt.title = (prompt.type === T.PLACE && hint ? sprintf(sys(569) ?? 'Select the zone to place "%ls"', nameOf(Number(hint))) : sys(570)) ?? prompt.title;
+    else if (prompt.kind === "cards") {
+      const text = (hint ? describe(hint) : sys(prompt.type === T.TRIBUTE ? 531 : 560)) || prompt.title;
+      prompt.title = prompt.oneByOne ? text : `${text} (${prompt.min}-${prompt.max})`;
+    } else if (hint && duel.prompt.type === T.OPTION) prompt.title = describe(hint) || prompt.title;
   }
   return { ...s, ended: duel.ended, sides: [side(duel.handle, 0), side(duel.handle, 1)], prompt, steps: duel.responses.length };
 }
