@@ -15,6 +15,16 @@ import { generalisations, ReplayPanel } from "./components/ReplayPanel";
 import { SynergyGraph } from "./components/SynergyGraph";
 import { Route } from "./lib/combo/setup";
 import { ExactStats, packApplies } from "./components/ExactStats";
+import { QuickCalc } from "./components/QuickCalc";
+
+// Role tags are remembered per card name, so a card tagged once is known in every later deck.
+const ROLES_KEY = "rkapro-roles-v1";
+const loadRemembered = (): Record<string, CardSetup> => { try { return JSON.parse(localStorage.getItem(ROLES_KEY) ?? "{}"); } catch { return {}; } };
+function remember(name: string, s: CardSetup) {
+  // routes, needs and usedBy hold passcodes of one particular deck: remember the portable part only
+  const { routes: _r, needs: _n, usedBy: _u, ...portable } = s;
+  try { localStorage.setItem(ROLES_KEY, JSON.stringify({ ...loadRemembered(), [name]: portable })); } catch { /* storage unavailable */ }
+}
 import pack from "../../packs/galaxy-eyes/deck.json";
 
 /** The pack list as a text recipe the importer already understands. */
@@ -98,10 +108,11 @@ export default function App() {
       setWarnings(r.warnings);
       setCounts(Object.fromEntries(countCards(r.deck.main)));
       const s: SetupMap = {};
+      const remembered = loadRemembered();
       for (const id of [...r.deck.main, ...r.deck.side]) {
         const c = db.byId.get(id);
         const idOfName = (n: string) => [...r.deck.main, ...r.deck.side].find((x) => db.byId.get(x)?.name === n);
-        if (c) s[id] = preset?.[c.name] ? resolvePreset(preset[c.name], idOfName) : autoSetup(c);
+        if (c) s[id] = preset?.[c.name] ? resolvePreset(preset[c.name], idOfName) : remembered[c.name] ? upgradeSetup(remembered[c.name]) : autoSetup(c);
       }
       setSetup(s);
       setResult(null);
@@ -198,7 +209,12 @@ export default function App() {
     setTimeout(() => setCopied(""), 2500);
   }
 
-  const setCard = (id: number, patch: Partial<CardSetup>) => setSetup({ ...setup, [id]: { ...(setup[id] ?? { roles: [] }), ...patch } });
+  const setCard = (id: number, patch: Partial<CardSetup>) => {
+    const next = { ...(setup[id] ?? { roles: [] }), ...patch };
+    setSetup({ ...setup, [id]: next });
+    const c = db.byId.get(id); if (c) remember(c.name, next);
+  };
+  const quickCards = useMemo(() => main.map((e) => { const s = setup[e.id]; return { name: e.card.name, copies: e.copies, starter: hasRole(s, "Starter"), ns: !!s?.ns, handTrap: hasRole(s, "Hand Trap"), brick: !!s?.brick }; }), [main, setup]);
 
   return (
     <div className="app">
@@ -236,6 +252,8 @@ export default function App() {
       {deck && (
         <>
           {packApplies(nameCounts) && <ExactStats deck={nameCounts} baseline={importedCounts} maxCopies={(n) => db.byName.get(normaliseName(n))?.limit ?? 3} />}
+
+          <QuickCalc cards={quickCards} />
 
           {/* 2. Tag */}
           <section className="panel">
@@ -417,6 +435,7 @@ function CardTile({ e, s, options, starters, onCopies, onSetup, entryOf }: {
         </div>
         <div className="flags">
           <label className={s.brick ? "on-brick" : ""}><input type="checkbox" checked={!!s.brick} onChange={(ev) => onSetup({ brick: ev.target.checked })} /> Dead if drawn</label>
+          {isStarter && <label className={s.ns ? "on-keep" : ""} title="Two starters that both need the Normal Summon count as one play"><input type="checkbox" checked={!!s.ns} onChange={(ev) => onSetup({ ns: ev.target.checked })} /> Needs Normal Summon</label>}
           <label className={s.keep ? "on-keep" : ""}><input type="checkbox" checked={!!s.keep} onChange={(ev) => onSetup({ keep: ev.target.checked })} /> Never cut</label>
           <label title="The optimiser won't suggest adding copies beyond this">add up to <select value={s.max ?? 3} onChange={(ev) => onSetup({ max: Number(ev.target.value) })}>{[1, 2, 3].map((k) => <option key={k}>{k}</option>)}</select></label>
         </div>

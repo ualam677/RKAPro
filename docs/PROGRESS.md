@@ -1,10 +1,13 @@
 # Progress log (read this first in every session)
 
-**Current wave:** 1 (Deck lab). **Next slice:** 1.3 quick calculator.
+**Current wave:** 1 (Deck lab). **Next slice:** 1.4 deck import/export and deck folders.
 
 Repo state at last entry: sim/ headless engine and tools work (`scripts/verify.sh` passes all 5 replays); golden tests pass through the library API; app/ ratio optimiser has 48 passing tests; no Electron, no duel UI yet.
 
 ## Log (newest first; 3 to 5 lines per slice)
+- 12 Nov 2026, slice 1.3 done: quick calculator (`packages/analysis/quick.ts`, panel `QuickCalc.tsx`): starters, hand traps, bricks, 2-card pairs, open-with min/max rules, for 5 and 6 cards, any deck.
+  New tile flag "Needs Normal Summon": all such starters together count as one play ("2 plays" row). Role tags are remembered per card name (localStorage `rkapro-roles-v1`) and reused on the next import.
+  3 closed-form tests; UI check covers pair, rule, flag and memory. Not built: non-OPT flag, deck-size sweep (not in the slice text).
 - 12 Nov 2026, slice 1.2 done: app panel "Exact stats" (`app/src/components/ExactStats.tsx`): 10 separate numbers, change vs the list as imported, which line each hand plays, per-card -1/+1 table. Button "Load my current list" reads the pack.
   UI check: `cd app && npm run dev`, then `npm run ui-check` (headless Edge through playwright-core, no browser download); it asserts the numbers on screen and writes screenshots.
 - 12 Nov 2026, slice 1.1 done: `packages/analysis/odds.ts` (pure TypeScript, run directly by Node and bundled by Vite). Hand classes are data: `packs/galaxy-eyes/lines.json` (lines, groups, hand traps, digs).

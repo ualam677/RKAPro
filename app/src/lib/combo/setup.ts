@@ -18,6 +18,8 @@ export interface CardSetup {
   cost?: string;
   /** …then putting a card from hand back on top of the Deck (Seventh Tachyon). */
   putBack?: boolean;
+  /** Starter that uses the Normal Summon: two of these in hand are one play, not two (quick calculator). */
+  ns?: boolean;
   /** Dead if drawn (counts towards "bricks in hand"). */
   brick?: boolean;
   /** Never suggest cutting this card. */
