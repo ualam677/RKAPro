@@ -1,12 +1,14 @@
 // Headless EDOPro duels: card data from BabelCDB, scripts from ProjectIgnis/CardScripts.
-import Database from "better-sqlite3";
+// node:sqlite is built into Node >= 22.13: no native module to compile (works on Windows without build tools).
+import { DatabaseSync } from "node:sqlite";
+import { fileURLToPath } from "url";
 import { readFileSync, existsSync, readdirSync } from "fs";
 import path from "path";
 import createCore, { OcgDuelMode, OcgLocation, OcgPosition, OcgProcessResult } from "ocgcore-wasm";
 
 export { OcgLocation, OcgPosition, OcgProcessResult };
-const CDB_DIR = process.env.YGO_CDB_DIR ?? new URL("./data/babel", import.meta.url).pathname;
-const SCRIPTS = process.env.YGO_SCRIPTS_DIR ?? new URL("./data/cardscripts", import.meta.url).pathname;
+const CDB_DIR = process.env.YGO_CDB_DIR ?? fileURLToPath(new URL("./data/babel", import.meta.url));
+const SCRIPTS = process.env.YGO_SCRIPTS_DIR ?? fileURLToPath(new URL("./data/cardscripts", import.meta.url));
 
 // ---------- card data ----------
 export const cards = new Map();
@@ -14,9 +16,10 @@ export const names = new Map();
 {
   const files = ["cards.cdb", ...readdirSync(CDB_DIR).filter((f) => /release-.*\.cdb$/.test(f) && !/rush/.test(f)).sort()];
   for (const f of files) {
-    const db = new Database(path.join(CDB_DIR, f), { readonly: true });
-    db.defaultSafeIntegers(true);
-    for (const r of db.prepare("select d.id,d.alias,d.setcode,d.type,d.level,d.attribute,d.race,d.atk,d.def,t.name from datas d join texts t on t.id=d.id").iterate()) {
+    const db = new DatabaseSync(path.join(CDB_DIR, f));
+    const st = db.prepare("select d.id,d.alias,d.setcode,d.type,d.level,d.attribute,d.race,d.atk,d.def,t.name from datas d join texts t on t.id=d.id");
+    st.setReadBigInts(true);
+    for (const r of st.all()) {
       const id = Number(r.id);
       if (cards.has(id)) continue;
       const set = BigInt(r.setcode), setcodes = [];
@@ -29,6 +32,7 @@ export const names = new Map();
       });
       names.set(id, r.name);
     }
+    db.close();
   }
 }
 export const nameOf = (c) => names.get(c) ?? `#${c}`;

@@ -10,7 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "better-sqlite3": "^13.0.3",
     "ocgcore-wasm": "^0.1.6"
+  },
+  "engines": {
+    "node": ">=22.13"
   }
 }
