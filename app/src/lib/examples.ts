@@ -1,0 +1,48 @@
+export const GALAXY_EXAMPLE = `Monster
+3 Schwarzschild Infinity Dragon
+3 Galaxy Defense Robot Orbital 7
+3 Photon Delta Wing
+3 Galaxy Wizard
+1 Galaxy Soldier
+1 Galaxy-Eyes Tachyon Primal
+1 Galaxy-Eyes Afterglow Dragon
+1 Galaxy-Eyes Photon Dragon
+1 Photon Emperor
+1 Galaxy Summoner
+1 Photon Orbital
+3 Ash Blossom & Joyous Spring
+3 Mulcharmy Fuwalos
+3 Ghost Ogre & Snow Rabbit
+1 Droll & Lock Bird
+Spell
+3 Seventh Tachyon
+1 Pot of Prosperity
+2 Forbidden Crown
+Trap
+1 Eternal Galaxy
+1 Tachyon Transmigration
+3 Dominus Spark
+2 Dominus Purge
+2 Infinite Impermanence
+Extra
+1 Galaxy-Eyes Cipher Dragon
+1 Galaxy-Eyes Cipher X Dragon
+1 Galaxy-Eyes Full Armor Photon Dragon
+1 Number 107: Galaxy-Eyes Tachyon Dragon
+1 Number 90: Galaxy-Eyes Photon Lord
+1 Number 62: Galaxy-Eyes Prime Photon Dragon
+1 Number C62: Neo Galaxy-Eyes Prime Photon Dragon
+1 Starliege Photon Blast Dragon
+1 Number 38: Hope Harbinger Dragon Titanic Galaxy
+2 Galaxy Photon Dragon
+2 Divine Golden Shadow Dragon Dragluxion
+2 Neo Galaxy-Eyes Photon Dragon - Photon Howling
+Side
+3 Mulcharmy Purulia
+1 Harpie's Feather Duster
+2 Lightning Storm
+3 Barian Untopia
+1 Tachyon Transmigration
+1 Galaxy-Eyes Tachyon Primal
+1 Tachyon Spiral of Destruction
+3 Dark Ruler No More`;

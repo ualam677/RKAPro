@@ -1,0 +1,4179 @@
+[
+ {
+  "file": "/home/claude/replays_in/1-delta.txt",
+  "settings": {
+   "Region": 3,
+   "MasterRule": 5,
+   "Mode": 0,
+   "StartHand": 1,
+   "DrawCount": 1,
+   "Timer": 4095,
+   "StartLP": 8000,
+   "DuelRule": 0,
+   "ReleasedFrom": -62135596800000,
+   "ReleasedUntil": 253402214400000,
+   "ExtraRule": 127560532885504,
+   "Budget": 0
+  },
+  "main": {
+   "Photon Delta Wing": 3,
+   "Galaxy Soldier": 3,
+   "Schwarzschild Infinity Dragon": 3,
+   "Galaxy Defense Robot Orbital 7": 3,
+   "Galaxy Wizard": 1,
+   "Photon Thrasher": 1,
+   "Galaxy War Drake": 1,
+   "Seventh Tachyon": 3,
+   "Pot of Prosperity": 1,
+   "Mulcharmy Fuwalos": 3,
+   "Ash Blossom & Joyous Spring": 3,
+   "Ghost Ogre & Snow Rabbit": 3,
+   "Infinite Impermanence": 3,
+   "Effect Veiler": 3,
+   "Droll & Lock Bird": 1,
+   "Galaxy-Eyes Photon Dragon": 1,
+   "Galaxy-Eyes Tachyon Primal": 1,
+   "Galaxy-Eyes Afterglow Dragon": 1,
+   "Photon Emperor": 1,
+   "Photon Orbital": 1,
+   "Galaxy Summoner": 1,
+   "Tachyon Transmigration": 1,
+   "Eternal Galaxy": 1
+  },
+  "extra": {
+   "Galaxy-Eyes Cipher X Dragon": 1,
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling": 2,
+   "Galaxy-Eyes Full Armor Photon Dragon": 1,
+   "Galaxy-Eyes Cipher Dragon": 1,
+   "Number S38: Titanic Galaxy": 1,
+   "Number 107: Galaxy-Eyes Tachyon Dragon": 1,
+   "Number 38: Hope Harbinger Dragon Titanic Galaxy": 1,
+   "Divine Golden Shadow Dragon Dragluxion": 1,
+   "Number 90: Galaxy-Eyes Photon Lord": 1,
+   "Dark Ceruvim Irisfil": 1,
+   "Number 104: Masquerade Vain": 1,
+   "Galaxy Photon Dragon": 1,
+   "Starliege Photon Blast Dragon": 1,
+   "Galaxy-Eyes Antimatter Dragon": 1
+  },
+  "side": {
+   "The Great Gallant Bandit": 3,
+   "Galaxy-Eyes Photon Change Dragon": 1,
+   "Seventh Ascension": 2,
+   "Triple Tactics Thrust": 2,
+   "Galaxy-Eyes Tachyon Primal": 1,
+   "Tachyon Transmigration": 1,
+   "Spatial Trunade": 3,
+   "Dominus Purge": 2
+  },
+  "handUsed": [
+   "Photon Delta Wing"
+  ],
+  "handUnused": [],
+  "fromDeck": {
+   "Photon Delta Wing": 1,
+   "Photon Emperor": 1,
+   "Photon Orbital": 1
+  },
+  "searched": {
+   "Galaxy Defense Robot Orbital 7": 1,
+   "Galaxy Summoner": 1,
+   "Galaxy-Eyes Tachyon Primal": 1,
+   "Tachyon Transmigration": 1,
+   "Eternal Galaxy": 1
+  },
+  "extraUsed": [
+   "Galaxy Photon Dragon",
+   "Number 104: Masquerade Vain",
+   "Galaxy-Eyes Antimatter Dragon",
+   "Galaxy-Eyes Full Armor Photon Dragon",
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling",
+   "Divine Golden Shadow Dragon Dragluxion",
+   "Number 38: Hope Harbinger Dragon Titanic Galaxy"
+  ],
+  "endBoard": [
+   {
+    "code": 85747929,
+    "zone": "Field",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "code": 28331069,
+    "zone": "Field",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "code": 82162616,
+    "zone": "S/T",
+    "name": "Eternal Galaxy"
+   },
+   {
+    "code": 8038143,
+    "zone": "S/T",
+    "name": "Tachyon Transmigration"
+   },
+   {
+    "code": 63767246,
+    "zone": "Field",
+    "name": "Number 38: Hope Harbinger Dragon Titanic Galaxy"
+   }
+  ],
+  "summons": 15,
+  "turn1": [
+   "#1 Normal Photon Delta Wing",
+   "  act Photon Delta Wing (Field)",
+   "#2 Special Photon Delta Wing",
+   "#3 Special Galaxy Photon Dragon",
+   "  act Galaxy Photon Dragon (Field)",
+   "  act Galaxy Defense Robot Orbital 7 (Hand)",
+   "  act Photon Emperor (GY)",
+   "#4 Special Photon Emperor",
+   "  act Galaxy Photon Dragon (Field)",
+   "#5 Normal Galaxy Summoner",
+   "  act Galaxy Summoner (Field)",
+   "#6 Special Photon Delta Wing",
+   "#7 Special Number 104: Masquerade Vain",
+   "#8 Special Galaxy-Eyes Antimatter Dragon",
+   "  act Galaxy-Eyes Antimatter Dragon (Field)",
+   "  act Galaxy Defense Robot Orbital 7 (GY)",
+   "#9 Special Galaxy Defense Robot Orbital 7",
+   "#10 Special Galaxy-Eyes Full Armor Photon Dragon",
+   "#11 Special Neo Galaxy-Eyes Photon Dragon - Photon Howling",
+   "  act Neo Galaxy-Eyes Photon Dragon - Photon Howling (Field)",
+   "#12 Special Photon Orbital",
+   "  act Photon Orbital (Field)",
+   "  act Photon Orbital (S/T)",
+   "  act Galaxy-Eyes Tachyon Primal (Hand)",
+   "#13 Special Galaxy-Eyes Tachyon Primal",
+   "  act Galaxy-Eyes Tachyon Primal (Field)",
+   "#14 Special Divine Golden Shadow Dragon Dragluxion",
+   "  act Divine Golden Shadow Dragon Dragluxion (Field)",
+   "  set #0",
+   "  set #0",
+   "  act Divine Golden Shadow Dragon Dragluxion (Field)",
+   "#15 Special Number 38: Hope Harbinger Dragon Titanic Galaxy"
+  ],
+  "guide": [
+   "Photon Delta Wing",
+   "Photon Delta Wing",
+   "Photon Delta Wing",
+   "Galaxy Photon Dragon",
+   "Galaxy Photon Dragon",
+   "Galaxy Defense Robot Orbital 7",
+   "Galaxy Defense Robot Orbital 7",
+   "Galaxy Summoner",
+   "Photon Emperor",
+   "Photon Emperor",
+   "Photon Emperor",
+   "Galaxy Photon Dragon",
+   "Galaxy Summoner",
+   "Galaxy Summoner",
+   "Photon Delta Wing",
+   "Number 104: Masquerade Vain",
+   "Galaxy-Eyes Antimatter Dragon",
+   "Galaxy-Eyes Antimatter Dragon",
+   "Galaxy Defense Robot Orbital 7",
+   "Galaxy Defense Robot Orbital 7",
+   "Galaxy-Eyes Full Armor Photon Dragon",
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling",
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling",
+   "Photon Orbital",
+   "Photon Orbital",
+   "Photon Orbital",
+   "Galaxy-Eyes Tachyon Primal",
+   "Galaxy-Eyes Tachyon Primal",
+   "Galaxy-Eyes Tachyon Primal",
+   "Galaxy-Eyes Tachyon Primal",
+   "Tachyon Transmigration",
+   "Divine Golden Shadow Dragon Dragluxion",
+   "Divine Golden Shadow Dragon Dragluxion",
+   "Eternal Galaxy",
+   "Divine Golden Shadow Dragon Dragluxion",
+   "Number 38: Hope Harbinger Dragon Titanic Galaxy"
+  ],
+  "events": [
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Hand",
+    "to": "Field",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "summon",
+    "code": 47051709,
+    "player": 0,
+    "how": "Normal",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "activate",
+    "code": 47051709,
+    "player": 0,
+    "from": "Field",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Deck",
+    "to": "Field",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "summon",
+    "code": 47051709,
+    "player": 0,
+    "how": "Special",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 85747929,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 85747929,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "kind": "activate",
+    "code": 85747929,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Material",
+    "to": "GY",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 91714772,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "activate",
+    "code": 91714772,
+    "player": 0,
+    "from": "Hand",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 91714772,
+    "player": 0,
+    "from": "Hand",
+    "to": "GY",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 863795,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "move",
+    "code": 73478096,
+    "player": 0,
+    "from": "Deck",
+    "to": "GY",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "activate",
+    "code": 73478096,
+    "player": 0,
+    "from": "GY",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "move",
+    "code": 73478096,
+    "player": 0,
+    "from": "GY",
+    "to": "Field",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "summon",
+    "code": 73478096,
+    "player": 0,
+    "how": "Special",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "activate",
+    "code": 85747929,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 863795,
+    "player": 0,
+    "from": "Hand",
+    "to": "Field",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "summon",
+    "code": 863795,
+    "player": 0,
+    "how": "Normal",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "activate",
+    "code": 863795,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "GY",
+    "to": "Field",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "summon",
+    "code": 47051709,
+    "player": 0,
+    "how": "Special",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 863795,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 73478096,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "move",
+    "code": 16908882,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Number 104: Masquerade Vain"
+   },
+   {
+    "kind": "summon",
+    "code": 16908882,
+    "player": 0,
+    "how": "Special",
+    "name": "Number 104: Masquerade Vain"
+   },
+   {
+    "kind": "move",
+    "code": 863795,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 73478096,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "move",
+    "code": 16908882,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Number 104: Masquerade Vain"
+   },
+   {
+    "kind": "move",
+    "code": 92517928,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Galaxy-Eyes Antimatter Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 92517928,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy-Eyes Antimatter Dragon"
+   },
+   {
+    "kind": "activate",
+    "code": 92517928,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy-Eyes Antimatter Dragon"
+   },
+   {
+    "kind": "activate",
+    "code": 91714772,
+    "player": 0,
+    "from": "GY",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 91714772,
+    "player": 0,
+    "from": "GY",
+    "to": "Field",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "summon",
+    "code": 91714772,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 863795,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 73478096,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "move",
+    "code": 16908882,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Number 104: Masquerade Vain"
+   },
+   {
+    "kind": "move",
+    "code": 92517928,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy-Eyes Antimatter Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 39030163,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Galaxy-Eyes Full Armor Photon Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 39030163,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy-Eyes Full Armor Photon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 863795,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 73478096,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "move",
+    "code": 16908882,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Number 104: Masquerade Vain"
+   },
+   {
+    "kind": "move",
+    "code": 92517928,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Galaxy-Eyes Antimatter Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 39030163,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy-Eyes Full Armor Photon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 28331069,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "kind": "summon",
+    "code": 28331069,
+    "player": 0,
+    "how": "Special",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "kind": "activate",
+    "code": 28331069,
+    "player": 0,
+    "from": "Field",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "kind": "move",
+    "code": 89132148,
+    "player": 0,
+    "from": "Deck",
+    "to": "Field",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "summon",
+    "code": 89132148,
+    "player": 0,
+    "how": "Special",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "activate",
+    "code": 89132148,
+    "player": 0,
+    "from": "Field",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "move",
+    "code": 89132148,
+    "player": 0,
+    "from": "Field",
+    "to": "S/T",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "activate",
+    "code": 89132148,
+    "player": 0,
+    "from": "S/T",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "move",
+    "code": 89132148,
+    "player": 0,
+    "from": "S/T",
+    "to": "GY",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "move",
+    "code": 45710945,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "activate",
+    "code": 45710945,
+    "player": 0,
+    "from": "Hand",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "move",
+    "code": 45710945,
+    "player": 0,
+    "from": "Hand",
+    "to": "Field",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "summon",
+    "code": 45710945,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "activate",
+    "code": 45710945,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "move",
+    "code": 8038143,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Tachyon Transmigration"
+   },
+   {
+    "kind": "move",
+    "code": 45710945,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "move",
+    "code": 91714772,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 44698398,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "summon",
+    "code": 44698398,
+    "player": 0,
+    "how": "Special",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "activate",
+    "code": 44698398,
+    "player": 0,
+    "from": "Field",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 82162616,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Eternal Galaxy"
+   },
+   {
+    "kind": "move",
+    "code": 82162616,
+    "player": 0,
+    "from": "Hand",
+    "to": "S/T",
+    "name": "Eternal Galaxy"
+   },
+   {
+    "kind": "move",
+    "code": 8038143,
+    "player": 0,
+    "from": "Hand",
+    "to": "S/T",
+    "name": "Tachyon Transmigration"
+   },
+   {
+    "kind": "activate",
+    "code": 44698398,
+    "player": 0,
+    "from": "Field",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 45710945,
+    "player": 0,
+    "from": "Material",
+    "to": "GY",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "move",
+    "code": 91714772,
+    "player": 0,
+    "from": "Material",
+    "to": "GY",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 44698398,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 63767246,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Number 38: Hope Harbinger Dragon Titanic Galaxy"
+   },
+   {
+    "kind": "summon",
+    "code": 63767246,
+    "player": 0,
+    "how": "Special",
+    "name": "Number 38: Hope Harbinger Dragon Titanic Galaxy"
+   }
+  ]
+ },
+ {
+  "file": "/home/claude/replays_in/2-orb7-r1.txt",
+  "settings": {
+   "Region": 3,
+   "MasterRule": 5,
+   "Mode": 0,
+   "StartHand": 1,
+   "DrawCount": 1,
+   "Timer": 4095,
+   "StartLP": 8000,
+   "DuelRule": 0,
+   "ReleasedFrom": -62135596800000,
+   "ReleasedUntil": 253402214400000,
+   "ExtraRule": 127560532885504,
+   "Budget": 0
+  },
+  "main": {
+   "Photon Delta Wing": 3,
+   "Galaxy Soldier": 3,
+   "Schwarzschild Infinity Dragon": 3,
+   "Galaxy Defense Robot Orbital 7": 3,
+   "Galaxy Wizard": 1,
+   "Photon Thrasher": 1,
+   "Galaxy War Drake": 1,
+   "Seventh Tachyon": 3,
+   "Pot of Prosperity": 1,
+   "Mulcharmy Fuwalos": 3,
+   "Ash Blossom & Joyous Spring": 3,
+   "Ghost Ogre & Snow Rabbit": 3,
+   "Infinite Impermanence": 3,
+   "Effect Veiler": 3,
+   "Droll & Lock Bird": 1,
+   "Galaxy-Eyes Photon Dragon": 1,
+   "Galaxy-Eyes Tachyon Primal": 1,
+   "Galaxy-Eyes Afterglow Dragon": 1,
+   "Photon Emperor": 1,
+   "Photon Orbital": 1,
+   "Galaxy Summoner": 1,
+   "Tachyon Transmigration": 1,
+   "Eternal Galaxy": 1
+  },
+  "extra": {
+   "Galaxy-Eyes Cipher X Dragon": 1,
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling": 2,
+   "Galaxy-Eyes Full Armor Photon Dragon": 1,
+   "Galaxy-Eyes Cipher Dragon": 1,
+   "Number S38: Titanic Galaxy": 1,
+   "Number 107: Galaxy-Eyes Tachyon Dragon": 1,
+   "Number 38: Hope Harbinger Dragon Titanic Galaxy": 1,
+   "Divine Golden Shadow Dragon Dragluxion": 1,
+   "Number 90: Galaxy-Eyes Photon Lord": 1,
+   "Dark Ceruvim Irisfil": 1,
+   "Number 104: Masquerade Vain": 1,
+   "Galaxy Photon Dragon": 1,
+   "Starliege Photon Blast Dragon": 1,
+   "Galaxy-Eyes Antimatter Dragon": 1
+  },
+  "side": {
+   "The Great Gallant Bandit": 3,
+   "Galaxy-Eyes Photon Change Dragon": 1,
+   "Seventh Ascension": 2,
+   "Triple Tactics Thrust": 2,
+   "Galaxy-Eyes Tachyon Primal": 1,
+   "Tachyon Transmigration": 1,
+   "Spatial Trunade": 3,
+   "Dominus Purge": 2
+  },
+  "handUsed": [
+   "Galaxy Defense Robot Orbital 7"
+  ],
+  "handUnused": [],
+  "fromDeck": {
+   "Photon Emperor": 1,
+   "Photon Orbital": 1,
+   "Photon Delta Wing": 1
+  },
+  "searched": {
+   "Galaxy Wizard": 1,
+   "Galaxy-Eyes Tachyon Primal": 1,
+   "Tachyon Transmigration": 1,
+   "Photon Delta Wing": 1,
+   "Eternal Galaxy": 1
+  },
+  "extraUsed": [
+   "Divine Golden Shadow Dragon Dragluxion",
+   "Number 107: Galaxy-Eyes Tachyon Dragon",
+   "Number 90: Galaxy-Eyes Photon Lord",
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling",
+   "Galaxy Photon Dragon"
+  ],
+  "endBoard": [
+   {
+    "code": 8165596,
+    "zone": "Field",
+    "name": "Number 90: Galaxy-Eyes Photon Lord"
+   },
+   {
+    "code": 28331069,
+    "zone": "Field",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "code": 85747929,
+    "zone": "Field",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "code": 82162616,
+    "zone": "S/T",
+    "name": "Eternal Galaxy"
+   },
+   {
+    "code": 8038143,
+    "zone": "S/T",
+    "name": "Tachyon Transmigration"
+   }
+  ],
+  "summons": 12,
+  "turn1": [
+   "  act Galaxy Defense Robot Orbital 7 (Hand)",
+   "  act Photon Emperor (GY)",
+   "#1 Special Photon Emperor",
+   "#2 Normal Galaxy Wizard",
+   "  act Galaxy Wizard (Field)",
+   "#3 Special Divine Golden Shadow Dragon Dragluxion",
+   "  act Divine Golden Shadow Dragon Dragluxion (Field)",
+   "  act Galaxy-Eyes Tachyon Primal (Hand)",
+   "#4 Special Galaxy-Eyes Tachyon Primal",
+   "  act Galaxy-Eyes Tachyon Primal (Field)",
+   "  act Divine Golden Shadow Dragon Dragluxion (Field)",
+   "#5 Special Number 107: Galaxy-Eyes Tachyon Dragon",
+   "  act Galaxy Defense Robot Orbital 7 (GY)",
+   "#6 Special Galaxy Defense Robot Orbital 7",
+   "#7 Special Number 90: Galaxy-Eyes Photon Lord",
+   "#8 Special Neo Galaxy-Eyes Photon Dragon - Photon Howling",
+   "  act Neo Galaxy-Eyes Photon Dragon - Photon Howling (Field)",
+   "#9 Special Photon Orbital",
+   "  act Photon Orbital (Field)",
+   "  act Photon Orbital (S/T)",
+   "#10 Normal Photon Delta Wing",
+   "  act Photon Delta Wing (Field)",
+   "#11 Special Photon Delta Wing",
+   "#12 Special Galaxy Photon Dragon",
+   "  act Galaxy Photon Dragon (Field)",
+   "  set #0",
+   "  set #0"
+  ],
+  "guide": [
+   "Galaxy Defense Robot Orbital 7",
+   "Galaxy Wizard",
+   "Photon Emperor",
+   "Photon Emperor",
+   "Photon Emperor",
+   "Galaxy Wizard",
+   "Galaxy Wizard",
+   "Divine Golden Shadow Dragon Dragluxion",
+   "Divine Golden Shadow Dragon Dragluxion",
+   "Galaxy-Eyes Tachyon Primal",
+   "Galaxy-Eyes Tachyon Primal",
+   "Galaxy-Eyes Tachyon Primal",
+   "Galaxy-Eyes Tachyon Primal",
+   "Tachyon Transmigration",
+   "Divine Golden Shadow Dragon Dragluxion",
+   "Number 107: Galaxy-Eyes Tachyon Dragon",
+   "Galaxy Defense Robot Orbital 7",
+   "Galaxy Defense Robot Orbital 7",
+   "Number 90: Galaxy-Eyes Photon Lord",
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling",
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling",
+   "Photon Orbital",
+   "Photon Orbital",
+   "Photon Orbital",
+   "Photon Delta Wing",
+   "Photon Delta Wing",
+   "Photon Delta Wing",
+   "Photon Delta Wing",
+   "Galaxy Photon Dragon",
+   "Galaxy Photon Dragon",
+   "Eternal Galaxy"
+  ],
+  "events": [
+   {
+    "kind": "activate",
+    "code": 91714772,
+    "player": 0,
+    "from": "Hand",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 91714772,
+    "player": 0,
+    "from": "Hand",
+    "to": "GY",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 98555327,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Galaxy Wizard"
+   },
+   {
+    "kind": "move",
+    "code": 73478096,
+    "player": 0,
+    "from": "Deck",
+    "to": "GY",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "activate",
+    "code": 73478096,
+    "player": 0,
+    "from": "GY",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "move",
+    "code": 73478096,
+    "player": 0,
+    "from": "GY",
+    "to": "Field",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "summon",
+    "code": 73478096,
+    "player": 0,
+    "how": "Special",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "move",
+    "code": 98555327,
+    "player": 0,
+    "from": "Hand",
+    "to": "Field",
+    "name": "Galaxy Wizard"
+   },
+   {
+    "kind": "summon",
+    "code": 98555327,
+    "player": 0,
+    "how": "Normal",
+    "name": "Galaxy Wizard"
+   },
+   {
+    "kind": "activate",
+    "code": 98555327,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy Wizard"
+   },
+   {
+    "kind": "move",
+    "code": 98555327,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy Wizard"
+   },
+   {
+    "kind": "move",
+    "code": 73478096,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "move",
+    "code": 44698398,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "summon",
+    "code": 44698398,
+    "player": 0,
+    "how": "Special",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "activate",
+    "code": 44698398,
+    "player": 0,
+    "from": "Field",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 45710945,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "activate",
+    "code": 45710945,
+    "player": 0,
+    "from": "Hand",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "move",
+    "code": 45710945,
+    "player": 0,
+    "from": "Hand",
+    "to": "Field",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "summon",
+    "code": 45710945,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "activate",
+    "code": 45710945,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "move",
+    "code": 8038143,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Tachyon Transmigration"
+   },
+   {
+    "kind": "activate",
+    "code": 44698398,
+    "player": 0,
+    "from": "Field",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 98555327,
+    "player": 0,
+    "from": "Material",
+    "to": "GY",
+    "name": "Galaxy Wizard"
+   },
+   {
+    "kind": "move",
+    "code": 73478096,
+    "player": 0,
+    "from": "Material",
+    "to": "GY",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "move",
+    "code": 44698398,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 88177325,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Number 107: Galaxy-Eyes Tachyon Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 88177325,
+    "player": 0,
+    "how": "Special",
+    "name": "Number 107: Galaxy-Eyes Tachyon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 92517928,
+    "player": 0,
+    "from": "Extra",
+    "to": "Material",
+    "name": "Galaxy-Eyes Antimatter Dragon"
+   },
+   {
+    "kind": "activate",
+    "code": 91714772,
+    "player": 0,
+    "from": "GY",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 91714772,
+    "player": 0,
+    "from": "GY",
+    "to": "Field",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "summon",
+    "code": 91714772,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 45710945,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "move",
+    "code": 91714772,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 8165596,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Number 90: Galaxy-Eyes Photon Lord"
+   },
+   {
+    "kind": "summon",
+    "code": 8165596,
+    "player": 0,
+    "how": "Special",
+    "name": "Number 90: Galaxy-Eyes Photon Lord"
+   },
+   {
+    "kind": "move",
+    "code": 44698398,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 92517928,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Galaxy-Eyes Antimatter Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 88177325,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Number 107: Galaxy-Eyes Tachyon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 28331069,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "kind": "summon",
+    "code": 28331069,
+    "player": 0,
+    "how": "Special",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "kind": "activate",
+    "code": 28331069,
+    "player": 0,
+    "from": "Field",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "kind": "move",
+    "code": 89132148,
+    "player": 0,
+    "from": "Deck",
+    "to": "Field",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "summon",
+    "code": 89132148,
+    "player": 0,
+    "how": "Special",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "activate",
+    "code": 89132148,
+    "player": 0,
+    "from": "Field",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "move",
+    "code": 89132148,
+    "player": 0,
+    "from": "Field",
+    "to": "S/T",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "activate",
+    "code": 89132148,
+    "player": 0,
+    "from": "S/T",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "move",
+    "code": 89132148,
+    "player": 0,
+    "from": "S/T",
+    "to": "GY",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Hand",
+    "to": "Field",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "summon",
+    "code": 47051709,
+    "player": 0,
+    "how": "Normal",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "activate",
+    "code": 47051709,
+    "player": 0,
+    "from": "Field",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Deck",
+    "to": "Field",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "summon",
+    "code": 47051709,
+    "player": 0,
+    "how": "Special",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 85747929,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 85747929,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "kind": "activate",
+    "code": 85747929,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Material",
+    "to": "GY",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 82162616,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Eternal Galaxy"
+   },
+   {
+    "kind": "move",
+    "code": 82162616,
+    "player": 0,
+    "from": "Hand",
+    "to": "S/T",
+    "name": "Eternal Galaxy"
+   },
+   {
+    "kind": "move",
+    "code": 8038143,
+    "player": 0,
+    "from": "Hand",
+    "to": "S/T",
+    "name": "Tachyon Transmigration"
+   }
+  ]
+ },
+ {
+  "file": "/home/claude/replays_in/3-orb7-r2.txt",
+  "settings": {
+   "Region": 3,
+   "MasterRule": 5,
+   "Mode": 0,
+   "StartHand": 1,
+   "DrawCount": 1,
+   "Timer": 4095,
+   "StartLP": 8000,
+   "DuelRule": 0,
+   "ReleasedFrom": -62135596800000,
+   "ReleasedUntil": 253402214400000,
+   "ExtraRule": 127560532885504,
+   "Budget": 0
+  },
+  "main": {
+   "Photon Delta Wing": 3,
+   "Galaxy Soldier": 3,
+   "Schwarzschild Infinity Dragon": 3,
+   "Galaxy Defense Robot Orbital 7": 3,
+   "Galaxy Wizard": 1,
+   "Photon Thrasher": 1,
+   "Galaxy War Drake": 1,
+   "Seventh Tachyon": 3,
+   "Pot of Prosperity": 1,
+   "Mulcharmy Fuwalos": 3,
+   "Ash Blossom & Joyous Spring": 3,
+   "Ghost Ogre & Snow Rabbit": 3,
+   "Infinite Impermanence": 3,
+   "Effect Veiler": 3,
+   "Droll & Lock Bird": 1,
+   "Galaxy-Eyes Photon Dragon": 1,
+   "Galaxy-Eyes Tachyon Primal": 1,
+   "Galaxy-Eyes Afterglow Dragon": 1,
+   "Photon Emperor": 1,
+   "Photon Orbital": 1,
+   "Galaxy Summoner": 1,
+   "Tachyon Transmigration": 1,
+   "Eternal Galaxy": 1
+  },
+  "extra": {
+   "Galaxy-Eyes Cipher X Dragon": 1,
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling": 2,
+   "Galaxy-Eyes Full Armor Photon Dragon": 1,
+   "Galaxy-Eyes Cipher Dragon": 1,
+   "Number S38: Titanic Galaxy": 1,
+   "Number 107: Galaxy-Eyes Tachyon Dragon": 1,
+   "Number 38: Hope Harbinger Dragon Titanic Galaxy": 1,
+   "Divine Golden Shadow Dragon Dragluxion": 1,
+   "Number 90: Galaxy-Eyes Photon Lord": 1,
+   "Dark Ceruvim Irisfil": 1,
+   "Number 104: Masquerade Vain": 1,
+   "Galaxy Photon Dragon": 1,
+   "Starliege Photon Blast Dragon": 1,
+   "Galaxy-Eyes Antimatter Dragon": 1
+  },
+  "side": {
+   "The Great Gallant Bandit": 3,
+   "Galaxy-Eyes Photon Change Dragon": 1,
+   "Seventh Ascension": 2,
+   "Triple Tactics Thrust": 2,
+   "Galaxy-Eyes Tachyon Primal": 1,
+   "Tachyon Transmigration": 1,
+   "Spatial Trunade": 3,
+   "Dominus Purge": 2
+  },
+  "handUsed": [
+   "Galaxy Defense Robot Orbital 7"
+  ],
+  "handUnused": [],
+  "fromDeck": {
+   "Galaxy War Drake": 1,
+   "Photon Orbital": 1,
+   "Photon Delta Wing": 1
+  },
+  "searched": {
+   "Photon Thrasher": 1,
+   "Galaxy-Eyes Tachyon Primal": 1,
+   "Tachyon Transmigration": 1,
+   "Photon Delta Wing": 1,
+   "Eternal Galaxy": 1
+  },
+  "extraUsed": [
+   "Divine Golden Shadow Dragon Dragluxion",
+   "Number 107: Galaxy-Eyes Tachyon Dragon",
+   "Number 90: Galaxy-Eyes Photon Lord",
+   "Dark Ceruvim Irisfil",
+   "Galaxy-Eyes Antimatter Dragon",
+   "Galaxy-Eyes Full Armor Photon Dragon",
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling",
+   "Galaxy Photon Dragon"
+  ],
+  "endBoard": [
+   {
+    "code": 8165596,
+    "zone": "Field",
+    "name": "Number 90: Galaxy-Eyes Photon Lord"
+   },
+   {
+    "code": 28331069,
+    "zone": "Field",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "code": 85747929,
+    "zone": "Field",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "code": 82162616,
+    "zone": "S/T",
+    "name": "Eternal Galaxy"
+   },
+   {
+    "code": 8038143,
+    "zone": "S/T",
+    "name": "Tachyon Transmigration"
+   }
+  ],
+  "summons": 15,
+  "turn1": [
+   "  act Galaxy Defense Robot Orbital 7 (Hand)",
+   "#1 Special Photon Thrasher",
+   "  act Galaxy War Drake (GY)",
+   "#2 Special Galaxy War Drake",
+   "  act Galaxy War Drake (Field)",
+   "#3 Special Divine Golden Shadow Dragon Dragluxion",
+   "  act Divine Golden Shadow Dragon Dragluxion (Field)",
+   "  act Galaxy-Eyes Tachyon Primal (Hand)",
+   "#4 Special Galaxy-Eyes Tachyon Primal",
+   "  act Galaxy-Eyes Tachyon Primal (Field)",
+   "  act Divine Golden Shadow Dragon Dragluxion (Field)",
+   "#5 Special Number 107: Galaxy-Eyes Tachyon Dragon",
+   "  act Galaxy Defense Robot Orbital 7 (GY)",
+   "#6 Special Galaxy Defense Robot Orbital 7",
+   "#7 Special Number 90: Galaxy-Eyes Photon Lord",
+   "#8 Special Dark Ceruvim Irisfil",
+   "#9 Special Galaxy-Eyes Antimatter Dragon",
+   "#10 Special Galaxy-Eyes Full Armor Photon Dragon",
+   "#11 Special Neo Galaxy-Eyes Photon Dragon - Photon Howling",
+   "  act Neo Galaxy-Eyes Photon Dragon - Photon Howling (Field)",
+   "#12 Special Photon Orbital",
+   "  act Photon Orbital (Field)",
+   "  act Photon Orbital (S/T)",
+   "#13 Normal Photon Delta Wing",
+   "  act Photon Delta Wing (Field)",
+   "#14 Special Photon Delta Wing",
+   "#15 Special Galaxy Photon Dragon",
+   "  act Galaxy Photon Dragon (Field)",
+   "  set #0",
+   "  set #0"
+  ],
+  "guide": [
+   "Galaxy Defense Robot Orbital 7",
+   "Photon Thrasher",
+   "Galaxy War Drake",
+   "Photon Thrasher",
+   "Galaxy War Drake",
+   "Galaxy War Drake",
+   "Galaxy War Drake",
+   "Divine Golden Shadow Dragon Dragluxion",
+   "Divine Golden Shadow Dragon Dragluxion",
+   "Galaxy-Eyes Tachyon Primal",
+   "Galaxy-Eyes Tachyon Primal",
+   "Galaxy-Eyes Tachyon Primal",
+   "Galaxy-Eyes Tachyon Primal",
+   "Tachyon Transmigration",
+   "Divine Golden Shadow Dragon Dragluxion",
+   "Number 107: Galaxy-Eyes Tachyon Dragon",
+   "Galaxy Defense Robot Orbital 7",
+   "Galaxy Defense Robot Orbital 7",
+   "Number 90: Galaxy-Eyes Photon Lord",
+   "Dark Ceruvim Irisfil",
+   "Galaxy-Eyes Antimatter Dragon",
+   "Galaxy-Eyes Full Armor Photon Dragon",
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling",
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling",
+   "Photon Orbital",
+   "Photon Orbital",
+   "Photon Orbital",
+   "Photon Delta Wing",
+   "Photon Delta Wing",
+   "Photon Delta Wing",
+   "Photon Delta Wing",
+   "Galaxy Photon Dragon",
+   "Galaxy Photon Dragon",
+   "Eternal Galaxy"
+  ],
+  "events": [
+   {
+    "kind": "activate",
+    "code": 91714772,
+    "player": 0,
+    "from": "Hand",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 91714772,
+    "player": 0,
+    "from": "Hand",
+    "to": "GY",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 65367484,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Photon Thrasher"
+   },
+   {
+    "kind": "move",
+    "code": 19316241,
+    "player": 0,
+    "from": "Deck",
+    "to": "GY",
+    "name": "Galaxy War Drake"
+   },
+   {
+    "kind": "move",
+    "code": 65367484,
+    "player": 0,
+    "from": "Hand",
+    "to": "Field",
+    "name": "Photon Thrasher"
+   },
+   {
+    "kind": "summon",
+    "code": 65367484,
+    "player": 0,
+    "how": "Special",
+    "name": "Photon Thrasher"
+   },
+   {
+    "kind": "activate",
+    "code": 19316241,
+    "player": 0,
+    "from": "GY",
+    "name": "Galaxy War Drake"
+   },
+   {
+    "kind": "move",
+    "code": 19316241,
+    "player": 0,
+    "from": "GY",
+    "to": "Field",
+    "name": "Galaxy War Drake"
+   },
+   {
+    "kind": "summon",
+    "code": 19316241,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy War Drake"
+   },
+   {
+    "kind": "activate",
+    "code": 19316241,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy War Drake"
+   },
+   {
+    "kind": "move",
+    "code": 65367484,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Photon Thrasher"
+   },
+   {
+    "kind": "move",
+    "code": 19316241,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy War Drake"
+   },
+   {
+    "kind": "move",
+    "code": 44698398,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "summon",
+    "code": 44698398,
+    "player": 0,
+    "how": "Special",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "activate",
+    "code": 44698398,
+    "player": 0,
+    "from": "Field",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 45710945,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "activate",
+    "code": 45710945,
+    "player": 0,
+    "from": "Hand",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "move",
+    "code": 45710945,
+    "player": 0,
+    "from": "Hand",
+    "to": "Field",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "summon",
+    "code": 45710945,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "activate",
+    "code": 45710945,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "move",
+    "code": 8038143,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Tachyon Transmigration"
+   },
+   {
+    "kind": "activate",
+    "code": 44698398,
+    "player": 0,
+    "from": "Field",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 65367484,
+    "player": 0,
+    "from": "Material",
+    "to": "GY",
+    "name": "Photon Thrasher"
+   },
+   {
+    "kind": "move",
+    "code": 19316241,
+    "player": 0,
+    "from": "Material",
+    "to": "GY",
+    "name": "Galaxy War Drake"
+   },
+   {
+    "kind": "move",
+    "code": 44698398,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 88177325,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Number 107: Galaxy-Eyes Tachyon Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 88177325,
+    "player": 0,
+    "how": "Special",
+    "name": "Number 107: Galaxy-Eyes Tachyon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 28331069,
+    "player": 0,
+    "from": "Extra",
+    "to": "Material",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "kind": "activate",
+    "code": 91714772,
+    "player": 0,
+    "from": "GY",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 91714772,
+    "player": 0,
+    "from": "GY",
+    "to": "Field",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "summon",
+    "code": 91714772,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 45710945,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "move",
+    "code": 91714772,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 8165596,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Number 90: Galaxy-Eyes Photon Lord"
+   },
+   {
+    "kind": "summon",
+    "code": 8165596,
+    "player": 0,
+    "how": "Special",
+    "name": "Number 90: Galaxy-Eyes Photon Lord"
+   },
+   {
+    "kind": "move",
+    "code": 44698398,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 28331069,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "kind": "move",
+    "code": 88177325,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Number 107: Galaxy-Eyes Tachyon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 64626565,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Dark Ceruvim Irisfil"
+   },
+   {
+    "kind": "summon",
+    "code": 64626565,
+    "player": 0,
+    "how": "Special",
+    "name": "Dark Ceruvim Irisfil"
+   },
+   {
+    "kind": "move",
+    "code": 44698398,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 28331069,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "kind": "move",
+    "code": 88177325,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Number 107: Galaxy-Eyes Tachyon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 64626565,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Dark Ceruvim Irisfil"
+   },
+   {
+    "kind": "move",
+    "code": 92517928,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Galaxy-Eyes Antimatter Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 92517928,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy-Eyes Antimatter Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 44698398,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 28331069,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "kind": "move",
+    "code": 88177325,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Number 107: Galaxy-Eyes Tachyon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 64626565,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Dark Ceruvim Irisfil"
+   },
+   {
+    "kind": "move",
+    "code": 92517928,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy-Eyes Antimatter Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 39030163,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Galaxy-Eyes Full Armor Photon Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 39030163,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy-Eyes Full Armor Photon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 44698398,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 28331069,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "kind": "move",
+    "code": 88177325,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Number 107: Galaxy-Eyes Tachyon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 64626565,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Dark Ceruvim Irisfil"
+   },
+   {
+    "kind": "move",
+    "code": 92517928,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Galaxy-Eyes Antimatter Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 39030163,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy-Eyes Full Armor Photon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 28331069,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "kind": "summon",
+    "code": 28331069,
+    "player": 0,
+    "how": "Special",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "kind": "activate",
+    "code": 28331069,
+    "player": 0,
+    "from": "Field",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "kind": "move",
+    "code": 89132148,
+    "player": 0,
+    "from": "Deck",
+    "to": "Field",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "summon",
+    "code": 89132148,
+    "player": 0,
+    "how": "Special",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "activate",
+    "code": 89132148,
+    "player": 0,
+    "from": "Field",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "move",
+    "code": 89132148,
+    "player": 0,
+    "from": "Field",
+    "to": "S/T",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "activate",
+    "code": 89132148,
+    "player": 0,
+    "from": "S/T",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "move",
+    "code": 89132148,
+    "player": 0,
+    "from": "S/T",
+    "to": "GY",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Hand",
+    "to": "Field",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "summon",
+    "code": 47051709,
+    "player": 0,
+    "how": "Normal",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "activate",
+    "code": 47051709,
+    "player": 0,
+    "from": "Field",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Deck",
+    "to": "Field",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "summon",
+    "code": 47051709,
+    "player": 0,
+    "how": "Special",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 85747929,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 85747929,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "kind": "activate",
+    "code": 85747929,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Material",
+    "to": "GY",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 82162616,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Eternal Galaxy"
+   },
+   {
+    "kind": "move",
+    "code": 82162616,
+    "player": 0,
+    "from": "Hand",
+    "to": "S/T",
+    "name": "Eternal Galaxy"
+   },
+   {
+    "kind": "move",
+    "code": 8038143,
+    "player": 0,
+    "from": "Hand",
+    "to": "S/T",
+    "name": "Tachyon Transmigration"
+   }
+  ]
+ },
+ {
+  "file": "/home/claude/replays_in/4-soldier.txt",
+  "settings": {
+   "Region": 3,
+   "MasterRule": 5,
+   "Mode": 0,
+   "StartHand": 2,
+   "DrawCount": 1,
+   "Timer": 4095,
+   "StartLP": 8000,
+   "DuelRule": 0,
+   "ReleasedFrom": -62135596800000,
+   "ReleasedUntil": 253402214400000,
+   "ExtraRule": 127560532885504,
+   "Budget": 0
+  },
+  "main": {
+   "Galaxy Soldier": 3,
+   "Ghost Ogre & Snow Rabbit": 3,
+   "Photon Delta Wing": 3,
+   "Schwarzschild Infinity Dragon": 3,
+   "Galaxy Defense Robot Orbital 7": 3,
+   "Galaxy Wizard": 1,
+   "Photon Thrasher": 1,
+   "Galaxy War Drake": 1,
+   "Seventh Tachyon": 3,
+   "Pot of Prosperity": 1,
+   "Mulcharmy Fuwalos": 3,
+   "Ash Blossom & Joyous Spring": 3,
+   "Infinite Impermanence": 3,
+   "Effect Veiler": 3,
+   "Droll & Lock Bird": 1,
+   "Galaxy-Eyes Photon Dragon": 1,
+   "Galaxy-Eyes Tachyon Primal": 1,
+   "Galaxy-Eyes Afterglow Dragon": 1,
+   "Photon Emperor": 1,
+   "Photon Orbital": 1,
+   "Galaxy Summoner": 1,
+   "Tachyon Transmigration": 1,
+   "Eternal Galaxy": 1
+  },
+  "extra": {
+   "Galaxy-Eyes Cipher X Dragon": 1,
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling": 1,
+   "Galaxy-Eyes Full Armor Photon Dragon": 2,
+   "Galaxy-Eyes Cipher Dragon": 1,
+   "Number S38: Titanic Galaxy": 1,
+   "Number 107: Galaxy-Eyes Tachyon Dragon": 1,
+   "Number 38: Hope Harbinger Dragon Titanic Galaxy": 1,
+   "Divine Golden Shadow Dragon Dragluxion": 1,
+   "Number 90: Galaxy-Eyes Photon Lord": 1,
+   "Dark Ceruvim Irisfil": 1,
+   "Number 104: Masquerade Vain": 1,
+   "Galaxy Photon Dragon": 1,
+   "Starliege Photon Blast Dragon": 1,
+   "Galaxy-Eyes Antimatter Dragon": 1
+  },
+  "side": {
+   "The Great Gallant Bandit": 3,
+   "Galaxy-Eyes Photon Change Dragon": 1,
+   "Seventh Ascension": 2,
+   "Triple Tactics Thrust": 2,
+   "Galaxy-Eyes Tachyon Primal": 1,
+   "Tachyon Transmigration": 1,
+   "Spatial Trunade": 3,
+   "Dominus Purge": 2
+  },
+  "handUsed": [
+   "Galaxy Soldier",
+   "Ghost Ogre & Snow Rabbit"
+  ],
+  "handUnused": [],
+  "fromDeck": {
+   "Photon Emperor": 1,
+   "Galaxy War Drake": 1,
+   "Photon Orbital": 1,
+   "Photon Delta Wing": 1
+  },
+  "searched": {
+   "Galaxy Defense Robot Orbital 7": 1,
+   "Galaxy Summoner": 1,
+   "Photon Delta Wing": 1,
+   "Galaxy-Eyes Tachyon Primal": 1,
+   "Tachyon Transmigration": 1,
+   "Eternal Galaxy": 1
+  },
+  "extraUsed": [
+   "Number 90: Galaxy-Eyes Photon Lord",
+   "Starliege Photon Blast Dragon",
+   "Dark Ceruvim Irisfil",
+   "Galaxy-Eyes Antimatter Dragon",
+   "Galaxy-Eyes Full Armor Photon Dragon",
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling",
+   "Galaxy Photon Dragon",
+   "Divine Golden Shadow Dragon Dragluxion",
+   "Galaxy-Eyes Cipher Dragon",
+   "Galaxy-Eyes Cipher X Dragon"
+  ],
+  "endBoard": [
+   {
+    "code": 8165596,
+    "zone": "Field",
+    "name": "Number 90: Galaxy-Eyes Photon Lord"
+   },
+   {
+    "code": 28331069,
+    "zone": "Field",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "code": 85747929,
+    "zone": "Field",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "code": 82162616,
+    "zone": "S/T",
+    "name": "Eternal Galaxy"
+   },
+   {
+    "code": 8038143,
+    "zone": "S/T",
+    "name": "Tachyon Transmigration"
+   },
+   {
+    "code": 28346136,
+    "zone": "Field",
+    "name": "Galaxy-Eyes Cipher X Dragon"
+   }
+  ],
+  "summons": 19,
+  "turn1": [
+   "  act Galaxy Soldier (Hand)",
+   "#1 Special Galaxy Soldier",
+   "  act Galaxy Soldier (Field)",
+   "  act Galaxy Defense Robot Orbital 7 (Hand)",
+   "  act Photon Emperor (GY)",
+   "#2 Special Photon Emperor",
+   "#3 Normal Galaxy Summoner",
+   "  act Galaxy Summoner (Field)",
+   "#4 Special Galaxy Defense Robot Orbital 7",
+   "#5 Special Number 90: Galaxy-Eyes Photon Lord",
+   "  act Galaxy Summoner (Field)",
+   "#6 Special Starliege Photon Blast Dragon",
+   "#7 Special Dark Ceruvim Irisfil",
+   "  act Dark Ceruvim Irisfil (Field)",
+   "#8 Special Galaxy-Eyes Antimatter Dragon",
+   "  act Galaxy-Eyes Antimatter Dragon (Field)",
+   "#9 Special Galaxy-Eyes Full Armor Photon Dragon",
+   "#10 Special Neo Galaxy-Eyes Photon Dragon - Photon Howling",
+   "  act Neo Galaxy-Eyes Photon Dragon - Photon Howling (Field)",
+   "#11 Special Photon Orbital",
+   "  act Galaxy War Drake (GY)",
+   "#12 Special Galaxy War Drake",
+   "  act Galaxy War Drake (Field)",
+   "  act Photon Orbital (Field)",
+   "  act Photon Orbital (S/T)",
+   "#13 Normal Photon Delta Wing",
+   "  act Photon Delta Wing (Field)",
+   "#14 Special Photon Delta Wing",
+   "#15 Special Galaxy Photon Dragon",
+   "  act Galaxy Photon Dragon (Field)",
+   "  act Galaxy-Eyes Tachyon Primal (Hand)",
+   "#16 Special Galaxy-Eyes Tachyon Primal",
+   "  act Galaxy-Eyes Tachyon Primal (Field)",
+   "#17 Special Divine Golden Shadow Dragon Dragluxion",
+   "  act Divine Golden Shadow Dragon Dragluxion (Field)",
+   "  set #0",
+   "  set #0",
+   "  act Divine Golden Shadow Dragon Dragluxion (Field)",
+   "#18 Special Galaxy-Eyes Cipher Dragon",
+   "#19 Special Galaxy-Eyes Cipher X Dragon",
+   "  act Galaxy-Eyes Cipher X Dragon (Field)"
+  ],
+  "guide": [
+   "Galaxy Soldier",
+   "Galaxy Soldier",
+   "Galaxy Soldier",
+   "Galaxy Defense Robot Orbital 7",
+   "Galaxy Defense Robot Orbital 7",
+   "Galaxy Summoner",
+   "Photon Emperor",
+   "Photon Emperor",
+   "Photon Emperor",
+   "Galaxy Summoner",
+   "Galaxy Summoner",
+   "Galaxy Defense Robot Orbital 7",
+   "Number 90: Galaxy-Eyes Photon Lord",
+   "Galaxy Summoner",
+   "Starliege Photon Blast Dragon",
+   "Dark Ceruvim Irisfil",
+   "Dark Ceruvim Irisfil",
+   "Galaxy-Eyes Antimatter Dragon",
+   "Galaxy-Eyes Antimatter Dragon",
+   "Galaxy War Drake",
+   "Galaxy-Eyes Full Armor Photon Dragon",
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling",
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling",
+   "Photon Orbital",
+   "Galaxy War Drake",
+   "Galaxy War Drake",
+   "Galaxy War Drake",
+   "Photon Orbital",
+   "Photon Orbital",
+   "Photon Delta Wing",
+   "Photon Delta Wing",
+   "Photon Delta Wing",
+   "Photon Delta Wing",
+   "Galaxy Photon Dragon",
+   "Galaxy Photon Dragon",
+   "Galaxy-Eyes Tachyon Primal",
+   "Galaxy-Eyes Tachyon Primal",
+   "Galaxy-Eyes Tachyon Primal",
+   "Galaxy-Eyes Tachyon Primal",
+   "Tachyon Transmigration",
+   "Divine Golden Shadow Dragon Dragluxion",
+   "Divine Golden Shadow Dragon Dragluxion",
+   "Eternal Galaxy",
+   "Divine Golden Shadow Dragon Dragluxion",
+   "Galaxy-Eyes Cipher Dragon",
+   "Galaxy-Eyes Cipher X Dragon",
+   "Galaxy-Eyes Cipher X Dragon"
+  ],
+  "events": [
+   {
+    "kind": "activate",
+    "code": 46659709,
+    "player": 0,
+    "from": "Hand",
+    "name": "Galaxy Soldier"
+   },
+   {
+    "kind": "move",
+    "code": 59438932,
+    "player": 0,
+    "from": "Hand",
+    "to": "GY",
+    "name": "Ghost Ogre & Snow Rabbit"
+   },
+   {
+    "kind": "move",
+    "code": 46659709,
+    "player": 0,
+    "from": "Hand",
+    "to": "Field",
+    "name": "Galaxy Soldier"
+   },
+   {
+    "kind": "summon",
+    "code": 46659709,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy Soldier"
+   },
+   {
+    "kind": "activate",
+    "code": 46659709,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy Soldier"
+   },
+   {
+    "kind": "move",
+    "code": 91714772,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "activate",
+    "code": 91714772,
+    "player": 0,
+    "from": "Hand",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 91714772,
+    "player": 0,
+    "from": "Hand",
+    "to": "GY",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 863795,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "move",
+    "code": 73478096,
+    "player": 0,
+    "from": "Deck",
+    "to": "GY",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "activate",
+    "code": 73478096,
+    "player": 0,
+    "from": "GY",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "move",
+    "code": 73478096,
+    "player": 0,
+    "from": "GY",
+    "to": "Field",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "summon",
+    "code": 73478096,
+    "player": 0,
+    "how": "Special",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "move",
+    "code": 863795,
+    "player": 0,
+    "from": "Hand",
+    "to": "Field",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "summon",
+    "code": 863795,
+    "player": 0,
+    "how": "Normal",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "activate",
+    "code": 863795,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "move",
+    "code": 91714772,
+    "player": 0,
+    "from": "GY",
+    "to": "Field",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "summon",
+    "code": 91714772,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 91714772,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 73478096,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "move",
+    "code": 8165596,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Number 90: Galaxy-Eyes Photon Lord"
+   },
+   {
+    "kind": "summon",
+    "code": 8165596,
+    "player": 0,
+    "how": "Special",
+    "name": "Number 90: Galaxy-Eyes Photon Lord"
+   },
+   {
+    "kind": "activate",
+    "code": 863795,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "move",
+    "code": 863795,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "move",
+    "code": 46659709,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy Soldier"
+   },
+   {
+    "kind": "move",
+    "code": 16643334,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Starliege Photon Blast Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 16643334,
+    "player": 0,
+    "how": "Special",
+    "name": "Starliege Photon Blast Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 863795,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "move",
+    "code": 46659709,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Galaxy Soldier"
+   },
+   {
+    "kind": "move",
+    "code": 16643334,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Starliege Photon Blast Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 64626565,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Dark Ceruvim Irisfil"
+   },
+   {
+    "kind": "summon",
+    "code": 64626565,
+    "player": 0,
+    "how": "Special",
+    "name": "Dark Ceruvim Irisfil"
+   },
+   {
+    "kind": "activate",
+    "code": 64626565,
+    "player": 0,
+    "from": "Field",
+    "name": "Dark Ceruvim Irisfil"
+   },
+   {
+    "kind": "move",
+    "code": 863795,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "move",
+    "code": 46659709,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Galaxy Soldier"
+   },
+   {
+    "kind": "move",
+    "code": 16643334,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Starliege Photon Blast Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 64626565,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Dark Ceruvim Irisfil"
+   },
+   {
+    "kind": "move",
+    "code": 92517928,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Galaxy-Eyes Antimatter Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 92517928,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy-Eyes Antimatter Dragon"
+   },
+   {
+    "kind": "activate",
+    "code": 92517928,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy-Eyes Antimatter Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 16643334,
+    "player": 0,
+    "from": "Material",
+    "to": "GY",
+    "name": "Starliege Photon Blast Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 19316241,
+    "player": 0,
+    "from": "Deck",
+    "to": "GY",
+    "name": "Galaxy War Drake"
+   },
+   {
+    "kind": "move",
+    "code": 863795,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "move",
+    "code": 46659709,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Galaxy Soldier"
+   },
+   {
+    "kind": "move",
+    "code": 64626565,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Dark Ceruvim Irisfil"
+   },
+   {
+    "kind": "move",
+    "code": 92517928,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy-Eyes Antimatter Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 39030163,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Galaxy-Eyes Full Armor Photon Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 39030163,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy-Eyes Full Armor Photon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 863795,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "move",
+    "code": 46659709,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Galaxy Soldier"
+   },
+   {
+    "kind": "move",
+    "code": 64626565,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Dark Ceruvim Irisfil"
+   },
+   {
+    "kind": "move",
+    "code": 92517928,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Galaxy-Eyes Antimatter Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 39030163,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy-Eyes Full Armor Photon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 28331069,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "kind": "summon",
+    "code": 28331069,
+    "player": 0,
+    "how": "Special",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "kind": "activate",
+    "code": 28331069,
+    "player": 0,
+    "from": "Field",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "kind": "move",
+    "code": 89132148,
+    "player": 0,
+    "from": "Deck",
+    "to": "Field",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "summon",
+    "code": 89132148,
+    "player": 0,
+    "how": "Special",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "activate",
+    "code": 19316241,
+    "player": 0,
+    "from": "GY",
+    "name": "Galaxy War Drake"
+   },
+   {
+    "kind": "move",
+    "code": 19316241,
+    "player": 0,
+    "from": "GY",
+    "to": "Field",
+    "name": "Galaxy War Drake"
+   },
+   {
+    "kind": "summon",
+    "code": 19316241,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy War Drake"
+   },
+   {
+    "kind": "activate",
+    "code": 19316241,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy War Drake"
+   },
+   {
+    "kind": "activate",
+    "code": 89132148,
+    "player": 0,
+    "from": "Field",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "move",
+    "code": 89132148,
+    "player": 0,
+    "from": "Field",
+    "to": "S/T",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "activate",
+    "code": 89132148,
+    "player": 0,
+    "from": "S/T",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "move",
+    "code": 89132148,
+    "player": 0,
+    "from": "S/T",
+    "to": "GY",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Hand",
+    "to": "Field",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "summon",
+    "code": 47051709,
+    "player": 0,
+    "how": "Normal",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "activate",
+    "code": 47051709,
+    "player": 0,
+    "from": "Field",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Deck",
+    "to": "Field",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "summon",
+    "code": 47051709,
+    "player": 0,
+    "how": "Special",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 85747929,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 85747929,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "kind": "activate",
+    "code": 85747929,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 47051709,
+    "player": 0,
+    "from": "Material",
+    "to": "GY",
+    "name": "Photon Delta Wing"
+   },
+   {
+    "kind": "move",
+    "code": 45710945,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "activate",
+    "code": 45710945,
+    "player": 0,
+    "from": "Hand",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "move",
+    "code": 45710945,
+    "player": 0,
+    "from": "Hand",
+    "to": "Field",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "summon",
+    "code": 45710945,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "activate",
+    "code": 45710945,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "move",
+    "code": 8038143,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Tachyon Transmigration"
+   },
+   {
+    "kind": "move",
+    "code": 45710945,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "move",
+    "code": 19316241,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy War Drake"
+   },
+   {
+    "kind": "move",
+    "code": 44698398,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "summon",
+    "code": 44698398,
+    "player": 0,
+    "how": "Special",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "activate",
+    "code": 44698398,
+    "player": 0,
+    "from": "Field",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 82162616,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Eternal Galaxy"
+   },
+   {
+    "kind": "move",
+    "code": 82162616,
+    "player": 0,
+    "from": "Hand",
+    "to": "S/T",
+    "name": "Eternal Galaxy"
+   },
+   {
+    "kind": "move",
+    "code": 8038143,
+    "player": 0,
+    "from": "Hand",
+    "to": "S/T",
+    "name": "Tachyon Transmigration"
+   },
+   {
+    "kind": "activate",
+    "code": 44698398,
+    "player": 0,
+    "from": "Field",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 45710945,
+    "player": 0,
+    "from": "Material",
+    "to": "GY",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "move",
+    "code": 19316241,
+    "player": 0,
+    "from": "Material",
+    "to": "GY",
+    "name": "Galaxy War Drake"
+   },
+   {
+    "kind": "move",
+    "code": 44698398,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 18963306,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Galaxy-Eyes Cipher Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 18963306,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy-Eyes Cipher Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 44698398,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 18963306,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy-Eyes Cipher Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 28346136,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Galaxy-Eyes Cipher X Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 28346136,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy-Eyes Cipher X Dragon"
+   },
+   {
+    "kind": "activate",
+    "code": 28346136,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy-Eyes Cipher X Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 44698398,
+    "player": 0,
+    "from": "Material",
+    "to": "GY",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 18963306,
+    "player": 0,
+    "from": "Material",
+    "to": "GY",
+    "name": "Galaxy-Eyes Cipher Dragon"
+   }
+  ]
+ },
+ {
+  "file": "/home/claude/replays_in/5-schwarz.txt",
+  "settings": {
+   "Region": 3,
+   "MasterRule": 5,
+   "Mode": 0,
+   "StartHand": 1,
+   "DrawCount": 1,
+   "Timer": 4095,
+   "StartLP": 8000,
+   "DuelRule": 0,
+   "ReleasedFrom": -62135596800000,
+   "ReleasedUntil": 253402214400000,
+   "ExtraRule": 127560532885504,
+   "Budget": 0
+  },
+  "main": {
+   "Schwarzschild Infinity Dragon": 3,
+   "Photon Delta Wing": 3,
+   "Galaxy Soldier": 3,
+   "Galaxy Defense Robot Orbital 7": 3,
+   "Galaxy Wizard": 1,
+   "Photon Thrasher": 1,
+   "Galaxy War Drake": 1,
+   "Seventh Tachyon": 3,
+   "Pot of Prosperity": 1,
+   "Mulcharmy Fuwalos": 3,
+   "Ash Blossom & Joyous Spring": 3,
+   "Ghost Ogre & Snow Rabbit": 3,
+   "Infinite Impermanence": 3,
+   "Effect Veiler": 3,
+   "Droll & Lock Bird": 1,
+   "Galaxy-Eyes Photon Dragon": 1,
+   "Galaxy-Eyes Tachyon Primal": 1,
+   "Galaxy-Eyes Afterglow Dragon": 1,
+   "Photon Emperor": 1,
+   "Photon Orbital": 1,
+   "Galaxy Summoner": 1,
+   "Tachyon Transmigration": 1,
+   "Eternal Galaxy": 1
+  },
+  "extra": {
+   "Galaxy-Eyes Cipher X Dragon": 1,
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling": 1,
+   "Galaxy-Eyes Full Armor Photon Dragon": 2,
+   "Galaxy-Eyes Cipher Dragon": 1,
+   "Number S38: Titanic Galaxy": 1,
+   "Number 107: Galaxy-Eyes Tachyon Dragon": 1,
+   "Number 38: Hope Harbinger Dragon Titanic Galaxy": 1,
+   "Divine Golden Shadow Dragon Dragluxion": 1,
+   "Number 90: Galaxy-Eyes Photon Lord": 1,
+   "Dark Ceruvim Irisfil": 1,
+   "Number 104: Masquerade Vain": 1,
+   "Galaxy Photon Dragon": 1,
+   "Starliege Photon Blast Dragon": 1,
+   "Galaxy-Eyes Antimatter Dragon": 1
+  },
+  "side": {
+   "The Great Gallant Bandit": 3,
+   "Galaxy-Eyes Photon Change Dragon": 1,
+   "Seventh Ascension": 2,
+   "Triple Tactics Thrust": 2,
+   "Galaxy-Eyes Tachyon Primal": 1,
+   "Tachyon Transmigration": 1,
+   "Spatial Trunade": 3,
+   "Dominus Purge": 2
+  },
+  "handUsed": [
+   "Schwarzschild Infinity Dragon"
+  ],
+  "handUnused": [],
+  "fromDeck": {
+   "Galaxy-Eyes Afterglow Dragon": 1,
+   "Galaxy-Eyes Photon Dragon": 1,
+   "Photon Orbital": 1,
+   "Photon Emperor": 1
+  },
+  "searched": {
+   "Galaxy-Eyes Tachyon Primal": 1,
+   "Tachyon Transmigration": 1,
+   "Galaxy Defense Robot Orbital 7": 1,
+   "Galaxy Summoner": 1,
+   "Eternal Galaxy": 1
+  },
+  "extraUsed": [
+   "Divine Golden Shadow Dragon Dragluxion",
+   "Number 107: Galaxy-Eyes Tachyon Dragon",
+   "Galaxy-Eyes Cipher Dragon",
+   "Galaxy-Eyes Cipher X Dragon",
+   "Galaxy-Eyes Full Armor Photon Dragon",
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling",
+   "Galaxy Photon Dragon",
+   "Number 38: Hope Harbinger Dragon Titanic Galaxy"
+  ],
+  "endBoard": [
+   {
+    "code": 88177325,
+    "zone": "Field",
+    "name": "Number 107: Galaxy-Eyes Tachyon Dragon"
+   },
+   {
+    "code": 28331069,
+    "zone": "Field",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "code": 85747929,
+    "zone": "Field",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "code": 63767246,
+    "zone": "Field",
+    "name": "Number 38: Hope Harbinger Dragon Titanic Galaxy"
+   },
+   {
+    "code": 82162616,
+    "zone": "S/T",
+    "name": "Eternal Galaxy"
+   },
+   {
+    "code": 8038143,
+    "zone": "S/T",
+    "name": "Tachyon Transmigration"
+   }
+  ],
+  "summons": 17,
+  "turn1": [
+   "  act Schwarzschild Infinity Dragon (Hand)",
+   "#1 Special Schwarzschild Infinity Dragon",
+   "#2 Special Galaxy-Eyes Afterglow Dragon",
+   "#3 Special Divine Golden Shadow Dragon Dragluxion",
+   "  act Divine Golden Shadow Dragon Dragluxion (Field)",
+   "  act Galaxy-Eyes Tachyon Primal (Hand)",
+   "#4 Special Galaxy-Eyes Tachyon Primal",
+   "  act Galaxy-Eyes Tachyon Primal (Field)",
+   "  act Divine Golden Shadow Dragon Dragluxion (Field)",
+   "#5 Special Number 107: Galaxy-Eyes Tachyon Dragon",
+   "  act Galaxy-Eyes Afterglow Dragon (GY)",
+   "#6 Special Galaxy-Eyes Photon Dragon",
+   "#7 Special Galaxy-Eyes Cipher Dragon",
+   "#8 Special Galaxy-Eyes Cipher X Dragon",
+   "  act Galaxy-Eyes Cipher X Dragon (Field)",
+   "#9 Special Galaxy-Eyes Full Armor Photon Dragon",
+   "#10 Special Neo Galaxy-Eyes Photon Dragon - Photon Howling",
+   "  act Neo Galaxy-Eyes Photon Dragon - Photon Howling (Field)",
+   "#11 Special Photon Orbital",
+   "  act Photon Orbital (Field)",
+   "  act Photon Orbital (S/T)",
+   "  act Galaxy Defense Robot Orbital 7 (Hand)",
+   "  act Photon Emperor (GY)",
+   "#12 Special Photon Emperor",
+   "#13 Normal Galaxy Summoner",
+   "  act Galaxy Summoner (Field)",
+   "#14 Special Galaxy-Eyes Photon Dragon",
+   "  act Galaxy Defense Robot Orbital 7 (GY)",
+   "#15 Special Galaxy Defense Robot Orbital 7",
+   "  act Galaxy Summoner (Field)",
+   "#16 Special Galaxy Photon Dragon",
+   "  act Galaxy Photon Dragon (Field)",
+   "#17 Special Number 38: Hope Harbinger Dragon Titanic Galaxy",
+   "  set #0",
+   "  set #0"
+  ],
+  "guide": [
+   "Schwarzschild Infinity Dragon",
+   "Schwarzschild Infinity Dragon",
+   "Galaxy-Eyes Afterglow Dragon",
+   "Divine Golden Shadow Dragon Dragluxion",
+   "Divine Golden Shadow Dragon Dragluxion",
+   "Galaxy-Eyes Tachyon Primal",
+   "Galaxy-Eyes Tachyon Primal",
+   "Galaxy-Eyes Tachyon Primal",
+   "Galaxy-Eyes Tachyon Primal",
+   "Tachyon Transmigration",
+   "Divine Golden Shadow Dragon Dragluxion",
+   "Number 107: Galaxy-Eyes Tachyon Dragon",
+   "Galaxy-Eyes Afterglow Dragon",
+   "Galaxy-Eyes Photon Dragon",
+   "Galaxy-Eyes Cipher Dragon",
+   "Galaxy-Eyes Cipher X Dragon",
+   "Galaxy-Eyes Cipher X Dragon",
+   "Galaxy-Eyes Full Armor Photon Dragon",
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling",
+   "Neo Galaxy-Eyes Photon Dragon - Photon Howling",
+   "Photon Orbital",
+   "Photon Orbital",
+   "Photon Orbital",
+   "Galaxy Defense Robot Orbital 7",
+   "Galaxy Defense Robot Orbital 7",
+   "Galaxy Summoner",
+   "Photon Emperor",
+   "Photon Emperor",
+   "Photon Emperor",
+   "Galaxy Summoner",
+   "Galaxy Summoner",
+   "Galaxy-Eyes Photon Dragon",
+   "Galaxy Defense Robot Orbital 7",
+   "Galaxy Defense Robot Orbital 7",
+   "Galaxy Summoner",
+   "Galaxy Photon Dragon",
+   "Galaxy Photon Dragon",
+   "Eternal Galaxy",
+   "Number 38: Hope Harbinger Dragon Titanic Galaxy"
+  ],
+  "events": [
+   {
+    "kind": "activate",
+    "code": 18294799,
+    "player": 0,
+    "from": "Hand",
+    "name": "Schwarzschild Infinity Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 18294799,
+    "player": 0,
+    "from": "Hand",
+    "to": "Field",
+    "name": "Schwarzschild Infinity Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 18294799,
+    "player": 0,
+    "how": "Special",
+    "name": "Schwarzschild Infinity Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 62968263,
+    "player": 0,
+    "from": "Deck",
+    "to": "Field",
+    "name": "Galaxy-Eyes Afterglow Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 62968263,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy-Eyes Afterglow Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 62968263,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy-Eyes Afterglow Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 18294799,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Schwarzschild Infinity Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 44698398,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "summon",
+    "code": 44698398,
+    "player": 0,
+    "how": "Special",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "activate",
+    "code": 44698398,
+    "player": 0,
+    "from": "Field",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 45710945,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "activate",
+    "code": 45710945,
+    "player": 0,
+    "from": "Hand",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "move",
+    "code": 45710945,
+    "player": 0,
+    "from": "Hand",
+    "to": "Field",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "summon",
+    "code": 45710945,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "activate",
+    "code": 45710945,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "move",
+    "code": 8038143,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Tachyon Transmigration"
+   },
+   {
+    "kind": "activate",
+    "code": 44698398,
+    "player": 0,
+    "from": "Field",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 62968263,
+    "player": 0,
+    "from": "Material",
+    "to": "GY",
+    "name": "Galaxy-Eyes Afterglow Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 18294799,
+    "player": 0,
+    "from": "Material",
+    "to": "GY",
+    "name": "Schwarzschild Infinity Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 44698398,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Divine Golden Shadow Dragon Dragluxion"
+   },
+   {
+    "kind": "move",
+    "code": 88177325,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Number 107: Galaxy-Eyes Tachyon Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 88177325,
+    "player": 0,
+    "how": "Special",
+    "name": "Number 107: Galaxy-Eyes Tachyon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 16110708,
+    "player": 0,
+    "from": "Extra",
+    "to": "Material",
+    "name": "Number S38: Titanic Galaxy"
+   },
+   {
+    "kind": "activate",
+    "code": 62968263,
+    "player": 0,
+    "from": "GY",
+    "name": "Galaxy-Eyes Afterglow Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 93717134,
+    "player": 0,
+    "from": "Deck",
+    "to": "Field",
+    "name": "Galaxy-Eyes Photon Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 93717134,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy-Eyes Photon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 45710945,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "move",
+    "code": 93717134,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy-Eyes Photon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 18963306,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Galaxy-Eyes Cipher Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 18963306,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy-Eyes Cipher Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 45710945,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "move",
+    "code": 93717134,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Galaxy-Eyes Photon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 18963306,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy-Eyes Cipher Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 28346136,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Galaxy-Eyes Cipher X Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 28346136,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy-Eyes Cipher X Dragon"
+   },
+   {
+    "kind": "activate",
+    "code": 28346136,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy-Eyes Cipher X Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 45710945,
+    "player": 0,
+    "from": "Material",
+    "to": "GY",
+    "name": "Galaxy-Eyes Tachyon Primal"
+   },
+   {
+    "kind": "move",
+    "code": 93717134,
+    "player": 0,
+    "from": "Material",
+    "to": "GY",
+    "name": "Galaxy-Eyes Photon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 18963306,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Galaxy-Eyes Cipher Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 28346136,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy-Eyes Cipher X Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 39030163,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Galaxy-Eyes Full Armor Photon Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 39030163,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy-Eyes Full Armor Photon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 18963306,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Galaxy-Eyes Cipher Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 28346136,
+    "player": 0,
+    "from": "Material",
+    "to": "Material",
+    "name": "Galaxy-Eyes Cipher X Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 39030163,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy-Eyes Full Armor Photon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 28331069,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "kind": "summon",
+    "code": 28331069,
+    "player": 0,
+    "how": "Special",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "kind": "activate",
+    "code": 28331069,
+    "player": 0,
+    "from": "Field",
+    "name": "Neo Galaxy-Eyes Photon Dragon - Photon Howling"
+   },
+   {
+    "kind": "move",
+    "code": 89132148,
+    "player": 0,
+    "from": "Deck",
+    "to": "Field",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "summon",
+    "code": 89132148,
+    "player": 0,
+    "how": "Special",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "activate",
+    "code": 89132148,
+    "player": 0,
+    "from": "Field",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "move",
+    "code": 89132148,
+    "player": 0,
+    "from": "Field",
+    "to": "S/T",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "activate",
+    "code": 89132148,
+    "player": 0,
+    "from": "S/T",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "move",
+    "code": 89132148,
+    "player": 0,
+    "from": "S/T",
+    "to": "GY",
+    "name": "Photon Orbital"
+   },
+   {
+    "kind": "move",
+    "code": 91714772,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "activate",
+    "code": 91714772,
+    "player": 0,
+    "from": "Hand",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 91714772,
+    "player": 0,
+    "from": "Hand",
+    "to": "GY",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 863795,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "move",
+    "code": 73478096,
+    "player": 0,
+    "from": "Deck",
+    "to": "GY",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "activate",
+    "code": 73478096,
+    "player": 0,
+    "from": "GY",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "move",
+    "code": 73478096,
+    "player": 0,
+    "from": "GY",
+    "to": "Field",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "summon",
+    "code": 73478096,
+    "player": 0,
+    "how": "Special",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "move",
+    "code": 863795,
+    "player": 0,
+    "from": "Hand",
+    "to": "Field",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "summon",
+    "code": 863795,
+    "player": 0,
+    "how": "Normal",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "activate",
+    "code": 863795,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "move",
+    "code": 93717134,
+    "player": 0,
+    "from": "GY",
+    "to": "Field",
+    "name": "Galaxy-Eyes Photon Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 93717134,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy-Eyes Photon Dragon"
+   },
+   {
+    "kind": "activate",
+    "code": 91714772,
+    "player": 0,
+    "from": "GY",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 91714772,
+    "player": 0,
+    "from": "GY",
+    "to": "Field",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "summon",
+    "code": 91714772,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "activate",
+    "code": 863795,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "move",
+    "code": 863795,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy Summoner"
+   },
+   {
+    "kind": "move",
+    "code": 93717134,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy-Eyes Photon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 85747929,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "kind": "summon",
+    "code": 85747929,
+    "player": 0,
+    "how": "Special",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "kind": "activate",
+    "code": 85747929,
+    "player": 0,
+    "from": "Field",
+    "name": "Galaxy Photon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 93717134,
+    "player": 0,
+    "from": "Material",
+    "to": "GY",
+    "name": "Galaxy-Eyes Photon Dragon"
+   },
+   {
+    "kind": "move",
+    "code": 82162616,
+    "player": 0,
+    "from": "Deck",
+    "to": "Hand",
+    "name": "Eternal Galaxy"
+   },
+   {
+    "kind": "move",
+    "code": 91714772,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Galaxy Defense Robot Orbital 7"
+   },
+   {
+    "kind": "move",
+    "code": 73478096,
+    "player": 0,
+    "from": "Field",
+    "to": "Material",
+    "name": "Photon Emperor"
+   },
+   {
+    "kind": "move",
+    "code": 63767246,
+    "player": 0,
+    "from": "Extra",
+    "to": "Field",
+    "name": "Number 38: Hope Harbinger Dragon Titanic Galaxy"
+   },
+   {
+    "kind": "summon",
+    "code": 63767246,
+    "player": 0,
+    "how": "Special",
+    "name": "Number 38: Hope Harbinger Dragon Titanic Galaxy"
+   },
+   {
+    "kind": "move",
+    "code": 82162616,
+    "player": 0,
+    "from": "Hand",
+    "to": "S/T",
+    "name": "Eternal Galaxy"
+   },
+   {
+    "kind": "move",
+    "code": 8038143,
+    "player": 0,
+    "from": "Hand",
+    "to": "S/T",
+    "name": "Tachyon Transmigration"
+   }
+  ]
+ }
+]
