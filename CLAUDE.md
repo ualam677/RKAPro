@@ -1,5 +1,6 @@
-# CLAUDE.md — YGO Lab (Galaxy-Eyes optimiser → EDOPro-style simulator)
+# CLAUDE.md — RKAPro (custom EDOPro-core client for deck testing; repo: ygo-lab)
 
+Product vision and name: `docs/VISION.md` (RKAPro: EDOPro-core client for deck testing, with YGO Omega and Discord integration). Architecture: `docs/ARCHITECTURE.md`; features: `docs/DESIGN.md`.
 Read this first, then `docs/KNOWLEDGE.md` (deck knowledge, user-taught), `docs/NOTES.md` (engineering log and results) and `docs/CARDS.md` (the real card texts of every card in the deck).
 
 ## The goal (from the user)
