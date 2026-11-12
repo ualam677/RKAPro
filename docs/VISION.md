@@ -35,6 +35,15 @@ This is the product name. The repo is still called `ygo-lab` until it is renamed
 - Tournament notes: per-opponent matchup log and side-plan templates (sideboarding stays parked until the main deck is understood).
 - Plugin packs: other decks and tech cards as packs on the deck-agnostic core.
 
+## Decisions (user, 12 Nov 2026, round 2)
+- **EDOPro compatibility is a hard requirement**: same core, same card DB and scripts, same file formats. RKAPro reads and writes EDOPro's deck (.ydk), replay (.yrpX) and expansion folders directly; several installs can be registered and decks moved between them.
+- **Deck-agnostic from day one.** The core client, odds, save states, replay takeover and drills work for any deck. Deck-specific knowledge (roles, lines, board scoring, hand classes) lives in packs (`packs/<deck>`); Galaxy-Eyes is the first full pack. New decks start with auto-derived card roles and the learning loop builds the pack.
+- **Practice partner has modes**: (1) scripted (e.g. Ash on the first search, Nibiru on summon 5), (2) smart (picks hand-trap timing to do the most damage, via minimax over the opponent's windows), (3) random, (4) user-defined scripts.
+- **UI**: EDOPro's layout and speed (same prompts, hotkeys, auto-chain, animations off or fast), modernised. Own UI, not embedded EDOPro.
+- **Teaching the app**: mechanics come from the card scripts and text (no explaining needed). The user only teaches *roles and judgement*: right-click a card to tag its role, type notes into the duel chat (attached to the current state), "that's wrong" button, and a post-duel review that asks "why?" only where the user left the library line.
+- **Duel**: plays exactly like EDOPro. Save states (quick save/load, branch tree). The chat panel carries the important info: hand-trap and Nibiru windows, line-library matches, dead-end warnings, odds of the current line.
+- **Deck sync**: import/export between EDOPro installs; Google Drive sync by pointing the deck folder at a Drive-synced folder first (no API needed), real Drive API only if that is not enough.
+
 ## Guardrails
 - ocgcore and ProjectIgnis scripts are AGPL-3.0: a distributed RKAPro must be open under the same licence.
 - Do not bundle card art (fetch to a local cache for personal use; check the image API terms).
