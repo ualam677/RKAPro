@@ -76,6 +76,11 @@ Env: `YGO_CDB_DIR`, `YGO_SCRIPTS_DIR` override data paths. `YGO_OMEGA_RULINGS=1`
 2. Orbital 7 + Delta in one hand: which do you lead with to play through Ash?
 3. A legal Soldier line (without the turn-1 Antimatter effect) as an Omega replay.
 
+## Product decisions (user, 12 Nov 2026) — details in docs/DESIGN.md
+- Desktop app (Electron), the user plays duels themselves.
+- Build first: **drill mode**, **odds + all the stats** (our engine-verified classes plus what community tools do), **replay → mp4/GIF video**, plus the new-card update flow and the "that's wrong" button.
+- Later ideas the user liked: going-2nd breakthrough search against meta boards, matchup lab, self-review, shareable lines.
+
 ## Roadmap to the full product (suggested order)
 1. **Engine service**: wrap `sim/engine.mjs` as a clean library (duel lifecycle, prompts → options, snapshot/restore = save states, deterministic replay). Add tests that replay `replays/` exactly.
 2. **Replay takeover**: parse Omega and EDOPro (.yrpX) replays into engine responses; scrub to any step; restore that state; hand control to the user or the optimiser.
