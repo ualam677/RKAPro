@@ -65,6 +65,7 @@ Env: `YGO_CDB_DIR`, `YGO_SCRIPTS_DIR` override data paths. `YGO_OMEGA_RULINGS=1`
 - Hand traps live going 1st: Ash, Imperm (set), Veiler, Ogre, Droll. Fuwalos is dead going 1st (needs you to control no cards).
 
 ## What is verified so far (details and tables in docs/NOTES.md)
+**Stale warning:** the numbers and lines below were computed on the previous list. The current list is `decks/current.md` (2 Wizard, no Thrasher, no Prosperity, 2 Transmigration, N62 instead of S38). Recompute before quoting them (ROADMAP slice 0.5).
 - All 5 replays reproduce event-for-event and end on the user's exact boards (Soldier only with Omega's ruling).
 - Nibiru-proof (user's definition: on summon 5, Photon Lord on field, or Tachyon Dragon on field so Transmigration is live; forcing Nibiru on summon 5 because summon 6 builds a negate also counts): Orbital 7 routes (worst 3.25), Soldier (2.5), Schwarzschild (3) yes; Delta no (0).
 - Exact odds, current 43: going 1st full board 93.5%, Nibiru-proof 83.8%, full + 2 hand traps 41.4%, brick 5.9%; going 2nd ≥2 hand traps 74%. Starter ↔ hand trap swap ≈ −1.5% full boards, −3% Nibiru-proof, +4% full+2HT, +4% going-2nd ≥2HT.
