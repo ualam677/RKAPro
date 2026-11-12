@@ -14,6 +14,11 @@ import { normaliseName } from "./lib/cards/db";
 import { generalisations, ReplayPanel } from "./components/ReplayPanel";
 import { SynergyGraph } from "./components/SynergyGraph";
 import { Route } from "./lib/combo/setup";
+import { ExactStats, packApplies } from "./components/ExactStats";
+import pack from "../../packs/galaxy-eyes/deck.json";
+
+/** The pack list as a text recipe the importer already understands. */
+const PACK_LIST = ["Main", ...Object.entries(pack.main).map(([n, k]) => `${k} ${n}`), "Extra", ...pack.extra.map((n) => `1 ${n}`)].join(String.fromCharCode(10));
 
 const db = loadCardDb();
 const pct = (p: number) => `${(p * 100).toFixed(1)}%`;
@@ -116,6 +121,9 @@ export default function App() {
   const main: DeckEntry[] = useMemo(() => sortEntries(Object.entries(counts).map(([id, n]) => entry(Number(id), n)).filter((e) => e.card)), [counts, setup]); // eslint-disable-line react-hooks/exhaustive-deps
   const side: DeckEntry[] = useMemo(() => sortEntries(Object.entries(sideCounts).map(([id, n]) => entry(Number(id), n)).filter((e) => e.card)), [sideCounts, setup]); // eslint-disable-line react-hooks/exhaustive-deps
   const deckSize = main.reduce((s, e) => s + e.copies, 0);
+  // by card name, for the exact (pack) model
+  const nameCounts = useMemo(() => Object.fromEntries(main.filter((e) => e.copies > 0).map((e) => [e.card.name, e.copies])), [main]);
+  const importedCounts = useMemo(() => (deck ? Object.fromEntries([...countCards(deck.main)].map(([id, n]) => [nameOf(id), n])) : null), [deck]);
   const goals = useMemo(() => buildGoals(main, setup, nameOf, { maxBricks }), [main, setup, maxBricks]);
   const fx = useMemo(() => buildEffects([...main, ...side], setup), [main, side, setup]);
   const weighted: Weighted[] = useMemo(() => [
@@ -211,6 +219,7 @@ export default function App() {
           <label className="file">or choose .ydk
             <input type="file" accept=".ydk,.txt" onChange={async (e) => { const f = e.target.files?.[0]; if (f) { const t = await f.text(); setInput(t); doImport(t, f.name); } }} />
           </label>
+          <button className="ghost" onClick={() => { setInput(PACK_LIST); doImport(PACK_LIST, undefined, GALAXY_PRESET); }}>Load my current list</button>
           <button className="ghost" onClick={() => { setInput(GALAXY_EXAMPLE); doImport(GALAXY_EXAMPLE, undefined, GALAXY_PRESET); }}>Load Galaxy example</button>
           {deck && <button className="ghost" onClick={copyYdke}>Copy tweaked deck as ydke://</button>}
           {copied && <span className="muted">{copied}</span>}
@@ -226,6 +235,8 @@ export default function App() {
 
       {deck && (
         <>
+          {packApplies(nameCounts) && <ExactStats deck={nameCounts} baseline={importedCounts} maxCopies={(n) => db.byName.get(normaliseName(n))?.limit ?? 3} />}
+
           {/* 2. Tag */}
           <section className="panel">
             <h2>2 · Tell it what each card does <span className="muted">· Main Deck {deckSize}</span></h2>

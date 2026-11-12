@@ -1,10 +1,12 @@
 # Progress log (read this first in every session)
 
-**Current wave:** 1 (Deck lab). **Next slice:** 1.2 stats panel.
+**Current wave:** 1 (Deck lab). **Next slice:** 1.3 quick calculator.
 
 Repo state at last entry: sim/ headless engine and tools work (`scripts/verify.sh` passes all 5 replays); golden tests pass through the library API; app/ ratio optimiser has 48 passing tests; no Electron, no duel UI yet.
 
 ## Log (newest first; 3 to 5 lines per slice)
+- 12 Nov 2026, slice 1.2 done: app panel "Exact stats" (`app/src/components/ExactStats.tsx`): 10 separate numbers, change vs the list as imported, which line each hand plays, per-card -1/+1 table. Button "Load my current list" reads the pack.
+  UI check: `cd app && npm run dev`, then `npm run ui-check` (headless Edge through playwright-core, no browser download); it asserts the numbers on screen and writes screenshots.
 - 12 Nov 2026, slice 1.1 done: `packages/analysis/odds.ts` (pure TypeScript, run directly by Node and bundled by Vite). Hand classes are data: `packs/galaxy-eyes/lines.json` (lines, groups, hand traps, digs).
   `sim/tools/odds.mjs` is now a thin CLI over it; same numbers to the decimal, about 1 s instead of 5 (cards the model cannot tell apart are merged before enumerating).
   New: `node tools/odds.mjs marginals` (per-card -1/+1 table, 2 s). 5 new app tests: parity, sums to 1, merge is lossless, Monte Carlo within 1%.

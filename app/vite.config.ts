@@ -6,5 +6,6 @@ import { viteSingleFile } from "vite-plugin-singlefile";
 // so it can be published as an artifact or opened straight from disk.
 export default defineConfig({
   plugins: [react(), viteSingleFile()],
+  server: { fs: { allow: [".."] } }, // packages/ and packs/ live one level up
   test: { globals: true, environment: "node" },
 } as any);
