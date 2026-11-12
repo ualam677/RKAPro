@@ -7,5 +7,5 @@ description: How the exact odds model and the community-style calculator work, w
 - Nibiru-proof (user's definition): on summon 5, Photon Lord on field, or Tachyon Dragon on field so Transmigration is live; forcing Nibiru on summon 5 because summon 6 builds a negate also counts.
 - Every `evalHand` line is a verified lower bound. Add a line only after the engine reproduces it (tools/scripted.mjs or a replay). Unmodelled hands (Wizard-only, Prosperity digs, odd pairs) are the main error source; check with tools/brickcheck.mjs.
 - Swap costs on the current 43: starter to hand trap is about -1.5% full boards, -3% Nibiru-proof, +4% full+2HT, +4% going-2nd 2+HT.
-- Keep 1 Wizard + 1 Thrasher; Fuwalos stays at 3 (user decision).
+- Current list: 2 Wizard, 0 Thrasher, 0 Prosperity, 2 Transmigration (user's list). Fuwalos stays at 3 (user decision). evalHand keeps the Thrasher/Prosperity lines only so the old list can be shown as a variant.
 - Community-tool features to mirror in the quick calculator: NS flag (two Normal-Summon starters = one layer), non-OPT flag, 2-card combo pairs, deck-size and hand-size sweeps, exact hand-shape odds, .ydk tag import.

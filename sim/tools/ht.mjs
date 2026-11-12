@@ -4,7 +4,7 @@
 import { readFileSync } from "fs";
 import { followReplay } from "./follow2.mjs";
 import { beamSolve } from "../beam.mjs";
-import { id, mainList } from "../deck.mjs";
+import { id, replayMain } from "../deck.mjs";
 import { lib, newDuel, runUntilPrompt, nameOf } from "../engine.mjs";
 import { choices } from "../choices.mjs";
 const L = JSON.parse(readFileSync(new URL("../../replays/learned.json", import.meta.url), "utf8"));
@@ -13,7 +13,7 @@ const R = L[Number(ri)];
 const extra = Object.entries(R.extra).flatMap(([n, k]) => Array(k).fill(id(n)));
 const FILL = ["Ash Blossom & Joyous Spring", "Infinite Impermanence", "Ash Blossom & Joyous Spring", "Infinite Impermanence"];
 const hand = [...R.handUsed, ...FILL].slice(0, 5).map(id);
-const deck = mainList(); for (const c of hand) deck.splice(deck.indexOf(c), 1);
+const deck = replayMain(); for (const c of hand) deck.splice(deck.indexOf(c), 1);
 const HT = id(htName), DM = id("Dark Magician");
 const deck1 = [HT, ...Array(39).fill(DM)];
 const lastAct = (log) => { for (let i = log.length - 1; i >= 0; i--) if (log[i].type === 70 && log[i].controller === 0) return log[i].code; return null; };

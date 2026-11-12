@@ -30,7 +30,7 @@ Priorities, in order: master the current deck (Galaxy-Eyes / Photon / Galaxy, TC
 sim/            headless duel engine + search (Node, ocgcore-wasm = EDOPro's core)
   engine.mjs    load card DB + Lua scripts, create duels, run to the next prompt; heap snapshot/restore
   choices.mjs   turn engine prompts into labelled options ("Activate X (hand)", "Chain Y", "Pick Z (Deck)")
-  deck.mjs      the deck used by the tools (MAIN/EXTRA), id(name), mainList(), extraList()  [still the old list until slice 0.5]
+  deck.mjs      the current list (MAIN/EXTRA), REPLAY_MAIN (the list the replays were recorded on), id(name), mainList(), extraList()
   beam.mjs      beam search over a turn: beamSolve(hand, deck, {width, prefix, guide, interrupt, timeLimitMs})
   board.mjs     board scoring (≈ interruptions): Photon Lord 1.25, Harbinger 1, Howling 1 (needs ≥3 materials + another Xyz), Transmigration 1, Eternal Galaxy 1, Photon Blast 0.5
   tools/        experiments (commands below)
@@ -51,7 +51,8 @@ cd sim && node tools/check2.mjs <route 0-4> plain  # replay the user's line exac
 node tools/check2.mjs <route> nib:K                # Nibiru fires at the K-th chance; best response + finish
 node tools/ht.mjs <route> "<hand trap>"            # hand trap at every legal window along the user's line
 node tools/bait.mjs "<card,card>" "<hand trap>" "<lead regex||next||...>"  # GUIDE=<route>; worst case per lead = bait test
-node tools/odds.mjs                                # exact odds, deck + variants (~18 s)
+node tools/odds.mjs                                # exact odds, deck + variants (~5 s)
+node tools/cardcheck.mjs <passcode|name>           # look a card up in every cdb, incl. ones the engine does not load
 node tools/scripted.mjs "<hand>" "<re1||re2>" [guideRoute]  # force a start, then search
 node tools/diff.mjs <route> [a-b]                  # replay vs engine events side by side
 node tools/fixline.mjs <route> <cut>               # follow the replay for <cut> events, then best legal finish
@@ -59,12 +60,12 @@ node tools/fixline.mjs <route> <cut>               # follow the replay for <cut>
 Env: `YGO_CDB_DIR`, `YGO_SCRIPTS_DIR` override data paths. `YGO_OMEGA_RULINGS=1` copies Omega's wrong Antimatter ruling (only for replaying Omega lines). `LOOSE=1` makes the replay follower tolerate extra summons/activations.
 
 ## What is verified so far (details and tables in docs/NOTES.md)
-**Stale warning:** the numbers and lines below were computed on the previous list. The current list is `decks/current.md` (2 Wizard, no Thrasher, no Prosperity, 2 Transmigration, N62 instead of S38). Recompute before quoting them (ROADMAP slice 0.5).
-- All 5 replays reproduce event-for-event and end on the user's exact boards (Soldier only with Omega's ruling).
+Numbers are for the current list (`decks/current.md`, adopted in slice 0.5). The 5 replays were recorded on the previous list and are replayed on it (`REPLAY_MAIN` in `sim/deck.mjs`); `NEWLIST=1 node tools/check2.mjs <route> plain` tries a line on the current list.
+- All 5 replays reproduce event-for-event and end on the user's exact boards (Soldier only with Omega's ruling). On the current list 4 of them still do (Delta 4, Orbital 7 via Wizard 4.25, Soldier 4.25, Schwarzschild 4 with Dragluxion attaching Number 62 instead of S38); the Orbital 7 Thrasher route is gone.
 - Nibiru-proof (user's definition: on summon 5, Photon Lord on field, or Tachyon Dragon on field so Transmigration is live; forcing Nibiru on summon 5 because summon 6 builds a negate also counts): Orbital 7 routes (worst 3.25), Soldier (2.5), Schwarzschild (3) yes; Delta no (0).
-- Exact odds, old 43: going 1st full board 93.5%, Nibiru-proof 83.8%, full + 2 hand traps 41.4%, brick 5.9%; going 2nd ≥2 hand traps 74%. Starter ↔ hand trap swap ≈ −1.5% full boards, −3% Nibiru-proof, +4% full+2HT, +4% going-2nd ≥2HT.
-- Old-list finding: 1 Wizard + 1 Thrasher (Thrasher = Orbital 7's Normal-Summon-free route; 2nd Wizard only saved ~1.5% of hands). The user now plays 2 Wizard, 0 Thrasher: slice 0.5 measures the difference.
-- Engine discoveries: Thrasher + any Level 4 (incl. Fuwalos) → Galaxy Photon Dragon; Photon Orbital + Summoner/War Drake/Thrasher = full board.
+- Exact odds, current 43 (old list in brackets): going 1st full board 93.3% (93.5), Nibiru-proof 85.4% (83.8), full + 2 hand traps 41.3% (41.4), brick 6.7% (5.9); going 2nd ≥2 hand traps 74.0% (74.0). Starter ↔ hand trap swap ≈ −1.5% full boards, −3% Nibiru-proof, +4% full+2HT, +4% going-2nd ≥2HT.
+- 2 Wizard vs 1 Wizard + 1 Thrasher on the current shell (no hand traps modelled): 93.3 / 85.4 / brick 6.7 vs 92.3 / 83.8 / brick 7.2. The model does not see Thrasher's value as Orbital 7's Normal-Summon-free route under hand traps. Wizard alone: 3.25 with Photon Lord (engine, current list).
+- Engine discoveries: Photon Orbital + Summoner/War Drake = full board. (Old list: Thrasher + any Level 4 → Galaxy Photon Dragon.)
 - Hand traps: one-starter hands die to Ash on the first search. Infinity Dragon + Orbital 7: lead Infinity (worst 3) not Orbital 7 (worst 0: Infinity is stranded once you control a monster). Seventh Tachyon: put back a hand trap or brick, never the backup starter.
 
 ## Open questions for the user

@@ -1,7 +1,7 @@
 // node sim/diff.mjs <route>: follow the replay, then re-run the chosen responses and print engine events next to the replay's
 import { readFileSync } from "fs";
 import { followReplay, events } from "./follow2.mjs";
-import { id, mainList } from "../deck.mjs";
+import { id, replayMain } from "../deck.mjs";
 import { lib, newDuel, runUntilPrompt } from "../engine.mjs";
 import { choices, setZoneBranching } from "../choices.mjs";
 const L = JSON.parse(readFileSync(new URL("../../replays/learned.json", import.meta.url), "utf8"));
@@ -9,7 +9,7 @@ const R = L[Number(process.argv[2])];
 const extra = Object.entries(R.extra).flatMap(([n, k]) => Array(k).fill(id(n)));
 const FILL = ["Ash Blossom & Joyous Spring", "Infinite Impermanence", "Ash Blossom & Joyous Spring", "Infinite Impermanence"];
 const hand = [...R.handUsed, ...FILL].slice(0, 5).map(id);
-const deck = mainList(); for (const c of hand) deck.splice(deck.indexOf(c), 1);
+const deck = replayMain(); for (const c of hand) deck.splice(deck.indexOf(c), 1);
 const DM = id("Dark Magician"); const deck1 = Array(40).fill(DM);
 const f = followReplay({ hand, deck, extra, deck1, expected: R.events });
 console.error("board", JSON.stringify(f.board));

@@ -12,10 +12,10 @@ If you control no monsters, or your opponent controls a monster with 2000 or mor
 ## Galaxy Defense Robot Orbital 7 x3 — lv/rank 8, ATK 2000
 You can Tribute this card from your hand or field; take 1 "Photon" monster and 1 "Galaxy" monster from your Deck, add 1 of them to your hand, and send the other to the GY, also you cannot Special Summon for the rest of this turn, except LIGHT monsters. If a "Galaxy-Eyes" monster(s) is Special Summoned to your field: You can Special Summon this card from your GY, but banish it when it leaves the field. You can only use each effect of "Galaxy Defense Robot Orbital 7" once per turn.
 
-## Galaxy Wizard x1 — lv/rank 4, ATK 0
+## Galaxy Wizard x2 — lv/rank 4, ATK 0
 Once per turn: You can increase this card's Level by 4 until the end of this turn. You can Tribute this card; add 1 "Galaxy" card from your Deck to your hand, except "Galaxy Wizard".
 
-## Photon Thrasher x1 — lv/rank 4, ATK 2100
+## Photon Thrasher x0 (out of the current list; old replays only) — lv/rank 4, ATK 2100
 Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) while you control no monsters. Cannot attack if you control another monster.
 
 ## Galaxy War Drake x1 — lv/rank 4, ATK 1500
@@ -24,7 +24,7 @@ If a Level 4 LIGHT monster(s) is Special Summoned to your field (except during t
 ## Seventh Tachyon x3 — lv/rank 0, ATK 0
 Reveal 1 "Number" Xyz Monster in your Extra Deck that has a number between "101" and "107" in its name; add 1 monster from your Deck to your hand with the same Type or Attribute as that monster, and the same Level as that monster's Rank, then place 1 card from your hand on top of the Deck, also for the rest of this turn after this card resolves, you cannot Special Summon from the Extra Deck, except Xyz Monsters. You can only activate 1 "Seventh Tachyon" per turn.
 
-## Pot of Prosperity x1 — lv/rank 0, ATK 0
+## Pot of Prosperity x0 (out of the current list) — lv/rank 0, ATK 0
 Banish 3 or 6 cards of your choice from your Extra Deck, face-down; for the rest of this turn after this card resolves, any damage your opponent takes is halved, also excavate cards from the top of your Deck equal to the number of cards banished, add 1 excavated card to your hand, place the rest on the bottom of your Deck in any order. You can only activate 1 "Pot of Prosperity" per turn. You cannot draw cards by card effects the turn you activate this card.
 
 ## Mulcharmy Fuwalos x3 — lv/rank 4, ATK 100
@@ -72,7 +72,7 @@ During your Main Phase: You can target 1 "Photon" or "Galaxy" monster you contro
 ## Galaxy Summoner x1 — lv/rank 4, ATK 1600
 If this card is Normal or Special Summoned: You can target 1 "Photon" or "Galaxy" monster in your GY, except "Galaxy Summoner"; Special Summon it in Defense Position. You can target 1 other LIGHT monster you control; it becomes Level 4 until the end of this turn. You can only use each effect of "Galaxy Summoner" once per turn.
 
-## Tachyon Transmigration x1 — lv/rank 0, ATK 0
+## Tachyon Transmigration x2 — lv/rank 0, ATK 0
 If you control a "Galaxy-Eyes" monster: Activate as Chain Link 2 or higher; negate the activations of your opponent's Spell/Trap Cards and monster effects activated before this card in this Chain, and if you do, shuffle the negated cards on the field into the Deck. If you control a "Galaxy-Eyes Tachyon Dragon" monster, you can activate this card from your hand.
 
 ## Eternal Galaxy x1 — lv/rank 0, ATK 0
@@ -94,7 +94,7 @@ You can also Xyz Summon this card by using a "Galaxy-Eyes" Xyz Monster you contr
 2 Level 8 monsters
 Once per turn: You can detach 1 material from this card, then target 1 face-up monster your opponent controls; monsters you control cannot attack your opponent directly for the rest of this turn, except this card, also take control of the targeted monster until the End Phase, but while this effect is applied, it has its effects negated, its ATK becomes 3000, also its name becomes "Galaxy-Eyes Cipher Dragon".
 
-## Number S38: Titanic Galaxy (Extra) — lv/rank 9, ATK 3000
+## Number S38: Titanic Galaxy (Extra, out of the current list) — lv/rank 9, ATK 3000
 3 Level 9 LIGHT monsters
 You can also Xyz Summon this card by using "Number 38: Hope Harbinger Dragon Titanic Galaxy" you control (transfer its materials to this card). Gains 200 ATK for each material attached to it. Once per turn: You can target up to 2 Spells/Traps your opponent controls; attach them to this card as material. Neither player can activate those cards or their effects in response to this effect's activation. You can detach 1 material from this card; until the end of this turn, this card's original ATK becomes 1500, also it can attack directly.
 
@@ -137,3 +137,28 @@ If this card is Xyz Summoned: You can Special Summon 1 "Photon" monster from you
 ## Galaxy-Eyes Antimatter Dragon (Extra) — lv/rank 9, ATK 4000
 2 Level 9 monsters
 Once per turn, you can also Xyz Summon "Galaxy-Eyes Antimatter Dragon" by using an Xyz Monster you control with 3 or more materials (transfer its materials). Any battle damage this card with material inflicts to your opponent is halved. You can detach 1 material from this card; this card gains the ability this turn to make up to 2 attacks on monsters during each Battle Phase, then if the detached material was a monster, you can send 1 monster with its same Type from your Deck to the GY.
+
+## Number 62: Galaxy-Eyes Prime Photon Dragon (Extra, passcode 31801517) — lv/rank 8, ATK 4000
+2 Level 8 monsters
+If this card battles, during damage calculation (Quick Effect): You can detach 1 material from this card once per battle; this card gains ATK equal to the combined Ranks of all Xyz Monsters currently on the field x 200, during that damage calculation only. If this card in its owner's control is destroyed by an opponent's card effect while it has "Galaxy-Eyes Photon Dragon" as Xyz Material: You can Special Summon this card during your 2nd Standby Phase after activation and double its ATK. Any battle damage this card inflicts to your opponent is halved unless it has "Galaxy-Eyes Photon Dragon" as Xyz Material.
+
+# Side deck (parked; text only, from `node sim/tools/cardcheck.mjs`)
+Also in the side: 1 Tachyon Transmigration, 1 Galaxy-Eyes Tachyon Primal (texts above).
+
+## Dominus Purge x2 (Side) — Trap. Omega code 97045738 is the alternate art; canonical passcode 97045737
+If your opponent controls a card, you can activate this card from your hand. When a card or effect is activated that includes an effect that adds a card(s) from the Deck to the hand: Negate that effect, then if you have a Trap in your GY, destroy that card. If you activated this card from your hand, you cannot activate the effects of DARK, WATER, and FIRE monsters for the rest of this Duel. You can only activate 1 "Dominus Purge" per turn.
+
+## Seventh Ascension x2 (Side) — Spell
+Take 1 card from your Deck (either a "Barian's" Spell/Trap, a "Rank-Up-Magic" Quick-Play Spell, or a "Seventh" Spell/Trap except "Seventh Ascension"), and either add it to your hand or place it on top of your Deck. If your opponent controls a monster Special Summoned from the Extra Deck: You can banish this card from your GY and send 1 "Rank-Up-Magic" Spell from your hand to the GY; this effect becomes that Spell's effect when that card is activated. You can only use each effect of "Seventh Ascension" once per turn.
+
+## Triple Tactics Thrust x2 (Side) — Spell
+If your opponent has activated a monster effect during this turn: Set 1 Normal Spell/Trap directly from your Deck, except "Triple Tactics Thrust", or if your opponent controls a monster, you can add it to your hand instead. That Set card cannot be activated this turn. You can only activate 1 "Triple Tactics Thrust" per turn.
+
+## The Great Gallant Bandit x3 (Side) — lv 10, ATK 2500
+You can Tribute Summon this card face-up by Tributing monsters in your hand and/or your opponent's field, while you control no monsters. You can only use each of the following effects of "The Great Gallant Bandit" once per turn. When your opponent activates a card effect in the hand, GY, or banishment, and you control this Normal Summoned/Set card (Quick Effect): You can negate that effect, and if you do, destroy that card. During the Battle Phase (Quick Effect): You can reveal your entire hand; change all monsters your opponent controls to Defense Position.
+
+## Galaxy-Eyes Photon Change Dragon x1 (Side) — lv 8, ATK 3000
+You can Special Summon this card (from your hand) by Tributing 2 face-up monsters on either field with 2000 or more ATK, including a monster you control. You can only Special Summon "Galaxy-Eyes Photon Change Dragon" once per turn this way. During the Main Phase (Quick Effect): You can banish this card you control; Special Summon 1 "Galaxy-Eyes Photon Dragon" from your Deck or GY, then you can banish 1 monster your opponent controls that was Special Summoned from the Extra Deck until the End Phase. You can only use this effect of "Galaxy-Eyes Photon Change Dragon" once per turn.
+
+## Spatial Trunade x3 (Side) — Spell
+Return up to 2 cards on the field to the hand, then each player places cards from their hand on the bottom of the Deck in any order equal to the number returned to their hand. You can only activate 1 "Spatial Trunade" per turn.

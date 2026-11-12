@@ -1,7 +1,8 @@
 // Exact odds for a deck list, from engine-verified lines (going 1st: 5 cards, going 2nd: 6 cards).
 // Every distinct hand (by card name, hand traps grouped) is enumerated with its exact hypergeometric probability.
 // node sim/odds.mjs            -> current deck + variants table
-import { MAIN } from "../deck.mjs";
+import { pathToFileURL } from "url";
+import { MAIN, REPLAY_MAIN } from "../deck.mjs";
 
 // ---- what the engine / replays verified (board ≈ interruptions; lower bounds, the search undercounts) ----
 const LIGHT = new Set(["Photon Delta Wing", "Galaxy Defense Robot Orbital 7", "Galaxy Wizard", "Photon Thrasher", "Galaxy War Drake", "Galaxy-Eyes Photon Dragon",
@@ -90,17 +91,19 @@ export function table(variants) {
   return rows.map((r) => r.map((x, i) => String(x).padEnd(i ? 10 : 34)).join("")).join("\n");
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (import.meta.url === pathToFileURL(process.argv[1]).href) { // file://${argv} never matches on Windows
   const base = { ...MAIN };
   const v = (name, ch) => { const d = { ...base }; for (const [k, x] of Object.entries(ch)) d[k] = (d[k] ?? 0) + x; return [name, d]; };
   console.log(table([
-    ["Current 43", base],
-    v("2 Wizard, 0 Thrasher", { "Galaxy Wizard": 1, "Photon Thrasher": -1 }),
-    v("42: -Prosperity", { "Pot of Prosperity": -1 }),
+    ["Current 43 (2 Wizard, 2 Transm.)", base],
+    ["Old 43 (Thrasher, Prosperity)", REPLAY_MAIN],
+    v("1 Wizard, +1 Thrasher", { "Galaxy Wizard": -1, "Photon Thrasher": 1 }),
+    v("-1 Transmigration, +Prosperity", { "Tachyon Transmigration": -1, "Pot of Prosperity": 1 }),
+    v("42: -1 Transmigration", { "Tachyon Transmigration": -1 }),
     v("42: -War Drake", { "Galaxy War Drake": -1 }),
     v("42: -1 Soldier", { "Galaxy Soldier": -1 }),
     v("42: -1 Fuwalos", { "Mulcharmy Fuwalos": -1 }),
-    v("42: -Wizard", { "Galaxy Wizard": -1 }),
+    v("42: -1 Wizard", { "Galaxy Wizard": -1 }),
     v("44: +1 Wizard", { "Galaxy Wizard": 1 }),
     v("44: +1 non-LIGHT hand trap", { "Nibiru, the Primal Being": 1 }),
     v("Fuwalos -1, Droll +1", { "Mulcharmy Fuwalos": -1, "Droll & Lock Bird": 1 }),

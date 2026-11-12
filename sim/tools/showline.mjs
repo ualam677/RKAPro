@@ -1,12 +1,12 @@
 import { readFileSync } from "fs";
 import { beamSolve } from "../beam.mjs";
-import { id, mainList } from "../deck.mjs";
+import { id, replayMain } from "../deck.mjs";
 const L = JSON.parse(readFileSync(new URL("../../replays/learned.json", import.meta.url), "utf8"));
 const [ri, k] = process.argv.slice(2).map(Number);
 const R = L[ri];
 const extra = Object.entries(R.extra).flatMap(([n, c]) => Array(c).fill(id(n)));
 const hand = [...R.handUsed, "Ash Blossom & Joyous Spring", "Infinite Impermanence", "Ash Blossom & Joyous Spring", "Infinite Impermanence"].slice(0, 5).map(id);
-const deck = mainList(); for (const c of hand) deck.splice(deck.indexOf(c), 1);
+const deck = replayMain(); for (const c of hand) deck.splice(deck.indexOf(c), 1);
 const NIB = id("Nibiru, the Primal Being"), DM = id("Dark Magician");
 let summons = 0;
 const f = Object.assign((p, c, log) => {

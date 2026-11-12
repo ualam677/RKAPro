@@ -2,16 +2,18 @@
 import { readFileSync } from "fs";
 import { followReplay } from "./follow2.mjs";
 import { beamSolve } from "../beam.mjs";
-import { id, mainList } from "../deck.mjs";
+import { id, replayMain, extraList } from "../deck.mjs";
 import { lib, newDuel, runUntilPrompt } from "../engine.mjs";
 import { choices } from "../choices.mjs";
 const L = JSON.parse(readFileSync(new URL("../../replays/learned.json", import.meta.url), "utf8"));
 const [ri, mode = "plain", width = "30"] = process.argv.slice(2);
-const R = L[Number(ri)];
-const extra = Object.entries(R.extra).flatMap(([n, k]) => Array(k).fill(id(n)));
+let R = L[Number(ri)];
+// NEWLIST=1: same line on the current list. S38 left the Extra Deck; Dragluxion attaches Number 62 instead (verified, route 4).
+if (process.env.NEWLIST) R = JSON.parse(JSON.stringify(R).replaceAll(String(id("Number S38: Titanic Galaxy")), String(id("Number 62: Galaxy-Eyes Prime Photon Dragon"))).replaceAll("Number S38: Titanic Galaxy", "Number 62: Galaxy-Eyes Prime Photon Dragon"));
+const extra = process.env.NEWLIST ? extraList() : Object.entries(R.extra).flatMap(([n, k]) => Array(k).fill(id(n)));
 const FILL = ["Ash Blossom & Joyous Spring", "Infinite Impermanence", "Ash Blossom & Joyous Spring", "Infinite Impermanence"];
 const hand = [...R.handUsed, ...FILL].slice(0, 5).map(id);
-const deck = mainList(); for (const c of hand) deck.splice(deck.indexOf(c), 1);
+const deck = replayMain(); for (const c of hand) deck.splice(deck.indexOf(c), 1);
 const NIB = id("Nibiru, the Primal Being"), DM = id("Dark Magician");
 const mkNib = (k) => { const f = Object.assign((p, c) => {
   const opt = c.find((o) => o.code === NIB && /^(Chain|Activate|Yes)/.test(o.label));

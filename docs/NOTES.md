@@ -136,3 +136,28 @@
 - Infinity + Orb7 vs Ash: lead Infinity worst 3 (Ash on Infinity → 4 via Orb7); lead Orb7 worst 0 (Ash on the Delta it fetches; Infinity then dead because you control a monster).
 - Seventh + Orb7 vs Ash (reveal N107 → Infinity): put back a hand trap → Ash on Seventh 3, on Infinity 4, mid-line 3.5–4, late 2 (plan only 3, noisy). Put back Orb7 → Ash on Infinity = 0.
 - Orb7 + Delta: both leads hit 0 but plans were weak (3/3.5 uninterrupted) — untrusted; asked user.
+
+## Update: current list adopted (slice 0.5, 12 Nov 2026)
+- sim/deck.mjs: MAIN/EXTRA = decks/current.md; REPLAY_MAIN = the recorded list. Route tools (check2, diff, fixline, ht, trace, probe, showline, check) replay on REPLAY_MAIN; NEWLIST=1 uses the current list.
+- Recorded lines on the current list (NEWLIST=1 check2): Delta 70/70 board 4; Orbital 7 r1 (Wizard) 60/60 board 4.25; Soldier 92/92 board 4.25 (Omega ruling); Schwarzschild 79/79 board 4 once Dragluxion attaches Number 62 instead of S38 (with S38 simply missing the follower stops at 31/79); Orbital 7 r2 (Thrasher) 2/69, gone.
+- Wizard alone, current list (scripted.mjs, 100 s): Photon Lord [2] + Howling [3] + Transmigration = 3.25, Nibiru-proof. Same as before.
+- Not checked: Orbital 7 with BOTH Wizards in hand (r1 searches a Wizard). About 0.1% of hands, and the Wizard line itself still gives 3.25.
+
+| Variant | 1st full | Nib-proof | full+1HT | full+2HT | brick | 2nd ≥2HT | ≥3HT | combo+2HT |
+|---|---|---|---|---|---|---|---|---|
+| Current 43 (2 Wizard, 2 Transm.) | 93.3 | 85.4 | 78.2 | 41.3 | 6.7 | 74.0 | 39.4 | 70.5 |
+| Old 43 (Thrasher, Prosperity) | 93.5 | 83.8 | 78.4 | 41.4 | 5.9 | 74.0 | 39.4 | 69.9 |
+| 1 Wizard, +1 Thrasher | 92.3 | 83.8 | 77.2 | 40.5 | 7.2 | 74.0 | 39.4 | 69.9 |
+| -1 Transmigration, +Prosperity | 94.5 | 85.4 | 79.3 | 42.2 | 5.5 | 74.0 | 39.4 | 70.5 |
+| 42: -1 Transmigration | 94.0 | 86.2 | 79.7 | 43.3 | 6.0 | 75.5 | 41.3 | 72.5 |
+| 42: -War Drake | 93.7 | 86.2 | 79.4 | 42.9 | 6.3 | 75.5 | 41.3 | 72.3 |
+| 42: -1 Soldier | 92.5 | 83.5 | 78.4 | 42.5 | 7.5 | 75.5 | 41.3 | 71.5 |
+| 42: -1 Wizard | 92.5 | 84.7 | 78.2 | 42.0 | 7.5 | 75.5 | 41.3 | 71.5 |
+| 44: +1 Wizard | 94.1 | 86.0 | 78.2 | 40.6 | 5.9 | 72.4 | 37.6 | 69.4 |
+| 44: +1 non-LIGHT hand trap | 92.7 | 84.6 | 79.3 | 44.0 | 7.3 | 76.4 | 42.6 | 72.5 |
+| Fuwalos -1, Droll +1 | 93.3 | 85.4 | 80.8 | 46.1 | 6.7 | 74.0 | 39.4 | 70.5 |
+| -1 Soldier, +1 non-LIGHT HT | 91.9 | 82.7 | 79.4 | 45.1 | 8.1 | 77.9 | 44.5 | 73.4 |
+| -1 Seventh, +1 non-LIGHT HT | 91.8 | 82.6 | 79.2 | 44.8 | 8.2 | 77.9 | 44.5 | 73.4 |
+
+- Reading: the list change costs 0.8% bricks (Prosperity was a dig) and gains 1.6% Nibiru-proof (second Wizard is a Nibiru-proof starter where Thrasher's pairs were not).
+- 97045738 = Dominus Purge, alternate art of 97045737 (in cards.cdb; alt-art rows have no script of their own, the alias carries it). tools/cardcheck.mjs.

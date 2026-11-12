@@ -3,14 +3,14 @@
 import { readFileSync } from "fs";
 import { followReplay } from "./follow2.mjs";
 import { beamSolve } from "../beam.mjs";
-import { id, mainList } from "../deck.mjs";
+import { id, replayMain } from "../deck.mjs";
 const L = JSON.parse(readFileSync(new URL("../../replays/learned.json", import.meta.url), "utf8"));
 const [ri, cut, width = "40", secs = "120"] = process.argv.slice(2);
 const R = L[Number(ri)];
 const extra = Object.entries(R.extra).flatMap(([n, k]) => Array(k).fill(id(n)));
 const FILL = ["Ash Blossom & Joyous Spring", "Infinite Impermanence", "Ash Blossom & Joyous Spring", "Infinite Impermanence"];
 const hand = [...R.handUsed, ...FILL].slice(0, 5).map(id);
-const deck = mainList(); for (const c of hand) deck.splice(deck.indexOf(c), 1);
+const deck = replayMain(); for (const c of hand) deck.splice(deck.indexOf(c), 1);
 const deck1 = Array(40).fill(id("Dark Magician"));
 const f = followReplay({ hand, deck, extra, deck1, expected: R.events.slice(0, Number(cut)), stopAtEnd: true });
 const r = beamSolve(hand, deck, { width: Number(width), extra, deck1, prefix: f.responses, timeLimitMs: Number(secs) * 1000 });
