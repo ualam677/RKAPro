@@ -23,9 +23,9 @@ Current wave and next step: see `docs/PROGRESS.md`.
 Why first: every later wave depends on it, and it protects the verified work.
 - [x] 0.1 Install `.claude/` skills and agent from `docs/claude-code-setup/`, then delete "Engine facts and gotchas" from `CLAUDE.md`.
 - [x] 0.2 Workspace layout: `packages/engine`, `packages/analysis`, `packs/galaxy-eyes`, `apps/desktop`; `sim/tools` keeps working through re-exports. **design**
-- [ ] 0.3 Engine API: `createDuel`, `legalOptions`, `respond`, `snapshot/restore`, `actionLog` (seed + responses), deterministic replay; injected data loader.
+- [x] 0.3 Engine API: `createDuel`, `legalOptions`, `respond`, `snapshot/restore`, `actionLog` (seed + responses), deterministic replay; injected data loader.
 - [x] 0.5 Adopt `decks/current.md`: update `sim/deck.mjs`, rerun `odds.mjs` and the hand-class lines (Thrasher and Prosperity lines are gone), report old vs new numbers, add Number 62 and side-deck card text to `docs/CARDS.md`, and run the unknown side card 97045738 through the data-update check.
-- [ ] 0.4 Golden tests: the 5 replays run through the library API in `npm test` (same results as `scripts/verify.sh`).
+- [x] 0.4 Golden tests: the 5 replays run through the library API in `npm test` (same results as `scripts/verify.sh`).
 Done when: library API passes all 5 replays and the 48 app tests, and the numbers in CLAUDE.md match the current list.
 
 ## Wave 1: Deck lab (medium)

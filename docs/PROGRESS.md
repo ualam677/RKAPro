@@ -1,10 +1,14 @@
 # Progress log (read this first in every session)
 
-**Current wave:** 0 (Foundation). **Next slice:** 0.3 engine API.
+**Current wave:** 1 (Deck lab). **Next slice:** 1.1 port odds into packages/analysis.
 
-Repo state at last entry: sim/ headless engine and tools work (`scripts/verify.sh` passes all 5 replays); app/ ratio optimiser has 48 passing tests; no Electron, no duel UI yet.
+Repo state at last entry: sim/ headless engine and tools work (`scripts/verify.sh` passes all 5 replays); golden tests pass through the library API; app/ ratio optimiser has 48 passing tests; no Electron, no duel UI yet.
 
 ## Log (newest first; 3 to 5 lines per slice)
+- 12 Nov 2026, slices 0.3 + 0.4 done (Wave 0 complete): `packages/engine/api.mjs` = `createDuel` -> `options()`, `respond()`, `snapshot()/restore()`, `actionLog()`, plus `replay(log)` and a seeded `shuffled()`.
+  A save state is the action log (ordered decks + seed + every response, both players), JSON-safe. One live duel per process (one wasm heap).
+  Golden tests: `cd sim && npm test` replays the 5 lines from `packs/galaxy-eyes/golden/*.json` in about 1 s and checks end board, the replay's summon order, determinism and snapshot/restore. Soldier runs in its own process with the Omega ruling.
+  Gates for 0.3 and 0.4 were run once, together (0.3 only adds a file).
 - 12 Nov 2026, slice 0.2 done: `packages/engine` (core, choices, state, board reading; core has zero imports, the host injects ocgcore + data),
   `packs/galaxy-eyes` (deck.json, board scoring). `sim/engine.mjs` is the Node host; `sim/{choices,state,board,deck}.mjs` are re-export shims, tools unchanged.
   Decisions: the desktop app stays in `app/` (no move to `apps/desktop`, so the gate command stays `cd app && npx vitest run`); `packages/analysis` is created in 1.1 when it has content. Search (beam, follower) stays in `sim/` until Wave 5.

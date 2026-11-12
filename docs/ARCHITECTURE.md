@@ -24,7 +24,9 @@ Everything the app shows is **derived** from four versioned inputs: the **data v
 3. User confirms or corrects; the role is saved in the knowledge base. Next time that card is known.
 4. Quick calculator: sliders (starters, hand traps, bricks, deck size, hand size) pre-filled from the roles, with the community-style outputs (at least one starter, brick, at least k hand traps, 2-card pairs, deck-size sweep). One click swaps in the exact engine-verified model.
 
-## Suggested workspace layout (step 0 of the Claude Code build)
+## Workspace layout (as built in Wave 0; the block below was the plan)
+Built: `packages/engine` (import-free core + API), `packs/galaxy-eyes`, `sim/` (Node host, search, tools), `app/` (the desktop app; not moved to `apps/desktop`). `packages/analysis` arrives with slice 1.1; knowledge lives in the pack until a second deck needs a shared package.
+
 ```
 packages/engine/      engine core (TypeScript, migrate sim/*.mjs incrementally)
 packages/knowledge/   schemas + loaders for lines, roles, rulings, cases

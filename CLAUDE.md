@@ -27,12 +27,17 @@ Priorities, in order: master the current deck (Galaxy-Eyes / Photon / Galaxy, TC
 
 ## Repo layout
 ```
-sim/            headless duel engine + search (Node, ocgcore-wasm = EDOPro's core)
-  engine.mjs    load card DB + Lua scripts, create duels, run to the next prompt; heap snapshot/restore
+packages/engine/  engine library, no Node-only imports (host injects ocgcore-wasm, card data, script reader)
+  core.mjs      initEngine, newDuel, runUntilPrompt (the only code that talks to ocgcore)
   choices.mjs   turn engine prompts into labelled options ("Activate X (hand)", "Chain Y", "Pick Z (Deck)")
+  api.mjs       createDuel -> options(), respond(), snapshot()/restore(), actionLog(); replay(log); save state = decks + seed + responses
+  state.mjs, board.mjs   heap snapshot/restore; read a side of the field
+packs/galaxy-eyes/ deck.json (current list + replay list), board.mjs (scoring), golden/ (action logs of the 5 replays)
+sim/            Node host + search + tools (ocgcore-wasm = EDOPro's core); choices/state/board/deck.mjs re-export the above
+  engine.mjs    load card DB + Lua scripts from disk, inject them into packages/engine
   deck.mjs      the current list (MAIN/EXTRA), REPLAY_MAIN (the list the replays were recorded on), id(name), mainList(), extraList()
   beam.mjs      beam search over a turn: beamSolve(hand, deck, {width, prefix, guide, interrupt, timeLimitMs})
-  board.mjs     board scoring (≈ interruptions): Photon Lord 1.25, Harbinger 1, Howling 1 (needs ≥3 materials + another Xyz), Transmigration 1, Eternal Galaxy 1, Photon Blast 0.5
+  board.mjs     (-> packs/galaxy-eyes/board.mjs) board scoring (≈ interruptions): Photon Lord 1.25, Harbinger 1, Howling 1 (needs ≥3 materials + another Xyz), Transmigration 1, Eternal Galaxy 1, Photon Blast 0.5
   tools/        experiments (commands below)
   data/         card DB + scripts (git-ignored; scripts/setup.sh downloads them)
 app/            the web app (React/TS/Vite, vitest): deck import (.ydk, ydke://, Omega codes, text recipes), staged ratio optimiser
@@ -47,6 +52,8 @@ scripts/        setup.sh (data + deps), verify.sh (replays all 5 lines; the regr
 ./scripts/setup.sh                                 # clones ProjectIgnis BabelCDB + CardScripts into sim/data, npm installs
 ./scripts/verify.sh                                # all 5 replays, one line each (~4 min); must stay green
 cd app && npx vitest run                           # 48 tests
+cd sim && npm test                                 # golden tests: 5 replays through the library API from their action logs (~1 s)
+node tools/golden.mjs <route...>                   # regenerate a golden action log (only when a replay or the engine API changes)
 cd sim && node tools/check2.mjs <route 0-4> plain  # replay the user's line exactly; routes: 0 Delta, 1 Orb7 r1 (Wizard), 2 Orb7 r2 (Thrasher), 3 Soldier, 4 Schwarzschild
 node tools/check2.mjs <route> nib:K                # Nibiru fires at the K-th chance; best response + finish
 node tools/ht.mjs <route> "<hand trap>"            # hand trap at every legal window along the user's line

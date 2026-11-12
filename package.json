@@ -1,0 +1,8 @@
+{
+  "name": "rkapro",
+  "private": true,
+  "scripts": {
+    "test": "cd sim && npm test && cd ../app && npm test",
+    "verify": "bash scripts/verify.sh"
+  }
+}
