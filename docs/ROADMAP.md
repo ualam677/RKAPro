@@ -35,7 +35,7 @@ Mostly a port of what already works headlessly, so high value for low cost.
 - [x] 1.3 Quick calculator: community-style (pick cards, min/max copies, 2-card pairs, "needs Normal Summon" flag), plus tag a card's role once and it is remembered.
 - [x] 1.4 Deck import and export: `.ydk` (EDOPro folders, several installs), `ydke://`, Omega codes; Drive sync by pointing the deck folder at a Drive-synced folder.
 - [x] 1.5 Deck version history: every edit saved with its change in odds.
-- [ ] 1.6 Data update command: pull new cards and scripts, report changed cards, run the regression gate. (New-card flow, part 1.)
+- [x] 1.6 Data update command: pull new cards and scripts, report changed cards, run the regression gate. (New-card flow, part 1.)
 Done when: you can paste a list, see every number, edit it, and see the difference.
 
 ## Wave 2: Duel client and save states (large)

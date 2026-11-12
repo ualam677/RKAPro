@@ -32,7 +32,7 @@ packages/engine/  engine library, no Node-only imports (host injects ocgcore-was
   choices.mjs   turn engine prompts into labelled options ("Activate X (hand)", "Chain Y", "Pick Z (Deck)")
   api.mjs       createDuel -> options(), respond(), snapshot()/restore(), actionLog(); replay(log); save state = decks + seed + responses
   state.mjs, board.mjs   heap snapshot/restore; read a side of the field
-packs/galaxy-eyes/ deck.json (current list + replay list), board.mjs (scoring), golden/ (action logs of the 5 replays)
+packs/galaxy-eyes/ deck.json (current list + replay list), lines.json (hand classes for the odds), board.mjs (scoring), golden/ (action logs of the 5 replays)
 sim/            Node host + search + tools (ocgcore-wasm = EDOPro's core); choices/state/board/deck.mjs re-export the above
   engine.mjs    load card DB + Lua scripts from disk, inject them into packages/engine
   deck.mjs      the current list (MAIN/EXTRA), REPLAY_MAIN (the list the replays were recorded on), id(name), mainList(), extraList()
@@ -40,7 +40,8 @@ sim/            Node host + search + tools (ocgcore-wasm = EDOPro's core); choic
   board.mjs     (-> packs/galaxy-eyes/board.mjs) board scoring (≈ interruptions): Photon Lord 1.25, Harbinger 1, Howling 1 (needs ≥3 materials + another Xyz), Transmigration 1, Eternal Galaxy 1, Photon Blast 0.5
   tools/        experiments (commands below)
   data/         card DB + scripts (git-ignored; scripts/setup.sh downloads them)
-app/            the web app (React/TS/Vite, vitest): deck import (.ydk, ydke://, Omega codes, text recipes), staged ratio optimiser
+packages/analysis/ odds.ts (exact odds from a pack line table, per-card marginals), quick.ts (tag-based community-style calculator)
+app/            the app (React/TS/Vite, vitest): deck import/export, exact stats, quick calculator, deck folders, version history, staged ratio optimiser
 decks/          the user's current list (Omega code + decoded, with diff vs the old list)
 replays/        the user's 5 YGO Omega replays + learned.json (parsed events, guides)
 docs/           VISION, ARCHITECTURE, DESIGN, ROADMAP, PROGRESS, MOBILE, KNOWLEDGE, NOTES, CARDS, claude-code-setup/
@@ -51,14 +52,17 @@ scripts/        setup.sh (data + deps), verify.sh (replays all 5 lines; the regr
 ```
 ./scripts/setup.sh                                 # clones ProjectIgnis BabelCDB + CardScripts into sim/data, npm installs
 ./scripts/verify.sh                                # all 5 replays, one line each (~4 min); must stay green
-cd app && npx vitest run                           # 48 tests
+cd app && npx vitest run                           # 58 tests
+cd app && npm run dev   then   npm run ui-check    # headless Edge drives the real UI, asserts numbers, writes screenshots to app/ui-shots
+node tools/odds.mjs marginals                      # per-card -1/+1 table
+node tools/update-data.mjs [--check]               # pull card data, report changes, run the gate, pin (sim/data.lock.json) or roll back
 cd sim && npm test                                 # golden tests: 5 replays through the library API from their action logs (~1 s)
 node tools/golden.mjs <route...>                   # regenerate a golden action log (only when a replay or the engine API changes)
 cd sim && node tools/check2.mjs <route 0-4> plain  # replay the user's line exactly; routes: 0 Delta, 1 Orb7 r1 (Wizard), 2 Orb7 r2 (Thrasher), 3 Soldier, 4 Schwarzschild
 node tools/check2.mjs <route> nib:K                # Nibiru fires at the K-th chance; best response + finish
 node tools/ht.mjs <route> "<hand trap>"            # hand trap at every legal window along the user's line
 node tools/bait.mjs "<card,card>" "<hand trap>" "<lead regex||next||...>"  # GUIDE=<route>; worst case per lead = bait test
-node tools/odds.mjs                                # exact odds, deck + variants (~5 s)
+node tools/odds.mjs                                # exact odds, deck + variants (~1 s)
 node tools/cardcheck.mjs <passcode|name>           # look a card up in every cdb, incl. ones the engine does not load
 node tools/scripted.mjs "<hand>" "<re1||re2>" [guideRoute]  # force a start, then search
 node tools/diff.mjs <route> [a-b]                  # replay vs engine events side by side

@@ -1,10 +1,13 @@
 # Progress log (read this first in every session)
 
-**Current wave:** 1 (Deck lab). **Next slice:** 1.6 data update command.
+**Current wave:** 2 (Duel client and save states). **Next slice:** 2.1 Electron shell + board UI.
 
-Repo state at last entry: sim/ headless engine and tools work (`scripts/verify.sh` passes all 5 replays); golden tests pass through the library API; app/ ratio optimiser has 48 passing tests; no Electron, no duel UI yet.
+Repo state at last entry: sim/ headless engine and tools work (`scripts/verify.sh` passes all 5 replays); golden tests pass through the library API; app/ is the deck lab (exact stats, quick calculator, deck files, history; 58 tests + `npm run ui-check`); no Electron, no duel UI yet.
 
 ## Log (newest first; 3 to 5 lines per slice)
+- 12 Nov 2026, slice 1.6 done (Wave 1 complete): `node sim/tools/update-data.mjs` pulls BabelCDB + CardScripts, reports new/changed cards and scripts (deck cards called out), runs golden tests + verify.sh, pins the commits in `sim/data.lock.json` on green and rolls back on red. `--check` only reports. `scripts/setup.sh` now checks out the pin.
+  Run for real: already up to date; then stepped the data back 2 commits and updated again (1 script changed, no deck card, gate green, pin written).
+  Not exercised: the rollback branch (needs an update that breaks a replay).
 - 12 Nov 2026, slice 1.5 done: deck version history (`app/src/lib/history.ts`, `History.tsx`). Every Main Deck edit becomes a version (1.2 s debounce) with 5 numbers and the change against the version before; Restore brings a version back; capped at 200.
   Stored in localStorage (`rkapro-history-v1`), so it is per browser profile for now; a file on disk comes with the Electron shell if needed.
   3 unit tests; UI check covers edit, change in odds and restore.
