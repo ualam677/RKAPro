@@ -79,16 +79,10 @@ Env: `YGO_CDB_DIR`, `YGO_SCRIPTS_DIR` override data paths. `YGO_OMEGA_RULINGS=1`
 
 ## Product decisions (user, 12 Nov 2026) — details in docs/DESIGN.md
 - Desktop app (Electron), the user plays duels themselves.
-- Build first: **drill mode**, **odds + all the stats** (our engine-verified classes plus what community tools do), **replay → mp4/GIF video**, plus the new-card update flow and the "that's wrong" button.
+- Build first (order and slices in docs/ROADMAP.md): **drill mode**, **odds + all the stats** (our engine-verified classes plus what community tools do), **replay → mp4/GIF video**, plus the new-card update flow and the "that's wrong" button.
 - Later ideas the user liked: going-2nd breakthrough search against meta boards, matchup lab, self-review, shareable lines.
 
-## Roadmap to the full product (suggested order)
-1. **Engine service**: wrap `sim/engine.mjs` as a clean library (duel lifecycle, prompts → options, snapshot/restore = save states, deterministic replay). Add tests that replay `replays/` exactly.
-2. **Replay takeover**: parse Omega and EDOPro (.yrpX) replays into engine responses; scrub to any step; restore that state; hand control to the user or the optimiser.
-3. **Duel UI**: a field/hand/chain UI over the engine (start from the `app/` React project); play vs. a goldfish or a scripted hand-trap opponent.
-4. **Optimiser**: line library (entry → shared middle states → finish), plan-guided search, minimax vs. hand traps (opponent chooses timing), Nibiru fire-or-hold.
-5. **Ratio counter**: `sim/tools/odds.mjs` logic in the app, fed by the verified line library; show trade-off numbers per variant.
-6. **Learning**: every replay/correction becomes a stored line or rule; search reuses them; report what it learned.
-7. Then hand-trap play in depth, tech cards, sideboard.
+## Roadmap
+Build in waves, most important first: `docs/ROADMAP.md` (session protocol and slices). Resume point: `docs/PROGRESS.md`. Read only those two plus this file at the start of a session. Mobile design: `docs/MOBILE.md`. Waves 0 to 3 are the minimum useful product.
 
 Licensing: ocgcore and ProjectIgnis CardScripts are AGPL-3.0, so a distributed clone must be AGPL too. Card artwork is Konami's; don't bundle it. YGO Omega is closed source; integrate through its replay and deck-code formats only.
