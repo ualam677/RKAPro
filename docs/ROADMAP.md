@@ -36,6 +36,7 @@ Mostly a port of what already works headlessly, so high value for low cost.
 - [x] 1.4 Deck import and export: `.ydk` (EDOPro folders, several installs), `ydke://`, Omega codes; Drive sync by pointing the deck folder at a Drive-synced folder.
 - [x] 1.5 Deck version history: every edit saved with its change in odds.
 - [x] 1.6 Data update command: pull new cards and scripts, report changed cards, run the regression gate. (New-card flow, part 1.)
+- [x] 1.7 Deck editor (added on user feedback, 12 Nov 2026): EDOPro-style deck building with card search and filters, Main / Extra / Side, limits, open from and save to EDOPro's deck folder.
 Done when: you can paste a list, see every number, edit it, and see the difference.
 
 ## Wave 2: Duel client and save states (large)
@@ -45,14 +46,15 @@ Done when: you can paste a list, see every number, edit it, and see the differen
 - [x] 2.4 Save states: quick save/load, undo, branch tree (seed + response log).
 - [x] 2.5 Chat panel: events and key info (chain, hand-trap windows, Nibiru windows, notes).
 - [x] 2.6 Loads EDOPro's deck folder and card database.
+- [ ] 2.7 Look and feel (user, 12 Nov 2026: the first duel screen is "awfully designed", not EDOPro, no snappiness, no animations). Rework the duel screen against real EDOPro screenshots: its field textures and proportions, card sizes, window style, fonts; fast animations for draw, summon, move, chain, attack; instant response to clicks. Function from 2.1 to 2.6 stays. **design**
 Done when: you can play a full turn-1 Galaxy-Eyes line by hand, quick-save at any point and branch from it.
 
 ## Wave 3: Drill mode, knowledge base, feedback (medium)
-- [ ] 3.1 Knowledge base format: lines, roles, rulings, regression cases, in the pack. **design**
-- [ ] 3.2 Drill mode: random hand, you play it, compare with the library's best line, grade.
-- [ ] 3.3 Personal results log: your real brick and full-board rates against the exact odds.
-- [ ] 3.4 "That's wrong" button, role tagging (right-click), notes attached to a state.
-- [ ] 3.5 Post-duel review: asks "why?" only where you left the stored line.
+- [x] 3.1 Knowledge base format: lines, roles, rulings, regression cases, in the pack. **design**
+- [x] 3.2 Drill mode: random hand, you play it, compare with the library's best line, grade.
+- [x] 3.3 Personal results log: your real brick and full-board rates against the exact odds.
+- [x] 3.4 "That's wrong" button, role tagging (right-click), notes attached to a state.
+- [x] 3.5 Post-duel review: asks "why?" only where you left the stored line.
 Done when: a drill session produces a grade, and a correction changes what the next drill expects.
 
 ## Wave 4: Replay takeover and Omega (medium)

@@ -10,6 +10,7 @@ import { cards, names, errors } from "./engine.mjs";
 import { setStrings } from "../packages/engine/client.mjs";
 import { createSession, loadSession } from "../packages/engine/session.mjs";
 import { shuffled } from "../packages/engine/api.mjs";
+import { knowledge, grade, promote, summary } from "./drill.mjs";
 
 const here = (p) => fileURLToPath(new URL(p, import.meta.url));
 const CDB_DIR = process.env.YGO_CDB_DIR ?? here("./data/babel");
@@ -41,21 +42,40 @@ const canonical = (id) => { if (cards.has(id)) return cards.get(id).alias && car
 
 // ---------- the duel ----------
 let session = null, currentSave = null;
+let drill = null; // { graded: last grade or null } while the current duel is a drill
 const FILLER = [...names].find(([, n]) => n === "Dark Magician")[0];
-function newDuel({ main, extra = [], seed = Date.now() % 2147483647, hand = [], handSize = 5 }) {
+function newDuel({ main, extra = [], seed = Date.now() % 2147483647, hand = [], handSize = 5, shuffle = true }) {
+  handSize = Math.max(0, Math.min(40, Math.floor(Number(handSize)) || 0));
   const m = main.map(canonical), unknown = [...m, ...extra.map(canonical)].filter((c) => !cards.has(c));
   if (unknown.length) throw new Error(`Cards the engine does not know: ${[...new Set(unknown)].join(", ")}. Run node sim/tools/update-data.mjs.`);
   if (m.length < handSize) throw new Error("The Main Deck is smaller than the opening hand");
-  const rest = shuffled(m, seed); const top = [];
+  const rest = shuffle ? shuffled(m, seed) : [...m]; const top = []; // no shuffle: the deck is drawn in list order (top = first card of the list)
   for (const c of hand.map(canonical)) { const i = rest.indexOf(c); if (i < 0) throw new Error(`${names.get(c) ?? c} is not in the Main Deck (or not that many copies)`); top.push(rest.splice(i, 1)[0]); }
   session?.destroy(); errors.length = 0;
   session = createSession({ deck0: [...top, ...rest], extra0: extra.map(canonical), deck1: Array(40).fill(FILLER), extra1: [], hand0: handSize, hand1: 5, seed }, session?.settings);
-  currentSave = null;
+  currentSave = null; drill = null;
 }
+
+// ---------- drill mode, results log, knowledge base ----------
+const kb = knowledge(process.env.RKAPRO_KB);
+const RESULTS = path.join(SAVES, "results.json");
+const results = () => (existsSync(RESULTS) ? JSON.parse(readFileSync(RESULTS, "utf8")) : []);
+const deckCounts = () => { const d = {}; for (const c of session.duel.config.deck0) { const n = names.get(c); d[n] = (d[n] ?? 0) + 1; } return d; };
+function finishDrill() {
+  const g = grade(kb, need().duel);
+  if (drill && !drill.graded) { // one log entry per drill, however often the review is opened
+    mkdirSync(SAVES, { recursive: true });
+    writeFileSync(RESULTS, JSON.stringify([...results(), { t: Date.now(), hand: g.hand, class: g.class, verdict: g.verdict, board: g.board.yours, stored: g.board.stored, full: g.board.full, nib: g.nibiru.yours }]));
+  }
+  if (drill) drill.graded = g;
+  return { grade: g, summary: summary(results(), deckCounts()) };
+}
+const position = () => { const v = session.view(); return { turn: v.turn, decisions: v.decisions }; };
+const handNames = () => session.duel.config.deck0.slice(0, session.duel.config.hand0).map((c) => names.get(c));
 
 // ---------- save states (files, so they survive restarts and can be shared) ----------
 const saveFile = (id) => path.join(SAVES, `${id}.json`);
-const listSaves = () => (existsSync(SAVES) ? readdirSync(SAVES).filter((f) => f.endsWith(".json")).map((f) => { const { log: _l, ...meta } = JSON.parse(readFileSync(path.join(SAVES, f), "utf8")); return meta; }).sort((a, b) => a.created - b.created) : []);
+const listSaves = () => (existsSync(SAVES) ? readdirSync(SAVES).filter((f) => f.endsWith(".json") && f !== "results.json").map((f) => { const { log: _l, ...meta } = JSON.parse(readFileSync(path.join(SAVES, f), "utf8")); return meta; }).sort((a, b) => a.created - b.created) : []);
 function save(name) {
   const v = session.view(); mkdirSync(SAVES, { recursive: true });
   const id = `${Date.now().toString(36)}${Math.floor(Math.random() * 1296).toString(36)}`;
@@ -66,11 +86,11 @@ function save(name) {
 function load(id) {
   const f = JSON.parse(readFileSync(saveFile(id), "utf8"));
   const settings = session?.settings; session?.destroy();
-  session = loadSession(JSON.stringify(f.log), settings); currentSave = id;
+  session = loadSession(JSON.stringify(f.log), settings); currentSave = id; drill = null;
 }
 
 // ---------- http ----------
-const state = () => (session ? { ...session.view(), save: currentSave, engineErrors: errors.slice(-3) } : { none: true });
+const state = () => (session ? { ...session.view(), save: currentSave, engineErrors: errors.slice(-3), drill: drill ? { graded: !!drill.graded } : null } : { none: true });
 const body = (req) => new Promise((ok, bad) => { let s = ""; req.on("data", (d) => { s += d; if (s.length > 5e6) req.destroy(); }); req.on("end", () => { try { ok(s ? JSON.parse(s) : {}); } catch (e) { bad(e); } }); });
 const need = () => { if (!session) throw new Error("No duel yet"); return session; };
 const routes = {
@@ -81,6 +101,22 @@ const routes = {
   "POST /api/duel/undo": (q) => { need().undo(q.n ?? 1); return state(); },
   "POST /api/duel/settings": (q) => { need().setSettings(q); return state(); },
   "POST /api/duel/note": (q) => { need().note(q.text); return state(); },
+  "POST /api/drill/new": (q) => { newDuel({ ...q, hand: [] }); drill = { graded: null }; return state(); },
+  "POST /api/drill/finish": () => finishDrill(),
+  "POST /api/drill/promote": () => { const g = drill?.graded ?? grade(kb, need().duel); const line = promote(kb, need().duel, g); return { line: { id: line.id, class: line.class, board: line.board, nib: line.nib, steps: line.steps.length }, ...finishDrill() }; },
+  "POST /api/drill/why": (q) => { const g = drill?.graded ?? grade(kb, need().duel); return { saved: kb.saveCase({ kind: "deviation", text: String(q.text ?? "").slice(0, 2000), hand: g.hand, class: g.class, deviation: g.line?.deviation ?? null, at: position(), log: JSON.parse(session.save()) }).id }; },
+  "GET /api/drill/summary": () => ({ summary: summary(results(), session ? deckCounts() : null) }),
+  "POST /api/wrong": (q) => ({ saved: kb.saveCase({ kind: ["ruling", "line", "role", "other"].includes(q.kind) ? q.kind : "other", text: String(q.text ?? "").slice(0, 2000), card: q.card ?? null, hand: handNames(), at: position(), log: JSON.parse(need().save()) }).id }),
+  "GET /api/knowledge": () => ({ roles: kb.roles(), rulings: kb.rulings(), cases: kb.cases().slice(0, 50), lines: kb.lines().map((l) => ({ id: l.id, class: l.class, source: l.source, legal: l.legal !== false, board: l.board, nib: l.nib, steps: l.steps.length })) }),
+  "POST /api/knowledge/role": (q) => ({ roles: kb.setRoles(String(q.name), (q.roles ?? []).map(String)) }),
+  "POST /api/decks/write": (q) => { // save a deck into EDOPro's deck folder (deck editor)
+    if (!EDOPRO) throw new Error("No EDOPro folder found (set EDOPRO_DIR)");
+    const f = path.basename(String(q.name)).replace(/[\\/:*?"<>|]/g, "").replace(/\.ydk$/i, "").trim();
+    if (!f) throw new Error("Give the deck a name");
+    const file = path.join(EDOPRO, "deck", f + ".ydk");
+    if (existsSync(file) && !q.overwrite) return { exists: true, name: f + ".ydk" };
+    writeFileSync(file, String(q.text)); return { saved: f + ".ydk" };
+  },
   "GET /api/saves": () => ({ saves: listSaves(), current: currentSave }),
   "POST /api/saves": (q) => { need(); const meta = save(q.name); return { saved: meta, saves: listSaves(), current: currentSave }; },
   "POST /api/saves/load": (q) => { load(q.id); return state(); },

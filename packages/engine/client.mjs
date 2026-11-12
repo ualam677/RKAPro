@@ -89,6 +89,16 @@ export function summarise(messages, startLP = 8000) {
   return s;
 }
 
+/** What the player did, in order: every summon and activation of player 0. This is the shape stored lines are kept in. */
+export function steps(messages) {
+  const out = [];
+  for (const m of messages) {
+    if ((m.type === 60 || m.type === 62) && m.controller === 0) out.push({ k: "summon", name: nameOf(m.code) });
+    else if (m.type === 70 && m.controller === 0) out.push({ k: "activate", name: nameOf(m.code) });
+  }
+  return out;
+}
+
 // ---------- prompts ----------
 const ref = (c, id, extra = {}) => ({ id, code: c.code, c: c.controller, loc: c.location, seq: c.sequence, pos: c.position, ...extra });
 const freeZones = (p) => {
@@ -156,10 +166,14 @@ export function answer(p, a) {
  * position, forced picks, sort order. Returns an engine response, or null when the player must decide.
  * settings.autoPlace: also pick the zone when there are several (Extra Monster Zone first, like the search).
  * settings.noChain: never ask about optional chains (EDOPro's "ignore chains").
+ * settings.alwaysChain: ask whenever anything can be chained, even at an open game state (EDOPro's "chain when available").
  */
 export function autoAnswer(p, settings = {}) {
   switch (p.type) {
-    case T.CHAIN: return !p.forced && (p.selects.length === 0 || settings.noChain) ? { type: 8, index: null } : p.forced && p.selects.length === 1 ? { type: 8, index: 0 } : null;
+    case T.CHAIN:
+      if (p.forced) return p.selects.length === 1 ? { type: 8, index: 0 } : null;
+      // like EDOPro: with nothing relevant to this timing (spe_count 0) you are only asked when "always chain" is on
+      return p.selects.length === 0 || settings.noChain || (p.spe_count === 0 && !settings.alwaysChain) ? { type: 8, index: null } : null;
     case T.PLACE: case T.DISFIELD: { const z = freeZones(p); return z.length <= p.count || settings.autoPlace ? choices(p)[0].res : null; }
     case T.POS: { const n = [1, 2, 4, 8].filter((x) => p.positions & x); return n.length === 1 ? { type: 11, position: n[0] } : null; }
     case T.CARD: case T.TRIBUTE: return p.min === p.max && p.max === p.selects.length && !p.can_cancel ? { type: p.type === T.CARD ? 5 : 12, indicies: p.selects.map((_, i) => i) } : null;

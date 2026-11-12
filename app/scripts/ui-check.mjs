@@ -1,5 +1,5 @@
 // UI smoke check with headless Edge (playwright-core, no browser download).
-//   npm run dev   (in another terminal; default http://localhost:5173)
+//   npm run dev:check   (in another terminal: the dev server with a throwaway knowledge base and save folder)
 //   node scripts/ui-check.mjs [outDir] [baseUrl]
 // Drives the real app, asserts what must be on screen, writes screenshots. Exits 1 on the first failed step.
 import { chromium } from "playwright-core";
@@ -10,6 +10,7 @@ const out = process.argv[2] ?? "ui-shots"; const base = process.argv[3] ?? "http
 mkdirSync(out, { recursive: true });
 const browser = await chromium.launch({ channel: "msedge", headless: true });
 const page = await browser.newPage({ viewport: { width: 1400, height: 1000 } });
+page.on("dialog", (d) => d.accept()); // confirm boxes (e.g. storing a weaker line)
 const errors = []; page.on("pageerror", (e) => errors.push(String(e))); page.on("console", (m) => { if (m.type() === "error" && !/favicon/.test(m.location().url)) errors.push(m.text() + " " + m.location().url); });
 const shot = (name, full = true) => page.screenshot({ path: path.join(out, name + ".png"), fullPage: full });
 const step = async (name, fn) => { try { await fn(); console.log("ok  ", name); } catch (e) { console.log("FAIL", name, "\n    ", String(e).split("\n")[0]); await shot("FAIL-" + name.replace(/\W+/g, "-")); await browser.close(); process.exit(1); } };
@@ -33,9 +34,9 @@ await section("duel", async () => {
     await setup.getByRole("button", { name: "My current list" }).click();
     await setup.getByRole("button", { name: "Galaxy Defense Robot Orbital 7" }).click();
     await setup.getByRole("button", { name: "Start duel" }).click();
-    await hand.locator(".dcard").nth(4).waitFor();
+    await page.locator(".turn", { hasText: "Turn 1 · your turn · summons 0" }).waitFor(); // the new duel, not the one that was on screen before
+    await hand.locator(`.dcard[data-code="${ORB7}"].can-act`).first().waitFor();
     if ((await hand.locator(".dcard").count()) !== 5) throw new Error("hand is not 5 cards");
-    await hand.locator(`.dcard[data-code="${ORB7}"].can-act`).waitFor();
   });
   await page.waitForTimeout(800);
   await shot("5-duel-start", false);
@@ -58,19 +59,21 @@ await section("duel", async () => {
   const useCard = async (card, verb) => { await card.click(); await page.getByRole("menu").getByRole("menuitem", { name: verb }).first().click(); await resolve(); };
 
   await step("hovering a card shows its picture and text on the left", async () => {
-    await hand.locator(`.dcard[data-code="${ORB7}"]`).hover();
+    await hand.locator(`.dcard[data-code="${ORB7}"]`).first().hover();
     const t = await page.getByTestId("card-detail").innerText();
     if (!t.includes("Galaxy Defense Robot Orbital 7") || !t.includes("Tribute this card")) throw new Error("detail: " + t.slice(0, 120));
   });
   await step("click a card, pick Activate, answer the selection windows", async () => {
-    await useCard(hand.locator(`.dcard[data-code="${ORB7}"]`), /^Activate/);
+    await useCard(hand.locator(`.dcard[data-code="${ORB7}"]`).first(), /^Activate/);
     const log = await chat.innerText();
     if (!log.includes("Chain 1: Galaxy Defense Robot Orbital 7") || !log.includes("Hand → GY")) throw new Error("chat: " + log.slice(-200));
   });
   let savedLog = "";
   await step("quick save, play on (Normal Summon into a clicked zone), undo, quick load", async () => {
+    const savesBtn = page.getByRole("button", { name: /^Save states/ });
+    const n0 = Number((await savesBtn.innerText()).match(/[0-9]+/)[0]);
     await page.getByRole("button", { name: "Quick save" }).click();
-    await page.getByRole("button", { name: "Save states (1)" }).waitFor();
+    await page.getByRole("button", { name: `Save states (${n0 + 1})` }).waitFor();
     savedLog = await chat.innerText();
     await hand.locator(".dcard.can-act").first().click();
     const menu = page.getByRole("menu");
@@ -87,8 +90,9 @@ await section("duel", async () => {
     await page.getByRole("menu").getByRole("menuitem").first().click(); await resolve();
     await page.getByRole("button", { name: /^Save states/ }).click();
     const dlg = page.getByRole("dialog", { name: "Save states" });
-    await dlg.getByLabel("Save name").fill("Branch B"); await dlg.getByRole("button", { name: "Save here" }).click();
-    await dlg.locator(".save-row", { hasText: "↳ Branch B" }).waitFor();
+    const branch = `Branch ${Date.now().toString(36)}`; // unique per run: the save folder keeps earlier runs
+    await dlg.getByLabel("Save name").fill(branch); await dlg.getByRole("button", { name: "Save here" }).click();
+    await dlg.locator(".save-row", { hasText: `↳ ${branch}` }).waitFor();
     await dlg.screenshot({ path: path.join(out, "7-duel-saves.png") });
     await dlg.getByRole("button", { name: "Close" }).click();
   });
@@ -108,6 +112,101 @@ await section("duel", async () => {
     await page.getByRole("button", { name: "New duel…" }).click(); await page.getByRole("dialog", { name: "New duel" }).waitFor();
     await page.keyboard.press("Escape"); await page.waitForTimeout(200);
     if (await page.getByRole("dialog", { name: "New duel" }).count()) throw new Error("Escape did not close the window");
+  });
+  await step("hand size 7 without shuffling deals the first 7 cards of the list", async () => {
+    await page.getByRole("button", { name: "New duel…" }).click();
+    const setup = page.getByRole("dialog", { name: "New duel" });
+    await setup.getByLabel("Hand size").fill("7"); await setup.getByLabel("Shuffle deck").uncheck();
+    await setup.getByRole("button", { name: "Start duel" }).click();
+    await hand.locator(".dcard").nth(6).waitFor();
+    const codes = await hand.locator(".dcard").evaluateAll((els) => els.map((e) => e.dataset.code));
+    if (codes.length !== 7 || new Set(codes.slice(0, 3)).size !== 1) throw new Error("not the top of the list: " + codes.join(","));
+    await page.getByRole("button", { name: "New duel…" }).click(); // put the defaults back for the next run
+    await setup.getByLabel("Hand size").fill("5"); await setup.getByLabel("Shuffle deck").check();
+    await setup.getByRole("button", { name: "Start duel" }).click(); await hand.locator(".dcard").nth(4).waitFor();
+  });
+  await step("That's wrong: a report is saved as a case; a role chip sticks", async () => {
+    await hand.locator(".dcard").first().hover();
+    const chip = page.getByTestId("card-detail").getByRole("button", { name: "Extender" });
+    await chip.click(); await page.getByTestId("card-detail").locator(".chip.on", { hasText: "Extender" }).waitFor();
+    await chip.click(); // and off again
+    await page.getByRole("button", { name: "That's wrong" }).click();
+    const dlg = page.getByRole("dialog", { name: "That's wrong" });
+    await dlg.getByLabel("What is wrong, in your words").fill("ui-check: test report");
+    await dlg.getByRole("button", { name: "Save report" }).click();
+    await dlg.getByText(/Saved as case/).waitFor();
+    await dlg.getByRole("button", { name: "Close" }).first().click();
+  });
+});
+
+await section("drill", async () => {
+  const hand = page.getByTestId("hand"), review = page.getByTestId("review");
+  await step("drill: deal a hand, end the turn, get a review with several numbers", async () => {
+    await tab("Drill");
+    // deal until the hand has a starter with a stored line (Orbital 7), so the review has a line to compare with
+    for (let tries = 0; tries < 40; tries++) {
+      await page.getByRole("button", { name: "Deal a drill hand" }).first().click();
+      await hand.locator(".dcard").nth(4).waitFor(); await page.waitForTimeout(150);
+      if (await hand.locator('.dcard[data-code="91714772"]').count()) break;
+      if (tries === 39) throw new Error("no Orbital 7 hand in 40 deals");
+    }
+    for (let i = 0; i < 6 && !(await page.locator(".phase.go", { hasText: "EP" }).count()); i++) { await page.keyboard.press("Escape"); await page.waitForTimeout(250); }
+    await page.locator(".phase.go", { hasText: "EP" }).click();
+    await review.waitFor({ timeout: 10000 });
+    const t = await review.innerText();
+    for (const want of ["Board (interruptions)", "Nibiru-proof", "Hand traps still in hand", "Your results so far", "Exact odds for this deck"]) if (!t.includes(want)) throw new Error("review lacks: " + want);
+    if (!(await page.getByTestId("verdict").innerText()).length) throw new Error("no verdict");
+  });
+  await step("review asks why only at the deviation; storing my line changes what the class expects", async () => {
+    const dev = page.getByTestId("deviation");
+    if (await dev.count()) {
+      await dev.getByLabel("Why").fill("ui-check: ended the turn on purpose");
+      await dev.getByRole("button", { name: "Save my answer" }).click();
+      await review.getByText("Saved as a case.").waitFor();
+      await dev.getByRole("button", { name: "My line is right: store it" }).click();
+      await review.getByText(/from now on .* expects board 0/).waitFor();
+      if (!/Matched/.test(await page.getByTestId("verdict").innerText())) throw new Error("verdict did not change after the correction");
+    } else {
+      // an earlier run of this check already stored "end the turn at once" as the Orbital 7 line in the throwaway knowledge base
+      if (!/Matched/.test(await page.getByTestId("verdict").innerText()) || !(await review.innerText()).includes("(user)")) throw new Error("no deviation, and not because of a stored user line");
+      console.log("     (a user line from an earlier run is already stored: no deviation, verdict matched)");
+    }
+  });
+  await review.screenshot({ path: path.join(out, "10-drill-review.png") });
+  await step("next hand deals again", async () => {
+    await review.getByRole("button", { name: "Next hand" }).click();
+    await hand.locator(".dcard").nth(4).waitFor(); if (await review.count()) throw new Error("review still open");
+  });
+});
+
+await section("editor", async () => {
+  const main = page.getByTestId("ed-main"), extra = page.getByTestId("ed-extra"), side = page.getByTestId("ed-side"), results = page.getByTestId("ed-results");
+  const count = async (z) => Number((await z.locator(".ed-zone-title b").innerText()).trim());
+  await step("deck editor: search, add to Main / Extra / Side, remove, card text", async () => {
+    await tab("Deck editor");
+    await page.getByLabel("Search").fill("galaxy-eyes photon dragon");
+    await results.locator(".ed-result", { hasText: "Galaxy-Eyes Photon Dragon" }).first().waitFor();
+    const m0 = await count(main), s0 = await count(side), e0 = await count(extra);
+    const row = results.locator(".ed-result").filter({ has: page.locator("b", { hasText: /^Galaxy-Eyes Photon Dragon$/ }) }).first();
+    await row.hover();
+    if (!(await page.getByTestId("ed-detail").innerText()).includes("Galaxy-Eyes Photon Dragon")) throw new Error("no card text");
+    await row.click(); await row.click({ button: "right" });
+    if ((await count(main)) !== m0 + 1 || (await count(side)) !== s0 + 1) throw new Error("add to Main/Side failed");
+    await page.getByLabel("Search").fill("number 62"); await page.getByLabel("Card type").selectOption("extra");
+    await results.locator(".ed-result").first().click();
+    if ((await count(extra)) !== e0 + 1) throw new Error("Extra Deck card did not go to the Extra Deck");
+    await side.locator(".ecard").last().click();
+    if ((await count(side)) !== s0) throw new Error("remove failed");
+  });
+  await step("deck editor: 3-copy limit, and the deck reaches the duel", async () => {
+    await page.getByLabel("Card type").selectOption(""); await page.getByLabel("Search").fill("ash blossom");
+    const row = results.locator(".ed-result").first();
+    for (let i = 0; i < 4; i++) await row.click();
+    await page.getByRole("status").filter({ hasText: /Already 3 copies/ }).waitFor();
+    await page.screenshot({ path: path.join(out, "11-deck-editor.png") });
+    await tab("Duel"); await page.getByRole("button", { name: "New duel…" }).click();
+    await page.getByRole("dialog", { name: "New duel" }).getByRole("button", { name: "Deck lab deck" }).waitFor();
+    await page.keyboard.press("Escape");
   });
 });
 

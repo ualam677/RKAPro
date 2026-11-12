@@ -14,10 +14,20 @@ export interface LogLine { kind: "turn" | "phase" | "move" | "summon" | "chain" 
 export interface View {
   none?: boolean; turn: number; turnPlayer: number; phase: string; lp: [number, number]; chain: { code: number; c: number }[]; log: LogLine[]; summons: number; winner: number | null;
   ended: boolean; sides: [Side, Side]; prompt: Prompt | null; steps: number; canUndo: boolean; decisions: number;
-  settings: { autoPlace: boolean; noChain: boolean }; notes: { decisions: number; text: string }[]; save: string | null; engineErrors: string[];
+  settings: { autoPlace: boolean; noChain: boolean; alwaysChain: boolean }; drill: { graded: boolean } | null; notes: { decisions: number; text: string }[]; save: string | null; engineErrors: string[];
 }
 export interface CardInfo { id: number; name: string; desc: string; type: number; atk?: number; def?: number; level?: number; attribute?: number; race?: number }
 export interface SaveMeta { id: string; name: string; parent: string | null; created: number; turn: number; decisions: number; steps: number }
+export interface Step { k: "summon" | "activate"; name: string }
+export interface Grade {
+  hand: string[]; class: string | null; verdict: "better" | "matched" | "below" | "expected brick"; storedSource: string;
+  board: { yours: number; stored: number; parts: string[]; full: boolean; storedFull: boolean };
+  nibiru: { yours: boolean; stored: boolean; why: string }; handTrapsKept: number; summons: number;
+  line: { followed: number; total: number; yours: number; source: string; deviation: { at: number; stored: Step | null; yours: Step | null } | null } | null;
+}
+type Rate = { yours: number; odds: number | null };
+export interface Summary { drills: number; fullBoard: Rate; nibiruProof: Rate; brick: Rate; verdicts: Record<string, number>; modelMissed: { hand: string[]; board: number }[] }
+export interface DrillResult { grade: Grade; summary: Summary }
 export type Answer = { id: string } | { ids: string[] } | { yes: boolean } | { cancel: true } | { finish: true };
 
 async function call<T>(path: string, body?: unknown): Promise<T> {
@@ -30,7 +40,8 @@ async function call<T>(path: string, body?: unknown): Promise<T> {
 export const api = {
   meta: () => call<{ edopro: string | null; cards: number }>("meta"),
   state: () => call<View>("duel"),
-  newDuel: (q: { main: number[]; extra: number[]; hand?: number[]; seed?: number }) => call<View>("duel/new", q),
+  newDuel: (q: { main: number[]; extra: number[]; hand?: number[]; seed?: number; handSize?: number; shuffle?: boolean }) => call<View>("duel/new", q),
+  writeDeck: (name: string, text: string, overwrite = false) => call<{ saved?: string; exists?: boolean; name?: string }>("decks/write", { name, text, overwrite }),
   act: (a: Answer) => call<View>("duel/act", a),
   undo: (n = 1) => call<View>("duel/undo", { n }),
   settings: (s: Partial<View["settings"]>) => call<View>("duel/settings", s),
@@ -39,6 +50,13 @@ export const api = {
   save: (name?: string) => call<{ saved: SaveMeta; saves: SaveMeta[]; current: string | null }>("saves", { name }),
   load: (id: string) => call<View>("saves/load", { id }),
   deleteSave: (id: string) => call<{ saves: SaveMeta[]; current: string | null }>("saves/delete", { id }),
+  drillNew: (q: { main: number[]; extra: number[] }) => call<View>("drill/new", q),
+  drillFinish: () => call<DrillResult>("drill/finish", {}),
+  drillPromote: () => call<DrillResult & { line: { id: string; class: string; board: number; nib: boolean; steps: number } }>("drill/promote", {}),
+  drillWhy: (text: string) => call<{ saved: string }>("drill/why", { text }),
+  wrong: (kind: string, text: string, card: string | null) => call<{ saved: string }>("wrong", { kind, text, card }),
+  knowledge: () => call<{ roles: Record<string, string[]>; lines: { id: string; class: string; source: string; legal: boolean; board: number; nib: boolean; steps: number }[] }>("knowledge"),
+  setRole: (name: string, roles: string[]) => call<{ roles: Record<string, string[]> }>("knowledge/role", { name, roles }),
   cards: (ids: number[]) => call<{ cards: CardInfo[] }>("cards", { ids }),
   decks: () => call<{ folder: string | null; decks: string[] }>("decks"),
   readDeck: (name: string) => call<{ name: string; text: string }>("decks/read", { name }),

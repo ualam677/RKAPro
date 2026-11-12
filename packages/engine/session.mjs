@@ -6,7 +6,7 @@ import { answer, autoAnswer, passAnswer, view } from "./client.mjs";
 
 export function createSession(config, settings = {}, saved = null) {
   // `manual` = positions in the response log where the player made a real decision (undo steps back to these)
-  const s = { duel: null, manual: saved ? [...saved.manual] : [], notes: saved?.notes ? [...saved.notes] : [], settings: { autoPlace: false, noChain: false, ...settings } };
+  const s = { duel: null, manual: saved ? [...saved.manual] : [], notes: saved?.notes ? [...saved.notes] : [], settings: { autoPlace: false, noChain: false, alwaysChain: false, ...settings } };
   s.duel = saved ? replay({ config, responses: saved.responses }) : createDuel(config);
 
   function settle() {

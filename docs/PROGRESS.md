@@ -1,10 +1,21 @@
 # Progress log (read this first in every session)
 
-**Current wave:** 3 (Drill mode, knowledge base, feedback). **Next slice:** 3.1 knowledge base format.
+**Current wave:** Waves 0 to 3 are complete. **Next slice:** 2.7 look and feel of the duel screen (user priority), then Wave 4 only when the user says so.
 
 Repo state at last entry: sim/ headless engine and tools work (`scripts/verify.sh` passes all 5 replays); golden tests pass through the library API; app/ is the deck lab (exact stats, quick calculator, deck files, history; 58 tests + `npm run ui-check`); duel client works in the browser (`npm run dev`) and as a desktop app (`npm run desktop`).
 
 ## Log (newest first; 3 to 5 lines per slice)
+- 12 Nov 2026, Wave 3 done (3.1 to 3.5) plus fixes from user feedback on the duel screen. Gates: verify.sh 5/5, 27 sim tests, 58 app tests, ui-check 23 steps (4 runs in a row), desktop-check.
+  3.1 Knowledge base: `packs/galaxy-eyes/knowledge/` (README = the format): `lines/*.json` stored lines as ordered summon/activate steps (built from the replays by `node sim/tools/kb-build.mjs`), `roles.json`, `rulings.json`, `cases/`.
+  3.2 Drill: Drill tab deals a random hand; ending the turn grades it (`sim/drill.mjs`): board, full board, Nibiru-proof at summon 5 (`packs/galaxy-eyes/drill.mjs`), hand traps kept, steps of the stored line played; verdict better / matched / below. The user's 3 legal recorded lines grade as matched with no deviation (test).
+  3.3 Results log: every drill goes to `saves/results.json`; the review shows your full-board, Nibiru-proof and no-board rates next to the exact odds, and hands the model calls a brick but you built from.
+  3.4 "That's wrong" button (case with the full position in `knowledge/cases/`), role chips under the card text (`roles.json`), notes (from 2.5).
+  3.5 Review asks "why?" only at the first step where you left the stored line; "My line is right: store it" writes `lines/user-<class>.json` and the next drill of that class expects it (confirm box if your board is lower).
+  User feedback fixed: level/rank badge on field monsters; the Extra Deck / GY window closes after you act; hand size and shuffle toggle in New duel; EDOPro chain behaviour (asks only when an effect is relevant to the timing; toggles Ignore chains / Always chain); prompt windows moved under the hand.
+  New slice 1.7 Deck editor (user: "basic deck maker functionality ignored"): tab with EDOPro's layout (card text, deck, search with type / attribute / level / monster type filters), click to add, right-click for Side, 3-copy and banlist limits, open from and save to EDOPro's deck folder; the lab and the duel use the edited deck.
+  Bugs found by the UI check: the drill results file was listed as a save state (Quick load failed); alternate-art passcodes produced duplicate search results.
+  Not done: 2.7 look and feel (animations, EDOPro visuals). The deck lab role tags (browser storage) and the knowledge base roles are still two separate stores. Stored user lines do not feed the odds model yet.
+- 12 Nov 2026, user feedback on Wave 2: the duel screen works but is badly designed and does not feel like EDOPro (no animations, not snappy). Accepted as a base only. Added slice 2.7 (look and feel) to the roadmap; the user said to go on with Wave 3 first.
 - 12 Nov 2026, Wave 2 done (slices 2.1 to 2.6, built together and committed as one because they share the same files; gates run once at the end). User direction: an EDOPro clone with the ratio tools as a tab.
   2.1 Shell + board: `app/electron/main.mjs` (engine in-process, `npm run desktop`), `app/src/duel/` (EDOPro layout: card detail + chat left, playmat in perspective, piles, Xyz material badges). Pictures, card back and system strings come from the user's EDOPro install (`C:ProjectIgnis`), missing pictures from EDOPro's picture host into `sim/data/pics`.
   2.2 Prompts: `packages/engine/client.mjs` maps every engine prompt to a screen model and clicks back to responses (full fidelity: zones, positions, chains). Trivial prompts are answered automatically; toggles Auto-place and Ignore chains. Keys: Esc/right-click cancel, Enter confirm, U or Ctrl+Z undo, S save, L load, N new hand, B battle, E end. No animations.

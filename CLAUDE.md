@@ -22,6 +22,7 @@ Priorities, in order: master the current deck (Galaxy-Eyes / Photon / Galaxy, TC
 - **Starters are entry points into one shared structure**, not separate combos (Delta Wing, Orbital 7, Soldier + LIGHT, Infinity Dragon, Seventh Tachyon, Galaxy Wizard all lead to the same Dragluxion → Howling/Lord → Eternal Galaxy finish). Photon Thrasher is out of the current list.
 - Report several numbers, not a single score; the user decides the risk/reward trade-off.
 - YGO Omega can be wrong on rulings. EDOPro's scripts are the reference. When a replay step fails in the engine, check the card script, then tell the user (example: Galaxy-Eyes Antimatter Dragon's detach effect cannot be used on turn 1; Omega allowed it, so the Soldier replay is not legal as recorded).
+- **The duel UI is judged against real EDOPro** (user, 12 Nov 2026: the first version was "awfully designed", no animations, not snappy; basic deck-maker features were missing). Function alone is not done: compare with EDOPro, list what is missing, and say so.
 - Keep replies short. The user is a competitive player who knows the deck far better than the search does; treat their corrections as ground truth and record them in `docs/KNOWLEDGE.md`.
 - **Fuwalos stays at 3** (user decision, not a flex slot). **Sideboarding and tech cards are parked** until the main deck's weaknesses are understood and the user brings them up.
 
@@ -34,9 +35,11 @@ packages/engine/  engine library, no Node-only imports (host injects ocgcore-was
   state.mjs, board.mjs   heap snapshot/restore; read a side of the field
   client.mjs    duel client protocol: view(duel) = screen model, uiPrompt/answer/autoAnswer; hand-trap window notes in the chat log
   session.mjs   a duel as the player sees it: act(), undo(), save()/loadSession(), notes; opponent and trivial prompts answered automatically
-packs/galaxy-eyes/ deck.json (current list + replay list), lines.json (hand classes for the odds), board.mjs (scoring), golden/ (action logs of the 5 replays)
+packs/galaxy-eyes/ deck.json (current list + replay list), lines.json (hand classes for the odds), board.mjs (scoring), drill.mjs (Nibiru-proof test), golden/ (action logs of the 5 replays)
+  knowledge/    the knowledge base (format in its README): lines/ (stored lines as steps), roles.json, rulings.json, cases/ ("That's wrong" reports with the position)
 sim/            Node host + search + tools (ocgcore-wasm = EDOPro's core); choices/state/board/deck.mjs re-export the above
   engine.mjs    load card DB + Lua scripts from disk, inject them into packages/engine
+  drill.mjs     drill grading against the stored line, promote a user line, results summary, knowledge base on disk
   server.mjs    local duel server (HTTP, port 7911): /api/duel, /api/saves, /api/cards, /api/pic, /api/decks; uses the EDOPro install (EDOPRO_DIR, default C:ProjectIgnis)
   deck.mjs      the current list (MAIN/EXTRA), REPLAY_MAIN (the list the replays were recorded on), id(name), mainList(), extraList()
   beam.mjs      beam search over a turn: beamSolve(hand, deck, {width, prefix, guide, interrupt, timeLimitMs})
@@ -58,11 +61,12 @@ scripts/        setup.sh (data + deps), verify.sh (replays all 5 lines; the regr
 cd app && npx vitest run                           # 58 tests
 cd app && npm run dev                              # the whole app in the browser (also starts the duel engine); Duel tab + Deck lab tab
 cd app && npm run desktop                          # the desktop app (Electron): builds the UI, engine in-process
-cd app && npm run ui-check                         # needs `npm run dev` running: headless Edge drives the real UI (16 steps), screenshots in app/ui-shots
+cd app && npm run dev:check   then   npm run ui-check   # dev server on a throwaway knowledge base + save folder; headless Edge drives the real UI (23 steps), screenshots in app/ui-shots
 cd app && npm run build && node scripts/desktop-check.mjs   # launches the real Electron window and checks a hand is dealt
 node tools/odds.mjs marginals                      # per-card -1/+1 table
 node tools/update-data.mjs [--check]               # pull card data, report changes, run the gate, pin (sim/data.lock.json) or roll back
-cd sim && npm test                                 # 22 tests (~25 s): golden replays through the API; duel client protocol (random player, recorded lines click by click)
+node tools/kb-build.mjs                            # rebuild the stored lines in packs/galaxy-eyes/knowledge from the replays (keeps user lines and cases)
+cd sim && npm test                                 # 27 tests (~25 s): golden replays through the API; duel client protocol (random player, recorded lines click by click)
 node tools/golden.mjs <route...>                   # regenerate a golden action log (only when a replay or the engine API changes)
 cd sim && node tools/check2.mjs <route 0-4> plain  # replay the user's line exactly; routes: 0 Delta, 1 Orb7 r1 (Wizard), 2 Orb7 r2 (Thrasher), 3 Soldier, 4 Schwarzschild
 node tools/check2.mjs <route> nib:K                # Nibiru fires at the K-th chance; best response + finish

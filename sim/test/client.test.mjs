@@ -90,7 +90,7 @@ for (const ri of process.env.YGO_OMEGA_RULINGS ? [3] : [0, 1, 2, 4]) {
   const g = JSON.parse(readFileSync(new URL(`../../packs/galaxy-eyes/golden/${ri}.json`, import.meta.url), "utf8"));
   test(`${g.file}: the recorded line can be played click by click`, () => {
     const log = logFromJSON(JSON.stringify(g.log));
-    const s = createSession(log.config);
+    const s = createSession(log.config, { alwaysChain: true }); // the recordings chain at open game states; EDOPro only asks there with "always chain" on
     let clicks = 0;
     for (let guard = 0; guard < 1000; guard++) {
       const d = s.duel; const n = d.responses.length;

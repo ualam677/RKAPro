@@ -1,15 +1,17 @@
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Answer, api, CardInfo, CardRef, FieldCard, LOC, LOC_LABEL, Prompt, SaveMeta, Side, TYPE, View } from "./api";
+import { Answer, api, CardInfo, CardRef, DrillResult, FieldCard, LOC, LOC_LABEL, Prompt, SaveMeta, Side, TYPE, View } from "./api";
 import { RACES } from "../lib/cards/db";
 import { parseYdk } from "../lib/deck/ydk";
+import { Review, RoleChips, Wrong } from "./Review";
 import "./duel.css";
 
 export interface DuelDeck { name: string; main: number[]; extra: number[] }
+interface Last { deck: DuelDeck; hand: number[]; handSize?: number; shuffle?: boolean }
 const ATTR: Record<number, string> = { 1: "EARTH", 2: "WATER", 4: "FIRE", 8: "WIND", 16: "LIGHT", 32: "DARK", 64: "DIVINE" };
 const key = (c: { c: number; loc: number; seq: number }) => `${c.c}:${c.loc}:${c.seq}`;
 const LAST_KEY = "rkapro-duel-last";
 
-function typeLine(i: CardInfo): string {
+export function typeLine(i: CardInfo): string {
   const t = i.type;
   if (t & TYPE.MONSTER) {
     const sub = [t & TYPE.FUSION && "Fusion", t & TYPE.RITUAL && "Ritual", t & TYPE.SYNCHRO && "Synchro", t & TYPE.XYZ && "Xyz", t & TYPE.LINK && "Link", t & TYPE.PENDULUM && "Pendulum", t & TYPE.TUNER && "Tuner", t & TYPE.EFFECT ? "Effect" : t & TYPE.TOKEN ? "Token" : "Normal"].filter(Boolean);
@@ -23,14 +25,14 @@ function typeLine(i: CardInfo): string {
 const frame = (t: number) => (t & TYPE.SPELL ? "spell" : t & TYPE.TRAP ? "trap" : t & TYPE.XYZ ? "xyz" : t & TYPE.LINK ? "link" : t & TYPE.SYNCHRO ? "synchro" : t & TYPE.FUSION ? "fusion" : t & TYPE.RITUAL ? "ritual" : t & TYPE.EFFECT ? "effect" : "normal");
 
 /** A card picture: EDOPro's picture if the server has it, otherwise a drawn card (name on a frame-coloured tile). */
-function Pic({ code, info, faceDown }: { code: number; info?: CardInfo; faceDown?: boolean }) {
-  const [broken, setBroken] = useState(false);
+export function Pic({ code, info, faceDown }: { code: number; info?: CardInfo; faceDown?: boolean }) {
+  const [bad, setBad] = useState(0); const broken = bad === code; // remembered per passcode, so a reused slot does not keep the old state
   if (faceDown || !code) return <div className="pic back"><img src="/api/texture/cover.png" alt="" onError={(e) => { e.currentTarget.style.display = "none"; }} /></div>;
   if (broken) return <div className={`pic drawn f-${frame(info?.type ?? 0)}`}><span>{info?.name ?? code}</span>{info && info.type & TYPE.MONSTER ? <em>{info.atk}/{info.def}</em> : null}</div>;
-  return <div className="pic"><img src={`/api/pic/${code}`} alt={info?.name ?? String(code)} onError={() => setBroken(true)} /></div>;
+  return <div className="pic"><img key={code} src={`/api/pic/${code}`} alt={info?.name ?? String(code)} onError={() => setBad(code)} /></div>;
 }
 
-export function Duel({ labDeck, packDeck }: { labDeck: DuelDeck | null; packDeck: DuelDeck }) {
+export function Duel({ labDeck, packDeck, drill = false }: { labDeck: DuelDeck | null; packDeck: DuelDeck; drill?: boolean }) {
   const [view, setView] = useState<View | null>(null);
   const [offline, setOffline] = useState(false);
   const [error, setError] = useState("");
@@ -43,10 +45,14 @@ export function Duel({ labDeck, packDeck }: { labDeck: DuelDeck | null; packDeck
   const [showSaves, setShowSaves] = useState(false);
   const [setup, setSetup] = useState(false);
   const [note, setNote] = useState("");
+  const [review, setReview] = useState<DrillResult | null>(null);
+  const [wrong, setWrong] = useState(false);
+  const [roles, setRoles] = useState<Record<string, string[]>>({});
+  useEffect(() => { api.knowledge().then((k) => setRoles(k.roles)).catch(() => {}); }, []);
   const logRef = useRef<HTMLDivElement>(null);
 
   const run = useCallback(async (f: () => Promise<View>) => {
-    setMenu(null); setPicked([]); setError("");
+    setMenu(null); setPicked([]); setError(""); setPile(null);
     try { setView(await f()); setOffline(false); }
     catch (e) { const st = (e as { state?: View }).state; if (st) setView(st); setError((e as Error).message); }
   }, []);
@@ -91,20 +97,25 @@ export function Duel({ labDeck, packDeck }: { labDeck: DuelDeck | null; packDeck
     else { const next = [...picked, id]; if (next.length >= p.count!) act({ ids: next }); else setPicked(next); }
   }
   const cancel = () => {
-    if (menu) return setMenu(null); if (pile) return setPile(null); if (setup && view) return setSetup(false); if (showSaves) return setShowSaves(false);
+    if (menu) return setMenu(null); if (pile) return setPile(null); if (wrong) return setWrong(false); if (review) return setReview(null); if (setup && view) return setSetup(false); if (showSaves) return setShowSaves(false);
     if (!p) return;
     if (p.kind === "yesno") act({ yes: false }); else if (p.kind === "chain" && !p.forced) act({ cancel: true }); else if (p.kind === "cards" && p.cancel) act({ cancel: true }); else if (p.kind === "cards" && p.finish) act({ finish: true });
   };
   const confirm = () => { if (!p) return; if (p.kind === "yesno") act({ yes: true }); else if (canConfirm) act({ ids: picked }); else if (p.kind === "cards" && p.finish) act({ finish: true }); };
 
   // ---------- duel control ----------
-  const last = (): { deck: DuelDeck; hand: number[] } | null => { try { return JSON.parse(localStorage.getItem(LAST_KEY) ?? "null"); } catch { return null; } };
-  function start(deck: DuelDeck, hand: number[]) {
-    try { localStorage.setItem(LAST_KEY, JSON.stringify({ deck, hand })); } catch { /* storage unavailable */ }
+  const last = (): Last | null => { try { return JSON.parse(localStorage.getItem(LAST_KEY) ?? "null"); } catch { return null; } };
+  function start(deck: DuelDeck, hand: number[], handSize = 5, shuffle = true) {
+    if (drill) { try { localStorage.setItem(LAST_KEY, JSON.stringify({ deck, hand: [] })); } catch { /* storage unavailable */ } setSetup(false); setReview(null); run(() => api.drillNew({ main: deck.main, extra: deck.extra })); return; }
+    try { localStorage.setItem(LAST_KEY, JSON.stringify({ deck, hand, handSize, shuffle })); } catch { /* storage unavailable */ }
     setSetup(false); setDetail(null);
-    run(() => api.newDuel({ main: deck.main, extra: deck.extra, hand })).then(refreshSaves);
+    run(() => api.newDuel({ main: deck.main, extra: deck.extra, hand, handSize, shuffle })).then(refreshSaves);
   }
-  const newHand = () => { const l = last(); if (l) start(l.deck, l.hand); else setSetup(true); };
+  const newHand = () => { const l = last(); if (l) start(l.deck, l.hand, l.handSize, l.shuffle); else setSetup(true); };
+  const drillDeck = () => last()?.deck ?? labDeck ?? packDeck;
+  const dealDrill = () => { setReview(null); setDetail(null); setSetup(false); run(() => api.drillNew({ main: drillDeck().main, extra: drillDeck().extra })); };
+  const finishDrill = async () => { try { setReview(await api.drillFinish()); setView(await api.state()); } catch (e) { setError((e as Error).message); } };
+  useEffect(() => { if (drill && view?.drill && !view.drill.graded && view.turn >= 2 && !review) finishDrill(); }, [view?.turn, view?.drill?.graded]); // eslint-disable-line react-hooks/exhaustive-deps
   const quickSave = async () => { try { setSaves(await api.save()); setError(""); } catch (e) { setError((e as Error).message); } };
   const quickLoad = () => { const s = saves.saves[saves.saves.length - 1]; if (s) run(() => api.load(s.id)).then(refreshSaves); };
 
@@ -141,6 +152,7 @@ export function Duel({ labDeck, packDeck }: { labDeck: DuelDeck | null; packDeck
         data-code={c.code} data-loc={c.loc} title={hidden ? "" : name(c.code)} onMouseEnter={() => !hidden && c.code && setDetail({ code: c.code, card: c })} onClick={(e) => clickCard(c, e)}>
         <Pic code={c.code} info={info[c.code]} faceDown={down || hidden} />
         {c.loc === LOC.MZONE && !down && c.atk !== undefined && <span className="stats">{c.atk}{info[c.code] && info[c.code].type & TYPE.LINK ? "" : `/${c.def}`}</span>}
+        {c.loc === LOC.MZONE && !down && c.level > 0 && <span className={`lvl${info[c.code] && info[c.code].type & TYPE.XYZ ? " rank" : ""}`}>{info[c.code] && info[c.code].type & TYPE.XYZ ? "R" : info[c.code] && info[c.code].type & TYPE.LINK ? "L" : "★"}{c.level}</span>}
         {c.mats.length > 0 && <span className="mats" title={c.mats.map(name).join(", ")}>{c.mats.length}</span>}
       </button>
     );
@@ -182,6 +194,7 @@ export function Duel({ labDeck, packDeck }: { labDeck: DuelDeck | null; packDeck
             {d.type & TYPE.MONSTER ? <div className="detail-stats">{d.type & TYPE.XYZ ? "Rank" : d.type & TYPE.LINK ? "Link" : "Level"} {d.level} · ATK {detail!.card?.atk ?? d.atk}{d.type & TYPE.LINK ? "" : ` / DEF ${detail!.card?.def ?? d.def}`}</div> : null}
             {detail!.card && detail!.card.mats.length > 0 && <div className="detail-mats">Materials ({detail!.card.mats.length}): {detail!.card.mats.map(name).join(", ")}</div>}
             <div className="detail-text">{d.desc}</div>
+            <RoleChips name={d.name} roles={roles[d.name] ?? []} onChange={(r) => api.setRole(d.name, r).then((x) => setRoles(x.roles)).catch(() => {})} />
           </> : <p className="muted small">Point at a card to read it.</p>}
         </div>
         <div className="chat" data-testid="chat">
@@ -197,16 +210,24 @@ export function Duel({ labDeck, packDeck }: { labDeck: DuelDeck | null; packDeck
 
       <main className="duel-main">
         <div className="toolbar">
-          <button onClick={() => setSetup(true)}>New duel…</button>
-          <button className="ghost" onClick={newHand} title="N">New hand</button>
+          {drill ? <>
+            <button onClick={dealDrill}>Deal a drill hand</button>
+            <button className="ghost" disabled={!view?.drill} onClick={finishDrill} title="Grade what is on the field now">Finish and grade</button>
+            <button className="ghost" onClick={() => setSetup(true)}>Deck…</button>
+          </> : <>
+            <button onClick={() => setSetup(true)}>New duel…</button>
+            <button className="ghost" onClick={newHand} title="N">New hand</button>
+          </>}
           <button className="ghost" disabled={!view?.canUndo} onClick={() => run(() => api.undo(view!.decisions))}>Restart hand</button>
           <button className="ghost" disabled={!view?.canUndo} onClick={() => run(() => api.undo())} title="Ctrl+Z or U">Undo</button>
           <button className="ghost" disabled={!view} onClick={quickSave} title="S">Quick save</button>
           <button className="ghost" disabled={!saves.saves.length} onClick={quickLoad} title="L">Quick load</button>
           <button className="ghost" onClick={() => { refreshSaves(); setShowSaves(!showSaves); }}>Save states ({saves.saves.length})</button>
+          <button className="ghost wrong-btn" disabled={!view} onClick={() => setWrong(true)}>That's wrong</button>
           {view && <>
             <label className="tog" title="Pick the zone for you (Extra Monster Zone first)"><input type="checkbox" checked={view.settings.autoPlace} onChange={(e) => run(() => api.settings({ autoPlace: e.target.checked }))} /> Auto-place</label>
-            <label className="tog" title="Never ask about optional chains"><input type="checkbox" checked={view.settings.noChain} onChange={(e) => run(() => api.settings({ noChain: e.target.checked }))} /> Ignore chains</label>
+            <label className="tog" title="Never ask about optional chains"><input type="checkbox" checked={view.settings.noChain} onChange={(e) => run(() => api.settings({ noChain: e.target.checked, alwaysChain: false }))} /> Ignore chains</label>
+            <label className="tog" title="Ask whenever a card can be chained, even with nothing to respond to (like holding the chain button in EDOPro)"><input type="checkbox" checked={view.settings.alwaysChain} onChange={(e) => run(() => api.settings({ alwaysChain: e.target.checked, noChain: false }))} /> Always chain</label>
           </>}
         </div>
         {error && <div className="duel-error" role="alert">{error}</div>}
@@ -285,6 +306,9 @@ export function Duel({ labDeck, packDeck }: { labDeck: DuelDeck | null; packDeck
             <input className="text" name="n" placeholder="Name this point (optional)" aria-label="Save name" /><button>Save here</button></form>}
         </div>}
 
+        {review && <Review result={review} onResult={setReview} onNext={dealDrill} onClose={() => setReview(null)} />}
+        {wrong && <Wrong card={d?.name ?? null} onClose={() => setWrong(false)} />}
+        {drill && view && !view.drill && !setup && !review && <div className="window" role="dialog" aria-label="Drill"><h3>Drill mode</h3><p className="small">You get a random hand from <b>{drillDeck().name}</b>. Play turn 1 and end the turn: your board is compared with the stored line for that hand, on several numbers.</p><button onClick={dealDrill}>Deal a drill hand</button></div>}
         {setup && <Setup labDeck={labDeck} packDeck={packDeck} last={last()} info={info} setInfo={setInfo} onStart={start} onClose={view ? () => setSetup(false) : undefined} />}
       </main>
     </div>
@@ -293,11 +317,13 @@ export function Duel({ labDeck, packDeck }: { labDeck: DuelDeck | null; packDeck
 
 /** New duel: pick the deck (deck lab, current list, or a .ydk from EDOPro's deck folder) and, if you want, the opening hand. */
 function Setup({ labDeck, packDeck, last, info, setInfo, onStart, onClose }: {
-  labDeck: DuelDeck | null; packDeck: DuelDeck; last: { deck: DuelDeck; hand: number[] } | null; info: Record<number, CardInfo>;
-  setInfo: (f: (o: Record<number, CardInfo>) => Record<number, CardInfo>) => void; onStart: (d: DuelDeck, hand: number[]) => void; onClose?: () => void;
+  labDeck: DuelDeck | null; packDeck: DuelDeck; last: Last | null; info: Record<number, CardInfo>;
+  setInfo: (f: (o: Record<number, CardInfo>) => Record<number, CardInfo>) => void; onStart: (d: DuelDeck, hand: number[], handSize: number, shuffle: boolean) => void; onClose?: () => void;
 }) {
   const [deck, setDeck] = useState<DuelDeck>(last?.deck ?? labDeck ?? packDeck);
   const [hand, setHand] = useState<number[]>(last?.hand ?? []);
+  const [size, setSize] = useState(last?.handSize ?? 5);
+  const [shuffle, setShuffle] = useState(last?.shuffle ?? true);
   const [edo, setEdo] = useState<string[]>([]);
   const [err, setErr] = useState("");
   useEffect(() => { api.decks().then((r) => setEdo(r.decks)).catch(() => {}); }, []);
@@ -316,16 +342,20 @@ function Setup({ labDeck, packDeck, last, info, setInfo, onStart, onClose }: {
           try { const r = await api.readDeck(e.target.value); const y = parseYdk(r.text); pick({ name: r.name, main: y.main, extra: y.extra }); } catch (x) { setErr((x as Error).message); }
         }}><option value="">{edo.length ? `EDOPro deck folder (${edo.length})…` : "No EDOPro deck folder found"}</option>{edo.map((n) => <option key={n}>{n}</option>)}</select>
       </div>
-      <p className="small muted"><b>{deck.name}</b> · Main {deck.main.length} · Extra {deck.extra.length}. Opening hand: {hand.length === 0 ? "5 random cards" : `${hand.length} chosen + ${5 - hand.length} random`}. Click cards to put them in the opening hand.</p>
+      <p className="small muted"><b>{deck.name}</b> · Main {deck.main.length} · Extra {deck.extra.length}. Opening hand: {!shuffle ? `the top ${size} cards of the list` : hand.length === 0 ? `${size} random cards` : `${Math.min(hand.length, size)} chosen + ${Math.max(0, size - hand.length)} random`}. Click cards to put them in the opening hand.</p>
+      <div className="row">
+        <label className="tog">Hand size <input className="num" type="number" min={0} max={10} aria-label="Hand size" value={size} onChange={(e) => { const n = Math.max(0, Math.min(10, Number(e.target.value) || 0)); setSize(n); setHand(hand.slice(0, n)); }} /></label>
+        <label className="tog" title="Off: the deck is not shuffled, you draw the cards in the order of the deck list"><input type="checkbox" checked={shuffle} onChange={(e) => { setShuffle(e.target.checked); if (!e.target.checked) setHand([]); }} /> Shuffle deck</label>
+      </div>
       <div className="setup-cards">
         {[...counts].map(([id, n]) => (
-          <button key={id} className={`chip${inHand(id) ? " on" : ""}`} onClick={() => setHand(inHand(id) >= n || hand.length >= 5 ? hand.filter((x) => x !== id) : [...hand, id])}>
+          <button key={id} className={`chip${inHand(id) ? " on" : ""}`} disabled={!shuffle} onClick={() => setHand(inHand(id) >= n || hand.length >= size ? hand.filter((x) => x !== id) : [...hand, id])}>
             {inHand(id) > 0 && <b>{inHand(id)}× </b>}{info[id]?.name ?? id}
           </button>
         ))}
       </div>
       {err && <p className="error">{err}</p>}
-      <div className="row"><button onClick={() => onStart(deck, hand)}>Start duel</button>{hand.length > 0 && <button className="ghost" onClick={() => setHand([])}>Random hand</button>}</div>
+      <div className="row"><button onClick={() => onStart(deck, hand, size, shuffle)}>Start duel</button>{hand.length > 0 && <button className="ghost" onClick={() => setHand([])}>Random hand</button>}</div>
     </div>
   );
 }

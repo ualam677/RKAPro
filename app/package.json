@@ -11,7 +11,8 @@
     "typecheck": "tsc --noEmit",
     "ui-check": "node scripts/ui-check.mjs",
     "desktop": "vite build && node scripts/desktop.mjs",
-    "server": "node ../sim/server.mjs"
+    "server": "node ../sim/server.mjs",
+    "dev:check": "node scripts/dev-check.mjs"
   },
   "dependencies": {
     "fflate": "^0.8.2",
