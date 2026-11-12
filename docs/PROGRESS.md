@@ -1,10 +1,13 @@
 # Progress log (read this first in every session)
 
-**Current wave:** 1 (Deck lab). **Next slice:** 1.4 deck import/export and deck folders.
+**Current wave:** 1 (Deck lab). **Next slice:** 1.5 deck version history.
 
 Repo state at last entry: sim/ headless engine and tools work (`scripts/verify.sh` passes all 5 replays); golden tests pass through the library API; app/ ratio optimiser has 48 passing tests; no Electron, no duel UI yet.
 
 ## Log (newest first; 3 to 5 lines per slice)
+- 12 Nov 2026, slice 1.4 done: panel "Deck files" (`DeckFiles.tsx`): download .ydk, copy ydke:// and Omega code; deck folders through the File System Access API (pick EDOPro deck folders or a Drive-synced folder; lists .ydk, click to import, save current deck there). Folder handles persist in IndexedDB.
+  No server needed. Works in Edge, Chrome and Electron, not Firefox or Safari. The native folder dialog cannot be driven headless, so the UI check uses the browser's private file system as the folder (save, list, re-import verified).
+  Not checked: a real EDOPro folder and a real Drive-synced folder on this machine.
 - 12 Nov 2026, slice 1.3 done: quick calculator (`packages/analysis/quick.ts`, panel `QuickCalc.tsx`): starters, hand traps, bricks, 2-card pairs, open-with min/max rules, for 5 and 6 cards, any deck.
   New tile flag "Needs Normal Summon": all such starters together count as one play ("2 plays" row). Role tags are remembered per card name (localStorage `rkapro-roles-v1`) and reused on the next import.
   3 closed-form tests; UI check covers pair, rule, flag and memory. Not built: non-OPT flag, deck-size sweep (not in the slice text).

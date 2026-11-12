@@ -6,7 +6,6 @@ import { DeckEntry, describe, Filter } from "./lib/combo/filters";
 import { Change, suggestChanges, trimTo, Weighted } from "./lib/combo/optimise";
 import { autoSetup, buildEffects, buildGoals, CardSetup, EXCAVATORS, GALAXY_PRESET, hasRole, PresetSetup, resolvePreset, rolesOf, SetupMap, upgradeSetup } from "./lib/combo/setup";
 import { countCards, Deck } from "./lib/deck/types";
-import { toYdke } from "./lib/deck/ydke";
 import { GALAXY_EXAMPLE } from "./lib/examples";
 import { Role, ROLE_COLOURS, ROLE_HELP, ROLES } from "./lib/roles";
 import { Zone } from "./lib/combo/engine";
@@ -14,8 +13,11 @@ import { normaliseName } from "./lib/cards/db";
 import { generalisations, ReplayPanel } from "./components/ReplayPanel";
 import { SynergyGraph } from "./components/SynergyGraph";
 import { Route } from "./lib/combo/setup";
-import { ExactStats, packApplies } from "./components/ExactStats";
+import { ExactStats, headline, packApplies } from "./components/ExactStats";
+import { History } from "./components/History";
+import { loadHistory, pushVersion, saveHistory, Version } from "./lib/history";
 import { QuickCalc } from "./components/QuickCalc";
+import { DeckFiles } from "./components/DeckFiles";
 
 // Role tags are remembered per card name, so a card tagged once is known in every later deck.
 const ROLES_KEY = "rkapro-roles-v1";
@@ -92,7 +94,6 @@ export default function App() {
   const [weight1, setWeight1] = useState(saved?.weight1 ?? 50);
   const [warnings, setWarnings] = useState<string[]>([]);
   const [error, setError] = useState("");
-  const [copied, setCopied] = useState("");
   const [showSide, setShowSide] = useState(false);
 
   useEffect(() => {
@@ -116,6 +117,7 @@ export default function App() {
       }
       setSetup(s);
       setResult(null);
+      freshImport.current = true;
     } catch (e) {
       setError((e as Error).message);
     }
@@ -203,17 +205,27 @@ export default function App() {
   }), [counts]);
 
   const currentDeck = (): Deck => ({ ...deck!, main: Object.entries(counts).flatMap(([id, n]) => Array(n).fill(Number(id))) });
-  async function copyYdke() {
-    try { await navigator.clipboard.writeText(toYdke(currentDeck())); setCopied("Copied!"); }
-    catch { setCopied("Copy blocked — the link is in the box above"); setInput(toYdke(currentDeck())); }
-    setTimeout(() => setCopied(""), 2500);
-  }
 
   const setCard = (id: number, patch: Partial<CardSetup>) => {
     const next = { ...(setup[id] ?? { roles: [] }), ...patch };
     setSetup({ ...setup, [id]: next });
     const c = db.byId.get(id); if (c) remember(c.name, next);
   };
+  // ---------- version history: every edit is saved with its numbers (debounced so a run of clicks is one version) ----------
+  const [history, setHistory] = useState<Version[]>(loadHistory);
+  const freshImport = useRef(false);
+  useEffect(() => {
+    if (!deck || deckSize < 6) return;
+    const t = setTimeout(() => {
+      const stats: Record<string, number> = packApplies(nameCounts)
+        ? (() => { const h = headline(nameCounts); return { "1st: full board": h.full1, "Nibiru-proof": h.nib1, "full + 2 HT": h.full_2ht, "brick": h.brick1, "2nd: ≥2 HT": h.ht2_2 }; })()
+        : odds ? { "1st: starter line": odds[0].p, "2nd: line + interaction": odds[1].p } : {};
+      setHistory((h) => { const next = pushVersion(h, { t: Date.now(), main: counts, extra: deck.extra, side: deck.side, stats }, nameOf, freshImport.current); freshImport.current = false; if (next !== h) saveHistory(next); return next; });
+    }, 1200);
+    return () => clearTimeout(t);
+  }, [counts, deck, odds]); // eslint-disable-line react-hooks/exhaustive-deps
+  const restore = (v: Version) => { setDeck({ ...deck!, extra: v.extra, side: v.side }); setCounts(v.main); };
+
   const quickCards = useMemo(() => main.map((e) => { const s = setup[e.id]; return { name: e.card.name, copies: e.copies, starter: hasRole(s, "Starter"), ns: !!s?.ns, handTrap: hasRole(s, "Hand Trap"), brick: !!s?.brick }; }), [main, setup]);
 
   return (
@@ -237,8 +249,6 @@ export default function App() {
           </label>
           <button className="ghost" onClick={() => { setInput(PACK_LIST); doImport(PACK_LIST, undefined, GALAXY_PRESET); }}>Load my current list</button>
           <button className="ghost" onClick={() => { setInput(GALAXY_EXAMPLE); doImport(GALAXY_EXAMPLE, undefined, GALAXY_PRESET); }}>Load Galaxy example</button>
-          {deck && <button className="ghost" onClick={copyYdke}>Copy tweaked deck as ydke://</button>}
-          {copied && <span className="muted">{copied}</span>}
         </div>
         {error && <p className="error">{error}</p>}
         {warnings.map((w) => <p key={w} className="warn">⚠ {w}</p>)}
@@ -249,11 +259,15 @@ export default function App() {
         )}
       </section>
 
+      <DeckFiles deck={deck ? currentDeck() : null} onImport={(t, f) => { setInput(t); doImport(t, f); }} />
+
       {deck && (
         <>
           {packApplies(nameCounts) && <ExactStats deck={nameCounts} baseline={importedCounts} maxCopies={(n) => db.byName.get(normaliseName(n))?.limit ?? 3} />}
 
           <QuickCalc cards={quickCards} />
+
+          <History versions={history} onRestore={restore} onClear={() => { setHistory([]); saveHistory([]); }} />
 
           {/* 2. Tag */}
           <section className="panel">

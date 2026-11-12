@@ -113,3 +113,5 @@ ol.steps { margin: 0; padding-left: 22px; line-height: 1.55; color: #c3cad6; max
 .stats-table td, .stats-table th, .marginals td, .marginals th { font-variant-numeric: tabular-nums; }
 .scroll-x { overflow-x: auto; } .marginals { min-width: 820px; } .marginals th { font-size: 11px; color: var(--muted); font-weight: 600; }
 .marginals .up, .marginals .down, .stats-table .up, .stats-table .down { font-size: 12px; }
+.folder { border-top: 1px solid var(--line); margin-top: 10px; padding-top: 4px; }
+.folder .chip { color: var(--text); cursor: pointer; }

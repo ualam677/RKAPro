@@ -57,6 +57,28 @@ await section("lab", async () => {
   await page.getByTestId("quick-calc").screenshot({ path: path.join(out, "2-lab-quick.png") });
 });
 
+await section("files", async () => {
+  // The native folder dialog cannot be driven headless: stand in the browser's private file system for the picked folder.
+  await page.evaluate(() => { window.showDirectoryPicker = () => navigator.storage.getDirectory(); });
+  const f = page.getByTestId("deck-files");
+  await step("deck folder: save the current deck as .ydk, list it, import it back", async () => {
+    if (!(await page.getByTestId("exact-stats").count())) await page.getByRole("button", { name: "Load my current list" }).click();
+    await f.getByRole("button", { name: "Add a deck folder" }).click();
+    await f.getByLabel("Deck name").fill("UI check deck");
+    await f.getByRole("button", { name: "Save current deck here" }).click();
+    await f.getByRole("button", { name: "UI check deck.ydk" }).click();
+    await page.waitForTimeout(300);
+    const t = await page.getByTestId("exact-stats").innerText();
+    if (!t.includes("93.3%") || !t.includes("43 cards")) throw new Error("re-imported deck differs");
+    const ydk = await page.evaluate(async () => (await (await (await navigator.storage.getDirectory()).getFileHandle("UI check deck.ydk")).getFile()).text());
+    if (!ydk.startsWith("#created by") || ydk.split("\n").filter((l) => /^\d+$/.test(l)).length !== 58) throw new Error("bad .ydk: " + ydk.slice(0, 80));
+  });
+  await step("export buttons present", async () => {
+    for (const name of ["Download .ydk", "Copy ydke://", "Copy Omega code"]) await f.getByRole("button", { name }).waitFor();
+  });
+  await f.screenshot({ path: path.join(out, "3-lab-files.png") });
+});
+
 if (errors.length) { console.log("PAGE ERRORS:\n" + errors.join("\n")); await browser.close(); process.exit(1); }
 await browser.close();
 console.log("done, screenshots in", out);
