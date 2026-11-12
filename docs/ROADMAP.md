@@ -39,12 +39,12 @@ Mostly a port of what already works headlessly, so high value for low cost.
 Done when: you can paste a list, see every number, edit it, and see the difference.
 
 ## Wave 2: Duel client and save states (large)
-- [ ] 2.1 Electron shell + board UI: field, hand, GY, banish, Extra Deck, overlay materials, card detail. **design**
-- [ ] 2.2 Prompts to UI: select card/zone/position/option, yes-no, chain, and EDOPro-style hotkeys, auto-chain and speed (animations off or fast by default).
-- [ ] 2.3 Goldfish duel: draw a hand from a deck, play it out, finish turn.
-- [ ] 2.4 Save states: quick save/load, undo, branch tree (seed + response log).
-- [ ] 2.5 Chat panel: events and key info (chain, hand-trap windows, Nibiru windows, notes).
-- [ ] 2.6 Loads EDOPro's deck folder and card database.
+- [x] 2.1 Electron shell + board UI: field, hand, GY, banish, Extra Deck, overlay materials, card detail. **design**
+- [x] 2.2 Prompts to UI: select card/zone/position/option, yes-no, chain, and EDOPro-style hotkeys, auto-chain and speed (animations off or fast by default).
+- [x] 2.3 Goldfish duel: draw a hand from a deck, play it out, finish turn.
+- [x] 2.4 Save states: quick save/load, undo, branch tree (seed + response log).
+- [x] 2.5 Chat panel: events and key info (chain, hand-trap windows, Nibiru windows, notes).
+- [x] 2.6 Loads EDOPro's deck folder and card database.
 Done when: you can play a full turn-1 Galaxy-Eyes line by hand, quick-save at any point and branch from it.
 
 ## Wave 3: Drill mode, knowledge base, feedback (medium)

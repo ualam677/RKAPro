@@ -29,7 +29,7 @@ export interface CardDb {
 
 const KINDS: CardKind[] = ["monster", "monster", "spell", "trap", "extra"];
 const ATTRS: [number, Attribute][] = [[1, "EARTH"], [2, "WATER"], [4, "FIRE"], [8, "WIND"], [16, "LIGHT"], [32, "DARK"], [64, "DIVINE"]];
-const RACES = ["Warrior", "Spellcaster", "Fairy", "Fiend", "Zombie", "Machine", "Aqua", "Pyro", "Rock", "Winged Beast",
+export const RACES = ["Warrior", "Spellcaster", "Fairy", "Fiend", "Zombie", "Machine", "Aqua", "Pyro", "Rock", "Winged Beast",
   "Plant", "Insect", "Thunder", "Dragon", "Beast", "Beast-Warrior", "Dinosaur", "Fish", "Sea Serpent", "Reptile",
   "Psychic", "Divine-Beast", "Creator God", "Wyrm", "Cyberse", "Illusion"];
 

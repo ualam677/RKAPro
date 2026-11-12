@@ -19,7 +19,100 @@ const section = async (name, fn) => { if (!only || only.includes(name)) await fn
 await page.goto(base);
 await page.evaluate(() => { localStorage.clear(); }); await page.reload();
 
+const tab = (name) => page.getByRole("navigation", { name: "Sections" }).getByRole("button", { name }).click();
+
+await section("duel", async () => {
+  const ORB7 = "91714772";
+  const hand = page.getByTestId("hand");
+  await step("new duel with Orbital 7 forced into the opening hand", async () => {
+    await tab("Duel");
+    const setup = page.getByRole("dialog", { name: "New duel" });
+    await page.waitForTimeout(800);
+    if (!(await setup.count())) await page.getByRole("button", { name: "New duel…" }).click(); // a duel is already running on the engine
+    await setup.waitFor();
+    await setup.getByRole("button", { name: "My current list" }).click();
+    await setup.getByRole("button", { name: "Galaxy Defense Robot Orbital 7" }).click();
+    await setup.getByRole("button", { name: "Start duel" }).click();
+    await hand.locator(".dcard").nth(4).waitFor();
+    if ((await hand.locator(".dcard").count()) !== 5) throw new Error("hand is not 5 cards");
+    await hand.locator(`.dcard[data-code="${ORB7}"].can-act`).waitFor();
+  });
+  await page.waitForTimeout(800);
+  await shot("5-duel-start", false);
+
+  const hint = page.getByTestId("hint"), chat = page.getByTestId("chat"), prompt = page.getByTestId("prompt");
+  const idle = async () => (await hint.innerText()).includes("click a glowing card");
+  // answer whatever the engine asks with the first offered choice, until the main phase is back
+  const resolve = async () => {
+    for (let i = 0; i < 25; i++) {
+      await page.waitForTimeout(120);
+      if (await idle()) return;
+      if (await page.locator(".zone.free").count()) { await page.locator(".zone.free").first().click(); continue; }
+      if (!(await prompt.count())) continue;
+      const first = prompt.locator(".pick, .opts button").first();
+      if (await first.count()) { await first.click(); const ok = prompt.getByRole("button", { name: "Confirm" }); if (await ok.count() && await ok.isEnabled()) await ok.click(); }
+      else await prompt.getByRole("button", { name: /^(Yes|Done)$/ }).first().click();
+    }
+    throw new Error("prompts did not resolve; hint: " + (await hint.innerText()));
+  };
+  const useCard = async (card, verb) => { await card.click(); await page.getByRole("menu").getByRole("menuitem", { name: verb }).first().click(); await resolve(); };
+
+  await step("hovering a card shows its picture and text on the left", async () => {
+    await hand.locator(`.dcard[data-code="${ORB7}"]`).hover();
+    const t = await page.getByTestId("card-detail").innerText();
+    if (!t.includes("Galaxy Defense Robot Orbital 7") || !t.includes("Tribute this card")) throw new Error("detail: " + t.slice(0, 120));
+  });
+  await step("click a card, pick Activate, answer the selection windows", async () => {
+    await useCard(hand.locator(`.dcard[data-code="${ORB7}"]`), /^Activate/);
+    const log = await chat.innerText();
+    if (!log.includes("Chain 1: Galaxy Defense Robot Orbital 7") || !log.includes("Hand → GY")) throw new Error("chat: " + log.slice(-200));
+  });
+  let savedLog = "";
+  await step("quick save, play on (Normal Summon into a clicked zone), undo, quick load", async () => {
+    await page.getByRole("button", { name: "Quick save" }).click();
+    await page.getByRole("button", { name: "Save states (1)" }).waitFor();
+    savedLog = await chat.innerText();
+    await hand.locator(".dcard.can-act").first().click();
+    const menu = page.getByRole("menu");
+    await menu.getByRole("menuitem").first().click(); await resolve();
+    const after = await chat.innerText();
+    if (after === savedLog) throw new Error("nothing happened after the save");
+    await page.getByRole("button", { name: "Undo" }).click(); await page.waitForTimeout(300);
+    await page.getByRole("button", { name: "Quick load" }).click(); await page.waitForTimeout(300);
+    if ((await chat.innerText()) !== savedLog) throw new Error("quick load did not return to the saved point");
+  });
+  await shot("6-duel-midturn", false);
+  await step("branch: play a different card from the save, save again, tree shows the branch", async () => {
+    await hand.locator(".dcard.can-act").last().click();
+    await page.getByRole("menu").getByRole("menuitem").first().click(); await resolve();
+    await page.getByRole("button", { name: /^Save states/ }).click();
+    const dlg = page.getByRole("dialog", { name: "Save states" });
+    await dlg.getByLabel("Save name").fill("Branch B"); await dlg.getByRole("button", { name: "Save here" }).click();
+    await dlg.locator(".save-row", { hasText: "↳ Branch B" }).waitFor();
+    await dlg.screenshot({ path: path.join(out, "7-duel-saves.png") });
+    await dlg.getByRole("button", { name: "Close" }).click();
+  });
+  await step("a note is kept in the chat", async () => {
+    await chat.getByLabel("Note").fill("ui-check note"); await chat.getByLabel("Note").press("Enter");
+    await chat.getByText("ui-check note").waitFor();
+  });
+  await step("End Phase button ends the turn; the opponent passes; turn 3 is yours", async () => {
+    await page.locator(".phase.go", { hasText: "EP" }).click();
+    await page.locator(".turn", { hasText: "Turn 3" }).waitFor({ timeout: 8000 });
+    if (!(await idle())) await resolve();
+  });
+  await step("hotkeys: U undoes, Escape closes windows", async () => {
+    const before = await chat.innerText();
+    await page.keyboard.press("u"); await page.waitForTimeout(400);
+    if ((await chat.innerText()) === before) throw new Error("U did not undo");
+    await page.getByRole("button", { name: "New duel…" }).click(); await page.getByRole("dialog", { name: "New duel" }).waitFor();
+    await page.keyboard.press("Escape"); await page.waitForTimeout(200);
+    if (await page.getByRole("dialog", { name: "New duel" }).count()) throw new Error("Escape did not close the window");
+  });
+});
+
 await section("lab", async () => {
+  await tab("Deck lab");
   await step("load current list", async () => {
     await page.getByRole("button", { name: "Load my current list" }).click();
     await page.getByTestId("exact-stats").waitFor();

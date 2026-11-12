@@ -18,6 +18,7 @@ import { History } from "./components/History";
 import { loadHistory, pushVersion, saveHistory, Version } from "./lib/history";
 import { QuickCalc } from "./components/QuickCalc";
 import { DeckFiles } from "./components/DeckFiles";
+import { Duel, DuelDeck } from "./duel/Duel";
 
 // Role tags are remembered per card name, so a card tagged once is known in every later deck.
 const ROLES_KEY = "rkapro-roles-v1";
@@ -33,6 +34,9 @@ import pack from "../../packs/galaxy-eyes/deck.json";
 const PACK_LIST = ["Main", ...Object.entries(pack.main).map(([n, k]) => `${k} ${n}`), "Extra", ...pack.extra.map((n) => `1 ${n}`)].join(String.fromCharCode(10));
 
 const db = loadCardDb();
+const TAB_KEY = "rkapro-tab";
+const idOfName = (n: string) => db.byName.get(normaliseName(n))?.id ?? 0;
+const PACK_DECK: DuelDeck = { name: "My current list", main: Object.entries(pack.main).flatMap(([n, k]) => Array(k).fill(idOfName(n))), extra: pack.extra.map(idOfName) };
 const pct = (p: number) => `${(p * 100).toFixed(1)}%`;
 const nameOf = (id: number) => db.byId.get(id)?.name ?? `#${id}`;
 const KIND_COLOURS: Record<Card["kind"], string> = { monster: "#c8873a", spell: "#1d9e8a", trap: "#b0306a", extra: "#6a4bc4" };
@@ -95,6 +99,8 @@ export default function App() {
   const [warnings, setWarnings] = useState<string[]>([]);
   const [error, setError] = useState("");
   const [showSide, setShowSide] = useState(false);
+  const [tab, setTabState] = useState<"duel" | "lab">(() => (localStorage.getItem(TAB_KEY) === "lab" ? "lab" : "duel"));
+  const setTab = (t: "duel" | "lab") => { setTabState(t); try { localStorage.setItem(TAB_KEY, t); } catch { /* storage unavailable */ } };
 
   useEffect(() => {
     if (!deck) return;
@@ -229,11 +235,17 @@ export default function App() {
   const quickCards = useMemo(() => main.map((e) => { const s = setup[e.id]; return { name: e.card.name, copies: e.copies, starter: hasRole(s, "Starter"), ns: !!s?.ns, handTrap: hasRole(s, "Hand Trap"), brick: !!s?.brick }; }), [main, setup]);
 
   return (
-    <div className="app">
+    <div className={tab === "duel" ? "app wide" : "app"}>
       <header>
-        <h1>YGO Ratio Optimiser</h1>
-        <span className="muted">{db.banlist} banlist · {db.byName.size.toLocaleString()} cards built in</span>
+        <h1>RKAPro</h1>
+        <nav className="tabs" aria-label="Sections">
+          <button className={tab === "duel" ? "on" : ""} onClick={() => setTab("duel")}>Duel</button>
+          <button className={tab === "lab" ? "on" : ""} onClick={() => setTab("lab")}>Deck lab</button>
+        </nav>
+        {tab === "lab" && <span className="muted">{db.banlist} banlist · {db.byName.size.toLocaleString()} cards built in</span>}
       </header>
+
+      {tab === "duel" ? <Duel packDeck={PACK_DECK} labDeck={deck ? { name: "Deck lab deck", main: currentDeck().main, extra: deck.extra } : null} /> : <>
 
       {/* 1. Import */}
       <section className="panel">
@@ -388,6 +400,7 @@ export default function App() {
           </section>
         </>
       )}
+      </>}
     </div>
   );
 }

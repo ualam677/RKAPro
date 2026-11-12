@@ -32,9 +32,12 @@ packages/engine/  engine library, no Node-only imports (host injects ocgcore-was
   choices.mjs   turn engine prompts into labelled options ("Activate X (hand)", "Chain Y", "Pick Z (Deck)")
   api.mjs       createDuel -> options(), respond(), snapshot()/restore(), actionLog(); replay(log); save state = decks + seed + responses
   state.mjs, board.mjs   heap snapshot/restore; read a side of the field
+  client.mjs    duel client protocol: view(duel) = screen model, uiPrompt/answer/autoAnswer; hand-trap window notes in the chat log
+  session.mjs   a duel as the player sees it: act(), undo(), save()/loadSession(), notes; opponent and trivial prompts answered automatically
 packs/galaxy-eyes/ deck.json (current list + replay list), lines.json (hand classes for the odds), board.mjs (scoring), golden/ (action logs of the 5 replays)
 sim/            Node host + search + tools (ocgcore-wasm = EDOPro's core); choices/state/board/deck.mjs re-export the above
   engine.mjs    load card DB + Lua scripts from disk, inject them into packages/engine
+  server.mjs    local duel server (HTTP, port 7911): /api/duel, /api/saves, /api/cards, /api/pic, /api/decks; uses the EDOPro install (EDOPRO_DIR, default C:ProjectIgnis)
   deck.mjs      the current list (MAIN/EXTRA), REPLAY_MAIN (the list the replays were recorded on), id(name), mainList(), extraList()
   beam.mjs      beam search over a turn: beamSolve(hand, deck, {width, prefix, guide, interrupt, timeLimitMs})
   board.mjs     (-> packs/galaxy-eyes/board.mjs) board scoring (≈ interruptions): Photon Lord 1.25, Harbinger 1, Howling 1 (needs ≥3 materials + another Xyz), Transmigration 1, Eternal Galaxy 1, Photon Blast 0.5
@@ -53,10 +56,13 @@ scripts/        setup.sh (data + deps), verify.sh (replays all 5 lines; the regr
 ./scripts/setup.sh                                 # clones ProjectIgnis BabelCDB + CardScripts into sim/data, npm installs
 ./scripts/verify.sh                                # all 5 replays, one line each (~4 min); must stay green
 cd app && npx vitest run                           # 58 tests
-cd app && npm run dev   then   npm run ui-check    # headless Edge drives the real UI, asserts numbers, writes screenshots to app/ui-shots
+cd app && npm run dev                              # the whole app in the browser (also starts the duel engine); Duel tab + Deck lab tab
+cd app && npm run desktop                          # the desktop app (Electron): builds the UI, engine in-process
+cd app && npm run ui-check                         # needs `npm run dev` running: headless Edge drives the real UI (16 steps), screenshots in app/ui-shots
+cd app && npm run build && node scripts/desktop-check.mjs   # launches the real Electron window and checks a hand is dealt
 node tools/odds.mjs marginals                      # per-card -1/+1 table
 node tools/update-data.mjs [--check]               # pull card data, report changes, run the gate, pin (sim/data.lock.json) or roll back
-cd sim && npm test                                 # golden tests: 5 replays through the library API from their action logs (~1 s)
+cd sim && npm test                                 # 22 tests (~25 s): golden replays through the API; duel client protocol (random player, recorded lines click by click)
 node tools/golden.mjs <route...>                   # regenerate a golden action log (only when a replay or the engine API changes)
 cd sim && node tools/check2.mjs <route 0-4> plain  # replay the user's line exactly; routes: 0 Delta, 1 Orb7 r1 (Wizard), 2 Orb7 r2 (Thrasher), 3 Soldier, 4 Schwarzschild
 node tools/check2.mjs <route> nib:K                # Nibiru fires at the K-th chance; best response + finish

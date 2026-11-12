@@ -2,3 +2,4 @@
 import { golden } from "./golden.mjs";
 process.env.YGO_OMEGA_RULINGS = "1";
 await golden([3]);
+await import("./client.test.mjs"); // with the flag set, it plays the Soldier line through the client protocol

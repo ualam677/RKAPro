@@ -14,5 +14,5 @@ if [ -f sim/data.lock.json ]; then
   done
 fi
 (cd sim && npm install)
-(cd app && npm install)
+(cd app && npm install && { [ -f node_modules/electron/dist/electron.exe ] || [ -d node_modules/electron/dist ] || node node_modules/electron/install.js; })  # npm may block install scripts: fetch Electron's binary explicitly
 echo "Ready. Try: node sim/tools/check2.mjs 1 plain"

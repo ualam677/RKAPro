@@ -1,10 +1,19 @@
 # Progress log (read this first in every session)
 
-**Current wave:** 2 (Duel client and save states). **Next slice:** 2.1 Electron shell + board UI.
+**Current wave:** 3 (Drill mode, knowledge base, feedback). **Next slice:** 3.1 knowledge base format.
 
-Repo state at last entry: sim/ headless engine and tools work (`scripts/verify.sh` passes all 5 replays); golden tests pass through the library API; app/ is the deck lab (exact stats, quick calculator, deck files, history; 58 tests + `npm run ui-check`); no Electron, no duel UI yet.
+Repo state at last entry: sim/ headless engine and tools work (`scripts/verify.sh` passes all 5 replays); golden tests pass through the library API; app/ is the deck lab (exact stats, quick calculator, deck files, history; 58 tests + `npm run ui-check`); duel client works in the browser (`npm run dev`) and as a desktop app (`npm run desktop`).
 
 ## Log (newest first; 3 to 5 lines per slice)
+- 12 Nov 2026, Wave 2 done (slices 2.1 to 2.6, built together and committed as one because they share the same files; gates run once at the end). User direction: an EDOPro clone with the ratio tools as a tab.
+  2.1 Shell + board: `app/electron/main.mjs` (engine in-process, `npm run desktop`), `app/src/duel/` (EDOPro layout: card detail + chat left, playmat in perspective, piles, Xyz material badges). Pictures, card back and system strings come from the user's EDOPro install (`C:ProjectIgnis`), missing pictures from EDOPro's picture host into `sim/data/pics`.
+  2.2 Prompts: `packages/engine/client.mjs` maps every engine prompt to a screen model and clicks back to responses (full fidelity: zones, positions, chains). Trivial prompts are answered automatically; toggles Auto-place and Ignore chains. Keys: Esc/right-click cancel, Enter confirm, U or Ctrl+Z undo, S save, L load, N new hand, B battle, E end. No animations.
+  2.3 Goldfish: `packages/engine/session.mjs` + `sim/server.mjs` (HTTP on localhost; Vite dev starts it). New duel from the pack list, the deck lab deck or an EDOPro .ydk; opening hand random or chosen. Opponent = 40 fillers that always pass.
+  2.4 Save states: the action log replayed (no heap snapshots needed: about 0.1 s). Undo, restart hand, quick save/load, named saves with parent links (branch tree) as JSON files in `saves/`.
+  2.5 Chat: turns, phases, moves, summons with a per-turn count, chains, Nibiru note at summon 5, hand-trap windows (Ash, Droll, Veiler/Imperm/Ogre) worked out from what each effect did, user notes kept in the save.
+  2.6 EDOPro: deck folder listed in New duel; pictures, textures, strings used. Card database: still the pinned `sim/data` (the gate vouches for it); `YGO_CDB_DIR` / `YGO_SCRIPTS_DIR` point it at EDOPro's.
+  Tests: 22 sim tests (random player over 6 seeds: every offered click is legal, undo and save/load exact; all 5 recorded lines played click by click end on the recorded boards), `npm run ui-check` 16 steps, `node scripts/desktop-check.mjs` (real Electron window).
+  Surprises: `ELECTRON_RUN_AS_NODE=1` is set inside VS Code and turns Electron into plain Node (launcher `scripts/desktop.mjs` clears it); never `await app.whenReady()` at the top level of an ESM main (deadlock); npm blocks install scripts here, so Electron's binary needs `node node_modules/electron/install.js` (now in setup.sh).
 - 12 Nov 2026, slice 1.6 done (Wave 1 complete): `node sim/tools/update-data.mjs` pulls BabelCDB + CardScripts, reports new/changed cards and scripts (deck cards called out), runs golden tests + verify.sh, pins the commits in `sim/data.lock.json` on green and rolls back on red. `--check` only reports. `scripts/setup.sh` now checks out the pin.
   Run for real: already up to date; then stepped the data back 2 commits and updated again (1 script changed, no deck card, gate green, pin written).
   Not exercised: the rollback branch (needs an update that breaks a replay).

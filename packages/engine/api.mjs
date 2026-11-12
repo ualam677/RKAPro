@@ -45,7 +45,14 @@ export function createDuel(config) {
     destroy() { lib.destroyDuel(h); },
     handle: h,
   };
-  function advance() { const r = runUntilPrompt(h, d.messages); d.prompt = r.prompt; d.ended = !!r.ended; }
+  function advance() {
+    const r = runUntilPrompt(h, d.messages);
+    if (r.retry) { // illegal response: forget it and stay on the same prompt
+      d.responses.pop(); while (d.messages.length && d.messages[d.messages.length - 1].type === 1) d.messages.pop();
+      throw new Error("The engine refused that response");
+    }
+    d.prompt = r.prompt; d.ended = !!r.ended;
+  }
   advance();
   return d;
 }

@@ -38,13 +38,14 @@ export function newDuel({ deck0, extra0 = [], deck1, extra1 = [], hand0 = 5, han
   return h;
 }
 
-/** Run until a decision is needed. Returns { prompt, log } where log is every message seen. */
+/** Run until a decision is needed. Returns { prompt, log } where log is every message seen ({ retry: true } if the engine refused the response). */
 export function runUntilPrompt(h, log = []) {
   for (;;) {
     const st = lib.duelProcess(h);
     const msgs = lib.duelGetMessage(h);
     let prompt = null;
     for (const m of msgs) { log.push(m); if (isPrompt(m)) prompt = m; }
+    if (msgs.some((m) => m.type === 1)) return { prompt: null, log, retry: true }; // RETRY: the last response was illegal; the engine still waits on the same prompt
     if (st === OcgProcessResult.END) return { prompt: null, log, ended: true };
     if (st === OcgProcessResult.WAITING && prompt) return { prompt, log };
   }
